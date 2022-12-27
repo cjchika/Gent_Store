@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 router.get("/", getProducts);
-router.get("/category/:categoryId", getProductByCategory);
-router.get("/brand/:brandId", getProductByBrand);
+router.get("/category/:category", getProductByCategory);
+router.get("/brand/:brand", getProductByBrand);
 
 export default router;

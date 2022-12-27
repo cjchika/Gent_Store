@@ -154,12 +154,12 @@ export const dataProduct = [
     brand: "gucci",
   },
   {
-    _id: "63701d24f03239b7f7000017",
+    _id: "63701d24f03239b7f7000808",
     name: "Norene Swiggs",
     price: 642.61,
     description: "Revision of Nonaut Sub in Low Bursa/Lig, Open Approach",
     category: "tech",
     rating: 4.96,
-    brand: "microsoft",
+    brand: "google",
   },
 ];
