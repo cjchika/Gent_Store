@@ -8,7 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import { signUpRoute } from "./routes/Auth.js";
+import authRoutes from "./routes/Auth.js";
 
 // CONFIGURATION
 dotenv.config();
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 // ROUTES
-app.use("/auth", signUpRoute);
+app.use("/auth", authRoutes);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 4000;
