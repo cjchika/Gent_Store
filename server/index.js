@@ -10,6 +10,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/Auth.js";
 import productRoutes from "./routes/Product.js";
+import { dataProduct } from "./data/index.js";
+
+import Product from "./models/Product.js";
 
 // CONFIGURATION
 dotenv.config();
@@ -36,5 +39,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    // Product.insertMany(dataProduct);
   })
   .catch((error) => console.log(`${error} failed to connect`));
