@@ -9,6 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/Auth.js";
+import productRoutes from "./routes/Product.js";
 
 // CONFIGURATION
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(cors());
 
 // ROUTES
 app.use("/auth", authRoutes);
+app.use("/products", productRoutes);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 4000;

@@ -9,17 +9,19 @@ const orderSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
-  user: {
-    email: {
-      type: String,
-      required: true,
+  user: [
+    {
+      email: {
+        type: String,
+        required: true,
+      },
+      userId: {
+        type: ObjectID,
+        required: true,
+        ref: "User",
+      },
     },
-    userId: {
-      type: ObjectID,
-      required: true,
-      ref: "User",
-    },
-  },
+  ],
 });
 
 export const Order = mongoose.model("Order", orderSchema);

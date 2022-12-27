@@ -7,6 +7,7 @@ const ProductSchema = new mongoose.Schema(
     description: String,
     category: String,
     rating: Number,
+    brand: String,
   },
   { timestamps: true }
 );
