@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+
+const ObjectID = Schema.Types.ObjectId;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -24,6 +26,18 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       min: 5,
+    },
+    cart: {
+      items: [
+        {
+          productId: {
+            type: ObjectID,
+            ref: "Product",
+            required: true,
+          },
+          quantity: { type: Number, required: true },
+        },
+      ],
     },
   },
   { timestamps: true }
