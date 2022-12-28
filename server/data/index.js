@@ -7,6 +7,7 @@ export const dataProduct = [
     category: "furniture",
     rating: 1.92,
     brand: "oscar",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239867500012c",
@@ -16,6 +17,7 @@ export const dataProduct = [
     category: "furniture",
     rating: 3.52,
     brand: "oscar",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239867500012d",
@@ -25,6 +27,7 @@ export const dataProduct = [
     category: "travel",
     rating: 4.1,
     brand: "oraimo",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239b7f7000015",
@@ -34,6 +37,7 @@ export const dataProduct = [
     category: "furniture",
     rating: 1.5,
     brand: "charlotte",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239b7f7000016",
@@ -43,6 +47,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 2.83,
     brand: "gucci",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239b7f7000017",
@@ -52,6 +57,7 @@ export const dataProduct = [
     category: "tech",
     rating: 4.96,
     brand: "apple",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239b7f7000018",
@@ -61,6 +67,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 1.56,
     brand: "armani",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f0323944410002ec",
@@ -70,6 +77,7 @@ export const dataProduct = [
     category: "travel",
     rating: 2.31,
     brand: "vutton",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f0323944410002ed",
@@ -79,6 +87,7 @@ export const dataProduct = [
     category: "furniture",
     rating: 4.4,
     brand: "charlotte",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f0323944410002ee",
@@ -88,6 +97,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 1.02,
     brand: "versace",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f0323944410002ef",
@@ -97,6 +107,7 @@ export const dataProduct = [
     category: "travel",
     rating: 1.73,
     brand: "versace",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239d81e000015",
@@ -106,6 +117,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 4,
     brand: "dior",
+    imagePath: "productImage.png",
   },
 
   {
@@ -116,6 +128,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 2.54,
     brand: "channel",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f032395b3300012c",
@@ -125,6 +138,7 @@ export const dataProduct = [
     category: "furniture",
     rating: 1.11,
     brand: "corbusier",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f032395b3300012d",
@@ -134,6 +148,7 @@ export const dataProduct = [
     category: "travel",
     rating: 4.98,
     brand: "gucci",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d25f03239d591000327",
@@ -143,6 +158,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 1.17,
     brand: "givenchy",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d25f03239d591000328",
@@ -152,6 +168,7 @@ export const dataProduct = [
     category: "clothing",
     rating: 1.43,
     brand: "gucci",
+    imagePath: "productImage.png",
   },
   {
     _id: "63701d24f03239b7f7000808",
@@ -161,5 +178,6 @@ export const dataProduct = [
     category: "tech",
     rating: 4.96,
     brand: "google",
+    imagePath: "productImage.png",
   },
 ];
