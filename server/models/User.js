@@ -27,18 +27,13 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 5,
     },
-    cart: {
-      items: [
-        {
-          productId: {
-            type: ObjectID,
-            ref: "Product",
-            required: true,
-          },
-          quantity: { type: Number, required: true },
-        },
-      ],
-    },
+    cart: [
+      {
+        type: Object,
+        ref: "Cart",
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );

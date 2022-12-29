@@ -2,13 +2,14 @@ import mongoose, { Schema } from "mongoose";
 
 const ObjectID = Schema.Types.ObjectId;
 
-const orderSchema = new Schema({
+const checkoutSchema = new Schema({
   products: [
     {
       product: { type: Object, required: true },
       quantity: { type: Number, required: true },
     },
   ],
+  totalAmount: { type: Number, required: true },
   user: [
     {
       email: {
@@ -24,4 +25,4 @@ const orderSchema = new Schema({
   ],
 });
 
-export const Order = mongoose.model("Order", orderSchema);
+export const Checkout = mongoose.model("Checkout", checkoutSchema);
