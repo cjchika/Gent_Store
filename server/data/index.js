@@ -1,13 +1,13 @@
 export const dataProduct = [
   {
     _id: "63701d24f03239867500012b",
-    name: "Madeleine Mateescu",
-    price: 361.14,
-    description: "Destruction of Thoracic Duct, Percutaneous Approach",
+    name: "Coffee TV Stand",
+    price: 200.99,
+    description: "Quality Coffee TV Stand / Shelve with drawer for home use",
     category: "furniture",
-    rating: 1.92,
+    rating: 3.92,
     brand: "oscar",
-    imagePath: "productImage.png",
+    imagePath: "tvstand1.png",
   },
   {
     _id: "63701d24f03239867500012c",
