@@ -28,3 +28,25 @@ export const getProductByBrand = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const postProduct = async (req, res) => {
+  const { name, price, description, rating, category, brand, imagePath } =
+    req.body;
+  try {
+    const newProduct = new Product({
+      name,
+      price,
+      description,
+      category,
+      rating,
+      brand,
+      imagePath,
+    });
+
+    await newProduct.save();
+    const product = await Product.find();
+    res.status(201).json(product);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
