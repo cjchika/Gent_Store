@@ -19,8 +19,8 @@ const checkoutSchema = new Schema({
       userId: {
         type: ObjectID,
         required: true,
-        ref: "User",
       },
+      ref: "User",
     },
   ],
 });

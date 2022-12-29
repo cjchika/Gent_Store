@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const ObjectID = Schema.Types.ObjectId;
+// const ObjectID = Schema.Types.ObjectId;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -27,10 +27,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 5,
     },
-    cart: [
+    checkout: [
       {
         type: Object,
-        ref: "Cart",
+        ref: "Checkout",
         required: true,
       },
     ],
