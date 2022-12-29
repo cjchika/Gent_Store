@@ -65,7 +65,7 @@ export const dataProduct = [
     imagePath: "samsung1.png",
   },
   {
-    _id: "63701d24f03239b7f7000017",
+    _id: "63701d24f03239b7f7000050",
     name: "Samsung QLED 4K Smart TV",
     price: 1642.61,
     description:
@@ -87,7 +87,7 @@ export const dataProduct = [
     imagePath: "nike1.png",
   },
   {
-    _id: "63701d24f03239b7f7000018",
+    _id: "63701d24f03239b7f7000212",
     name: "Nike Air Max 270 NSW Men's",
     price: 949.37,
     description:
@@ -220,7 +220,7 @@ export const dataProduct = [
     imagePath: "cap1.png",
   },
   {
-    _id: "63701d24f03239b7f7000808",
+    _id: "63701d24f03239b7f7000898",
     name: "Adidas Baseball Cap",
     price: 12.61,
     description:
@@ -279,10 +279,21 @@ export const dataProduct = [
     name: "3 Seater Sofa with Pillows",
     price: 49.37,
     description:
-      "Oraimo 1.69' IPS Screen IP68 Blood Oxygen 24 Fitness Modes Smart Watch Pro - Silver.",
-    category: "fitness",
+      " IF YOU ARE LOOKING FOR COMFORT AND DURABLE PRODUCT WITH PERFECT OR EXCELLENT FINISH, 'omega FURNITURE' IS THE SOLUTION.",
+    category: "furniture",
     rating: 4.56,
     brand: "oscar",
     imagePath: "sofa1.png",
+  },
+  {
+    _id: "63701d24f032394441000222",
+    name: "Long Sleeve Hoodie",
+    price: 20.71,
+    description:
+      "Adjustable drawcord hood with two front side pockets. You can store personal items such as mobile phones and keys. Ladies hoodie features stylish color and cute cat printed design, which makes it fashion and casual.",
+    category: "fitness",
+    rating: 3.02,
+    brand: "adidas",
+    imagePath: "hoodie1.png",
   },
 ];

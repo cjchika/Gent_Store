@@ -30,15 +30,14 @@ export const getProductByBrand = async (req, res) => {
 };
 
 export const postProduct = async (req, res) => {
-  const { name, price, description, rating, category, brand, imagePath } =
-    req.body;
+  const { name, price, description, category, brand, imagePath } = req.body;
   try {
     const newProduct = new Product({
       name,
       price,
       description,
       category,
-      rating,
+      rating: Math.random() * 5,
       brand,
       imagePath,
     });
