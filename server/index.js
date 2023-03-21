@@ -10,6 +10,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/Auth.js";
 import productRoutes from "./routes/Product.js";
+import { postProduct } from "./controllers/Product.js";
+import { authToken } from "./middleware/Auth.js";
 import { dataProduct } from "./data/index.js";
 
 import Product from "./models/Product.js";
@@ -37,7 +39,10 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
-//   const upload = multer({ storage });
+const upload = multer({ storage });
+
+// ROUTES WITH FILE
+app.post("/products", authToken, upload.single("picture"), postProduct);
 
 // ROUTES
 app.use("/auth", authRoutes);
