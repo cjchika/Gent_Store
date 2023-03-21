@@ -10,6 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/Auth.js";
 import productRoutes from "./routes/Product.js";
+import userRoutes from "./routes/User.js";
 import { postProduct } from "./controllers/Product.js";
 import { authToken } from "./middleware/Auth.js";
 import { dataProduct } from "./data/index.js";
@@ -47,6 +48,7 @@ app.post("/products", authToken, upload.single("picture"), postProduct);
 // ROUTES
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
+app.use("/user", userRoutes);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 4000;

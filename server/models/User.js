@@ -27,13 +27,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 5,
     },
-    checkout: [
-      {
-        type: Object,
-        ref: "Checkout",
-        required: true,
-      },
-    ],
+    favorites: {
+      type: Array,
+      ref: "Product",
+      required: true,
+    },
   },
   { timestamps: true }
 );
