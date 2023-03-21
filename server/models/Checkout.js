@@ -10,19 +10,11 @@ const checkoutSchema = new Schema({
     },
   ],
   totalAmount: { type: Number, required: true },
-  user: [
-    {
-      email: {
-        type: String,
-        required: true,
-      },
-      userId: {
-        type: ObjectID,
-        required: true,
-      },
-      ref: "User",
-    },
-  ],
+  user: {
+    type: ObjectID,
+    required: true,
+    ref: "User",
+  },
 });
 
 export const Checkout = mongoose.model("Checkout", checkoutSchema);
