@@ -50,38 +50,14 @@ export const addRemoveFavorite = async (req, res) => {
   try {
     const { id, productId } = req.params;
     const user = await User.findById(id);
-    // const product = await Product.findById(productId);
+    const product = await Product.findById(productId);
 
-    if (user.favorites.includes(productId)) {
+    if (user.favorites.map((prod) => prod.id).includes(productId)) {
       user.favorites = user.favorites.filter((id) => id !== productId);
     } else {
-      user.favorites.push(productId);
+      user.favorites.push(product);
     }
     await user.save();
-
-    // const formattedFavorites = favorites.map(
-    //   ({
-    //     _id,
-    //     name,
-    //     price,
-    //     description,
-    //     category,
-    //     rating,
-    //     brand,
-    //     imagePath,
-    //   }) => {
-    //     return {
-    //       _id,
-    //       name,
-    //       price,
-    //       description,
-    //       category,
-    //       rating,
-    //       brand,
-    //       imagePath,
-    //     };
-    //   }
-    // );
     res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ message: error.message });

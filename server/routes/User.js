@@ -9,7 +9,7 @@ import { authToken } from "../middleware/Auth.js";
 
 const router = express.Router();
 
-router.get("/:id", authToken, getUser);
+router.get("/:id", getUser);
 router.get("/:id/favorites", getUserFavorites);
 router.patch("/:id/:productId", addRemoveFavorite);
 
