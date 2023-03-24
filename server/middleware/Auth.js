@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import ErrorHandler from "../handlers/ErrorHandler.js";
+import { asyncErrors } from "./catchAsyncErrors.js";
 
 export const authToken = async (req, res, next) => {
   try {
