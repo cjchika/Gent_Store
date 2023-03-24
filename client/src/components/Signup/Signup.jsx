@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { RxAvatar } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 
@@ -8,17 +9,30 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [avatar, setAvatar] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("HEY");
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setAvatar(file);
+    // console.log(file);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-primaryColor mt-6 text-center text-3xl font-semibold text-gray-900">
+        <h2 className="text-primaryColor mt-6 text-center text-2xl font-semibold text-gray-900">
           Sign up for an account
         </h2>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6">
+            {/* Name */}
             <div>
               <label
                 htmlFor="name"
@@ -38,6 +52,8 @@ const Signup = () => {
                 />
               </div>
             </div>
+
+            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -57,6 +73,8 @@ const Signup = () => {
                 />
               </div>
             </div>
+
+            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -89,23 +107,42 @@ const Signup = () => {
                 )}
               </div>
             </div>
-            <div className={`${styles.normalFlex} justify-between`}>
-              <div className={`${styles.normalFlex}`}>
-                <input
-                  type="checkbox"
-                  name="remember-me"
-                  id="remember-me"
-                  className="h-4 w-4 text-primaryColor focus:[#3b82f6] border-[#93c5fd] rounded"
-                />
-                <label className="ml-2 block text-sm">Remember me</label>
+
+            {/* File Upload */}
+            <div>
+              <label
+                htmlFor="avatar"
+                className="block text-sm font-medium text-primaryColor"
+              ></label>
+              <div className="mt-2 flex items-center">
+                <span className="inline-block h-8 w-8 rounded-full overflow-hidden">
+                  {avatar ? (
+                    <img
+                      src={URL.createObjectURL(avatar)}
+                      alt="avatar"
+                      className="h-full w-full object-cover rounded-full"
+                    />
+                  ) : (
+                    <RxAvatar className="h-8 w-8" />
+                  )}
+                </span>
+                <label
+                  htmlFor="file-input"
+                  className="cursor-pointer ml-5 flex items-center justify-center px-4 py-2 border border-faintColor rounded-md shadow-sm text-sm font-medium text-primaryColor bg-white hover:bg-faintColor"
+                >
+                  <span>Upload photo</span>
+                  <input
+                    type="file"
+                    name="avatar"
+                    id="file-input"
+                    accept=".jpg, .jpeg, .png"
+                    onClick={handleFileChange}
+                    className="sr-only"
+                  />
+                </label>
               </div>
-              <a
-                href="/forgot-password"
-                className="font-medium text-primaryColor hover:text-deepColor text-sm"
-              >
-                Forgot your password?
-              </a>
             </div>
+
             <div>
               <button
                 type="submit"
