@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import styles from "../../styles/styles";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [visible, setVisible] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -29,7 +33,7 @@ const Login = () => {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none black w-full px-3 py-2 border border-[#d1d5db] rounded-md shadow-md placeholder-[#9ca3af] focus:outline-none focus:border-[#3b82f6] sm:text-sm"
+                  className="appearance-none black w-full p-3 border border-[#d1d5db] rounded-md shadow-md placeholder-[#9ca3af] focus:outline-none focus:border-[#3b82f6] sm:text-sm"
                 />
               </div>
             </div>
@@ -40,17 +44,64 @@ const Login = () => {
               >
                 Password
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
                 <input
-                  type="password"
+                  type={visible ? "text" : "password"}
                   name="password"
                   required
-                  autoComplete="password"
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none black w-full px-3 py-2 border border-[#d1d5db] rounded-md shadow-md placeholder-[#9ca3af] focus:outline-none focus:border-[#3b82f6] sm:text-sm"
+                  className="appearance-none black w-full p-3 border border-[#d1d5db] rounded-md shadow-md placeholder-[#9ca3af] focus:outline-none focus:border-[#3b82f6] sm:text-sm"
                 />
+                {visible ? (
+                  <AiOutlineEye
+                    className="absolute right-2 top-3 cursor-pointer"
+                    size={20}
+                    onClick={() => setVisible(false)}
+                  />
+                ) : (
+                  <AiOutlineEyeInvisible
+                    className="absolute right-2 top-3 cursor-pointer"
+                    size={20}
+                    onClick={() => setVisible(true)}
+                  />
+                )}
               </div>
+            </div>
+            <div className={`${styles.normalFlex} justify-between`}>
+              <div className={`${styles.normalFlex}`}>
+                <input
+                  type="checkbox"
+                  name="remember-me"
+                  id="remember-me"
+                  className="h-4 w-4 text-primaryColor focus:[#3b82f6] border-[#93c5fd] rounded"
+                />
+                <label className="ml-2 block text-sm">Remember me</label>
+              </div>
+              <a
+                href="/forgot-password"
+                className="font-medium text-primaryColor hover:text-deepColor text-sm"
+              >
+                Forgot your password?
+              </a>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primaryColor hover:bg-deepColor"
+              >
+                Login
+              </button>
+            </div>
+            <div className={`${styles.normalFlex} gap-3 w-full`}>
+              <h4>Don't have an account?</h4>
+              <Link
+                to="/signup"
+                className="text-primaryColor hover:text-deepColor"
+              >
+                Sign up
+              </Link>
             </div>
           </form>
         </div>
