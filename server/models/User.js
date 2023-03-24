@@ -37,7 +37,24 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Hash
+// Hash Password
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+  this.password = await bcrypt.hash(this.password, 10);
+});
 
+// JWT Token
+UserSchema.methods.getJwtToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: 60 * 60 * 24,
+  });
+};
+
+// Compare password
+UserSchema.methods.comparePassword = async function (enteredPassord) {
+  return await bcrypt.compare(enteredPassord, this.password);
+};
 const User = mongoose.model("User", UserSchema);
 export default User;
