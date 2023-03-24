@@ -6,6 +6,15 @@ module.exports = {
       Roboto: ["Roboto", "sans-serif"],
       Poppins: ["Poppins", "sans-serif"],
     },
+    colors: {
+      transparent: "transparent",
+      white: "#ffffff",
+      black: "#00040a",
+      primaryColor: "#609966",
+      liteColor: "#9DC08B",
+      deepColor: "#40513B",
+      faintColor: "#EDF1D6",
+    },
     extend: {
       screens: {
         "1000px": "1050px",
