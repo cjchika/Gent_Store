@@ -9,7 +9,7 @@ import { upload } from "../multer.js";
 
 const router = express.Router();
 
-router.post("/create-user", upload.single("image"), createUser);
+router.post("/create-user", upload.single("file"), createUser);
 router.get("/:id", getUser);
 router.get("/:id/favorites", getUserFavorites);
 router.patch("/:id/:productId", addRemoveFavorite);
