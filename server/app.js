@@ -6,6 +6,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import userRoutes from "./routes/User.js";
 
+dotenv.config();
+
 const app = express();
 
 app.use(express.json());

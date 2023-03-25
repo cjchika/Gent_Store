@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const mongoConnect =
-  process.env.MONGO_CONNECT ||
-  "mongodb+srv://mern_gee:Lord247@cluster0.l7yrx98.mongodb.net/ecomm";
+dotenv.config();
 
 const connectDatabase = () => {
   mongoose.set("strictQuery", false);
   mongoose
-    .connect(mongoConnect, {
+    .connect(process.env.MONGO_CONNECT, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
