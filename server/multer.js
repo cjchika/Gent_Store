@@ -3,12 +3,12 @@ import multer from "multer";
 /* FILE STORAGE */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/assets");
+    // console.log(process.cwd());
+    cb(null, `${process.cwd()}/uploads`);
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix =
-      Date.now() + "-" + Math.round.apply(Math.random() * 1e9);
-    const filename = file.originalname.split(".")[0];
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const filename = file.fieldname.split(".")[0];
     cb(null, filename + "-" + uniqueSuffix + ".png");
   },
 });

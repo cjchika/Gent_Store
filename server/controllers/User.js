@@ -21,11 +21,11 @@ export const createActivationToken = (user) => {
 export const createUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
-    const userEmail = await User.findOne(email);
+    const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      const fileName = req.file.filename;
-      const filePath = `uploads/${fileName}`;
+      const filename = req.file.filename;
+      const filePath = `uploads/${filename}`;
       fs.unlink(filePath, (err) => {
         if (err) {
           console.log(err);
@@ -36,14 +36,16 @@ export const createUser = async (req, res, next) => {
     }
 
     const fileName = req.file.filename;
-    const avatar = path.join(fileName);
+    const fileUrl = path.join(fileName);
 
-    const user = { name, email, password, avatar };
+    const user = { name, email, password, avatar: fileUrl };
+    // const user = new User({ name, email, password, avatar: fileUrl });
+    // const saveUser = await user.save();
+    // res.status(201).json(saveUser);
 
     console.log(user);
-
-    // res.status(200).json(user);
   } catch (error) {
+    console.log(error.message);
     res.status(404).json({ message: error.message });
   }
 };
