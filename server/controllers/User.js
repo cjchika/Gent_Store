@@ -43,14 +43,27 @@ export const createUser = async (req, res, next) => {
     // const user = new User({ name, email, password, avatar: fileUrl });
     // const saveUser = await user.save();
     // res.status(201).json(saveUser);
-    console.log(user);
+    // console.log(user);
 
     const activationToken = createActivationToken(user);
 
     const activationUrl = `http://localhost:5173/activation/${activationToken}`;
+
+    try {
+      await sendMail({
+        email: user.email,
+        subject: "Activate your account",
+        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+      });
+      res.status(201).json({
+        success: true,
+        message: `Please check your email: ${user.email} to activate your account.`,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
   } catch (error) {
-    console.log(error.message);
-    res.status(404).json({ message: error.message });
+    return next(new ErrorHandler(error.message, 400));
   }
 };
 
