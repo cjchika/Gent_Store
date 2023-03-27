@@ -12,7 +12,7 @@ import { upload } from "../multer.js";
 const router = express.Router();
 
 router.post("/createUser", upload.single("avatar"), createUser);
-router.post("/activation", activateUser);
+router.get("/activation/:activationCode", activateUser);
 router.post("/loginUser", loginUser);
 router.get("/getUser", userAuth, getUser);
 router.get("/logoutUser", logoutUser);
