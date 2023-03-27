@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import Product from "../models/Product.js";
 import ErrorHandler from "../handlers/ErrorHandler.js";
 import { asyncErrors } from "../middleware/catchAsyncErrors.js";
-import { upload } from "../multer.js";
+import bcrypt from "bcrypt";
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import sendMail from "../handlers/sendMail.js";
@@ -41,15 +41,22 @@ export const createUser = async (req, res, next) => {
     const fileName = req.file.filename;
     const fileUrl = path.join(fileName);
 
-    const user = { name, email, password, avatar: fileUrl };
-    // const user = new User({ name, email, password, avatar: fileUrl });
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // const user = { name, email, password, avatar: fileUrl };
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      avatar: fileUrl,
+    });
     // const saveUser = await user.save();
     // res.status(201).json(saveUser);
-    // console.log(user);
+    console.log(user);
 
-    const activationToken = createActivationToken(user);
-
-    const activationUrl = `http://localhost:5173/activation/${activationToken}`;
+    // const activationToken = createActivationToken(user);
+    // const activationUrl = `http://localhost:5173/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -106,7 +113,7 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       return next(new ErrorHandler("Please provide all fields!", 400));
     }
 
-    const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ email });
 
     if (user.status !== "Active") {
       return res.status(401).send({
@@ -118,9 +125,9 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       return next(new ErrorHandler("User doesn't exists!", 400));
     }
 
-    const passwordValid = await user.comparePassword(password);
+    const isValidPassword = bcrypt.compare(password.user.password);
 
-    if (!passwordValid) {
+    if (!isValidPassword) {
       return next(
         new ErrorHandler(
           "Invalid details, please provide correct information",
@@ -129,7 +136,10 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       );
     }
 
-    sendToken(user, 201, res);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    delete user.password;
+
+    res.status(200).json({ token, user });
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
