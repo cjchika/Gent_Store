@@ -13,12 +13,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const createActivationToken = (user) => {
-  return jwt.sign(user, process.env.ACTIVATION_SECRET, {
-    expiresIn: "5m",
-  });
-};
-
 export const createUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -65,6 +59,12 @@ export const createUser = async (req, res, next) => {
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
+};
+
+export const createActivationToken = (user) => {
+  return jwt.sign(user, process.env.ACTIVATION_SECRET, {
+    expiresIn: "5m",
+  });
 };
 
 export const activateUser = asyncErrors(async (req, res, next) => {

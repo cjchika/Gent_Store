@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import ErrorHandler from "./handlers/ErrorHandler.js";
+import { handleErr } from "./middleware/Error.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -26,6 +26,6 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 app.use("/api/v1/user", userRoutes);
 
-app.use(ErrorHandler);
+app.use(handleErr);
 
 export default app;

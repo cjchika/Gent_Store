@@ -5,6 +5,7 @@ import { RxAvatar } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { apiUrl } from "../../config/api";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -26,14 +27,24 @@ const Signup = () => {
 
     const newForm = new FormData();
 
-    newForm.append("namge", fullName);
+    newForm.append("name", fullName);
     newForm.append("email", email);
     newForm.append("password", password);
     newForm.append("avatar", avatar);
 
-    axios.post(`${apiUrl}/user/create-user`, newForm, config).then((res) => {
-      //
-    });
+    console.log(fullName, email, password, avatar);
+    axios
+      .post(`${apiUrl}/user/create-user`, newForm, config)
+      .then((res) => {
+        toast.success(res.data.message);
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
   };
 
   return (
@@ -45,7 +56,7 @@ const Signup = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div>
               <label
