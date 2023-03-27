@@ -13,6 +13,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+export const createActivationToken = (user) => {
+  return jwt.sign(user, process.env.ACTIVATION_SECRET, {
+    expiresIn: "5m",
+  });
+};
+
+// USER SIGNUP
+
 export const createUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -61,12 +69,7 @@ export const createUser = async (req, res, next) => {
   }
 };
 
-export const createActivationToken = (user) => {
-  return jwt.sign(user, process.env.ACTIVATION_SECRET, {
-    expiresIn: "5m",
-  });
-};
-
+// ACTIVATE USER
 export const activateUser = asyncErrors(async (req, res, next) => {
   try {
     const { activation_token } = req.body;
@@ -93,6 +96,8 @@ export const activateUser = asyncErrors(async (req, res, next) => {
   }
 });
 
+// LOGIN USER
+
 export const loginUser = asyncErrors(async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -112,5 +117,39 @@ export const loginUser = asyncErrors(async (req, res, next) => {
     if (!user) {
       return next(new ErrorHandler("User doesn't exists!", 400));
     }
-  } catch (error) {}
+
+    const passwordValid = await user.comparePassword(password);
+
+    if (!passwordValid) {
+      return next(
+        new ErrorHandler(
+          "Invalid details, please provide correct information",
+          400
+        )
+      );
+    }
+
+    sendToken(user, 201, res);
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+
+// GET USER
+
+export const getUser = asyncErrors(async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return next(new ErrorHandler("User doesn't exit", 400));
+    }
+
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
 });
