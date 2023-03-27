@@ -92,3 +92,25 @@ export const activateUser = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+export const loginUser = asyncErrors(async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return next(new ErrorHandler("Please provide all fields!", 400));
+    }
+
+    const user = await User.findOne({ email }).select("+password");
+
+    if (user.status !== "Active") {
+      return next(
+        new ErrorHandler("Pending account, please verify your email.", 400)
+      );
+    }
+
+    if (!user) {
+      return next(new ErrorHandler("User doesn't exists!", 400));
+    }
+  } catch (error) {}
+});

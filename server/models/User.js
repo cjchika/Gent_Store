@@ -22,6 +22,15 @@ const UserSchema = new mongoose.Schema(
       min: [6, "Password should be greater than 6 characters."],
       select: false,
     },
+    status: {
+      type: String,
+      enum: ["Pending", "Active"],
+      default: "Pending",
+    },
+    activationCode: {
+      type: String,
+      unique: true,
+    },
     address: String,
     role: {
       type: String,
