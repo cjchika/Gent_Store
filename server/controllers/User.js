@@ -43,12 +43,9 @@ export const createUser = async (req, res, next) => {
       name,
       email,
       password: hashedPassword,
-      activationCode,
+      activationCode: activationCode,
       avatar: fileUrl,
     });
-    // const saveUser = await user.save();
-    // res.status(201).json(saveUser);
-    console.log(user);
 
     // const activationToken = createActivationToken(user);
     // const activationUrl = `http://localhost:5173/activation/${activationToken}`;
@@ -57,9 +54,9 @@ export const createUser = async (req, res, next) => {
       await sendMail({
         email: user.email,
         subject: "Please confirm your account",
-        message: `<h1>Email Confirmation</h1>
-        <h2>Hello ${user.name}</h2>
-        <p>You are almost there, please confirm your email by clicking on the following link</p>
+        message: `<h3>Email Confirmation</h3>
+        <h4>Hello ${user.name}</h4>
+        <p>You are almost there, please confirm your email by clicking on the following link.</p>
         <a href=http://localhost:5173/activation/${user.activationCode}> Click here</a>
         </div>`,
       });
@@ -70,6 +67,10 @@ export const createUser = async (req, res, next) => {
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
+
+    const saveUser = await user.save();
+    res.status(201).json(saveUser);
+    console.log(user);
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
@@ -78,23 +79,16 @@ export const createUser = async (req, res, next) => {
 // ACTIVATE USER
 export const activateUser = asyncErrors(async (req, res, next) => {
   try {
-    const { activationCode } = req.body;
+    const { activationCode } = req.params;
 
-    const user = User.findOne({
-      activationCode: req.params.activationCode,
-    }).then(user);
+    const user = User.findOne({ activationCode });
 
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
     }
 
     user.status = "Active";
-    user.save((err) => {
-      if (err) {
-        res.status(500).send({ message: err });
-        return;
-      }
-    });
+    await user.save();
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }

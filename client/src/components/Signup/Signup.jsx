@@ -34,7 +34,7 @@ const Signup = () => {
 
     console.log(fullName, email, password, avatar);
     axios
-      .post(`${apiUrl}/user/create-user`, newForm, config)
+      .post(`${apiUrl}/user/createUser`, newForm, config)
       .then((res) => {
         toast.success(res.data.message);
         setFullName("");
@@ -43,7 +43,7 @@ const Signup = () => {
         setAvatar();
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error.data.message);
       });
   };
 

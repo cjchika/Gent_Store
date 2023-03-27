@@ -5,4 +5,4 @@ for (let i = 0; i < 25; i++) {
   token += characters[Math.floor(Math.random() * characters.length)];
 }
 
-export const activationCode = { token };
+export const activationCode = token;

@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { apiUrl } from "../config/api";
+import { Link } from "react-router-dom";
 
 const ActivationPage = () => {
-  const { activationToken } = useParams();
+  const { activationCode } = useParams();
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (activationToken) {
+    if (activationCode) {
       const sendRequest = async () => {
         await axios
-          .post(`${apiUrl}/user/activation`, {
-            activationToken,
-          })
+          .get(`${apiUrl}/user/activation/${activationCode}`)
           .then((res) => {
             console.log(res.data);
           })
@@ -38,7 +37,10 @@ const ActivationPage = () => {
       {error ? (
         <p>Your token is expired!</p>
       ) : (
-        <p>Your account has been created suceessfully!</p>
+        <div className="text-center">
+          <p>Your account has been verified!</p>
+          <Link to={"/login"}> Please Login </Link>
+        </div>
       )}
     </div>
   );
