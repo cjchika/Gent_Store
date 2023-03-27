@@ -109,9 +109,9 @@ export const loginUser = asyncErrors(async (req, res, next) => {
     const user = await User.findOne({ email }).select("+password");
 
     if (user.status !== "Active") {
-      return next(
-        new ErrorHandler("Pending account, please verify your email.", 400)
-      );
+      return res.status(401).send({
+        message: "Pending account. Please verify your email.",
+      });
     }
 
     if (!user) {
@@ -148,6 +148,23 @@ export const getUser = asyncErrors(async (req, res, next) => {
     res.status(200).json({
       success: true,
       user,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+
+// LOGOUT USER
+
+export const logoutUser = asyncErrors(async (req, res, next) => {
+  try {
+    res.cookie("token", null, {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    });
+    res.status(201).json({
+      sucess: true,
+      message: "Log out successful!",
     });
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));

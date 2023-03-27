@@ -4,6 +4,7 @@ import {
   activateUser,
   loginUser,
   getUser,
+  logoutUser,
 } from "../controllers/User.js";
 import { userAuth } from "../middleware/Auth.js";
 import { upload } from "../multer.js";
@@ -14,5 +15,6 @@ router.post("/createUser", upload.single("avatar"), createUser);
 router.post("/activation", activateUser);
 router.post("/loginUser", loginUser);
 router.get("/getUser", userAuth, getUser);
+router.get("/logoutUser", logoutUser);
 
 export default router;
