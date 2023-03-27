@@ -4,15 +4,15 @@ import { useParams } from "react-router-dom";
 import { apiUrl } from "../config/api";
 
 const ActivationPage = () => {
-  const { activation_token } = useParams();
+  const { activationToken } = useParams();
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (activation_token) {
+    if (activationToken) {
       const sendRequest = async () => {
         await axios
           .post(`${apiUrl}/user/activation`, {
-            activation_token,
+            activationToken,
           })
           .then((res) => {
             console.log(res.data);

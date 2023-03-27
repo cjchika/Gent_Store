@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import axios from "axios";
 import { RxAvatar } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
+import { apiUrl } from "../../config/api";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -11,15 +13,27 @@ const Signup = () => {
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("HEY");
-  };
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setAvatar(file);
     // console.log(file);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const newForm = new FormData();
+
+    newForm.append("namge", fullName);
+    newForm.append("email", email);
+    newForm.append("password", password);
+    newForm.append("avatar", avatar);
+
+    axios.post(`${apiUrl}/user/create-user`, newForm, config).then((res) => {
+      //
+    });
   };
 
   return (
