@@ -14,10 +14,9 @@ const Signup = () => {
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
     setAvatar(file);
-    // console.log(file);
   };
 
   const handleSubmit = (e) => {
@@ -161,7 +160,7 @@ const Signup = () => {
                     name="avatar"
                     id="file-input"
                     accept=".jpg, .jpeg, .png"
-                    onClick={handleFileChange}
+                    onChange={handleFileChange}
                     className="sr-only"
                   />
                 </label>

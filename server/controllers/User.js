@@ -47,30 +47,27 @@ export const createUser = async (req, res, next) => {
       avatar: fileUrl,
     });
 
-    // const activationToken = createActivationToken(user);
-    // const activationUrl = `http://localhost:5173/activation/${activationToken}`;
+    const saveUser = await user.save();
 
     try {
       await sendMail({
         email: user.email,
         subject: "Please confirm your account",
         message: `<h3>Email Confirmation</h3>
-        <h4>Hello ${user.name}</h4>
+        <h4>Hello, ${user.name}.</h4>
         <p>You are almost there, please confirm your email by clicking on the following link.</p>
         <a href=http://localhost:5173/activation/${user.activationCode}> Click here</a>
         </div>`,
       });
       res.status(201).json({
+        user: saveUser,
         success: true,
         message: `Please check your email: ${user.email} to activate your account.`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
-
-    const saveUser = await user.save();
-    res.status(201).json(saveUser);
-    console.log(user);
+    // console.log(user);
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
@@ -87,8 +84,12 @@ export const activateUser = asyncErrors(async (req, res, next) => {
       return res.status(404).send({ message: "User Not found." });
     }
 
-    user.status = "Active";
-    await user.save();
+    const newUser = new User({
+      status: "Active",
+      ...req.body,
+    });
+
+    await newUser.save();
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
