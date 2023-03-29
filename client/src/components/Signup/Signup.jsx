@@ -34,7 +34,7 @@ const Signup = () => {
     newForm.append("avatar", avatar);
 
     await axios
-      .post(`${apiUrl}/user/createUser`, newForm, config)
+      .post(`${apiUrl}user/createUser`, newForm, config)
       .then((res) => {
         toast.success(res.data.message, {
           toastId: "success2",

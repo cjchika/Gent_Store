@@ -153,7 +153,7 @@ export const getUser = asyncErrors(async (req, res, next) => {
     if (!user) {
       return next(new ErrorHandler("User doesn't exit", 400));
     }
-
+    delete user.password;
     res.status(200).json({
       success: true,
       user,

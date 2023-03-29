@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { apiUrl } from "../config/api";
+import userApi from "../config/services/userAuth.api";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -14,27 +13,32 @@ const ActivationPage = () => {
     if (activationCode) {
       const sendRequest = async () => {
         setIsLoading(true);
-        await axios
-          .get(`${apiUrl}/user/activation/${activationCode}`)
-          .then((res) => {
-            console.log(res.data);
-            toast.success(res.data.message, {
-              toastId: "success1",
-            });
-          })
-          .catch((err) => {
-            setError(true);
-            toast.error(err.response.data.message, {
-              toastId: "error1",
-            });
-          });
+
+        const { response, error } = await userApi.activateUser({
+          activationCode,
+        });
         setIsLoading(false);
+
+        if (response) {
+          console.log(response);
+          toast.success("User verified, please login!", {
+            toastId: "success6",
+          });
+          // navigate("/");
+          // window.location.reload(true);
+        }
+        if (error) {
+          toast.error(error.message, {
+            toastId: "error4",
+          });
+          setError(true);
+          // setErrorMessage(error.message);
+          console.log(error.message);
+        }
       };
       sendRequest();
     }
   }, [activationCode]);
-
-  console.log(isLoading);
 
   return (
     <div

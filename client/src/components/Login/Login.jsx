@@ -1,10 +1,9 @@
 import { useState } from "react";
-import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
 import { toast } from "react-toastify";
-import { apiUrl } from "../../config/api";
+import userApi from "../../config/services/userAuth.api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,34 +11,32 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     const loginData = { email, password };
-    const config = { headers: { "Content-Type": "application/json" } };
 
-    await axios
-      .post(
-        `${apiUrl}/user/loginUser`,
-        loginData,
-        { withCredentials: true },
-        config
-      )
-      .then((res) => {
-        toast.success("Login Sucecess!", {
-          toastId: "success3",
-        });
-        navigate("/");
-        window.location.reload(true);
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message, {
-          toastId: "error3",
-        });
-      });
+    const { response, error } = await userApi.loginUser(loginData);
     setIsLoading(false);
+
+    if (response) {
+      // console.log(response);
+      toast.success("Login Sucecess!", {
+        toastId: "success3",
+      });
+      navigate("/");
+      window.location.reload(true);
+    }
+
+    if (error) {
+      toast.error(error.message, {
+        toastId: "error4",
+      });
+      setErrorMessage(error.message);
+    }
   };
 
   return (

@@ -10,10 +10,13 @@ const userEndpoints = {
 const userApi = {
   activateUser: async ({ activationCode }) => {
     try {
-      const response = await privateClient.get(userEndpoints.activateUser);
+      const response = await publicClient.get(
+        userEndpoints.activateUser({ activationCode })
+      );
+      localStorage.setItem("tok", response.token);
       return { response };
     } catch (error) {
-      return error;
+      return { error };
     }
   },
 
@@ -23,10 +26,21 @@ const userApi = {
         email,
         password,
       });
+      localStorage.setItem("tok", response.token);
       return { response };
-      localStorage.setItem("tok", response.data.token);
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  getUser: async () => {
+    try {
+      const response = await privateClient.get(userEndpoints.getUser);
+      return { response };
     } catch (error) {
       return { error };
     }
   },
 };
+
+export default userApi;
