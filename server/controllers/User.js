@@ -85,11 +85,13 @@ export const activateUser = asyncErrors(async (req, res, next) => {
 
     await user.save();
 
-    res.status(200).json({
-      message: "User verified",
-      success: true,
-      user,
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
     });
+    delete user.password;
+    res
+      .status(200)
+      .json({ token, user, id: user._id, message: "User verified" });
     // console.log(user);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
@@ -107,7 +109,6 @@ export const loginUser = asyncErrors(async (req, res, next) => {
     }
 
     const user = await User.findOne({ email });
-    console.log(user);
 
     if (!user) {
       return next(new ErrorHandler("User doesn't exists!", 400));
@@ -123,7 +124,6 @@ export const loginUser = asyncErrors(async (req, res, next) => {
     }
 
     const isValidPassword = bcrypt.compare(password, user.password);
-    console.log(isValidPassword + " " + "127");
 
     if (!isValidPassword) {
       return next(
@@ -134,12 +134,12 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       );
     }
 
-    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
     delete user.password;
-    console.log(user);
-    res.status(200).json({ token, user });
+    res.status(200).json({ token, user, id: user._id });
   } catch (error) {
-    console.log(error);
     return next(new ErrorHandler(error.message, 500));
   }
 });

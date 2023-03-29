@@ -1,12 +1,40 @@
 import { useState } from "react";
+import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
+import { toast } from "react-toastify";
+import { apiUrl } from "../../config/api";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const loginData = { email, password };
+
+    await axios
+      .post(`${apiUrl}/user/loginUser`, loginData, { withCredentials: true })
+      .then((res) => {
+        toast.success("Login Sucecess!", {
+          toastId: "success3",
+        });
+        // navigate("/");
+        // window.location.reload(true);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message, {
+          toastId: "error3",
+        });
+      });
+    setIsLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -17,7 +45,7 @@ const Login = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -89,9 +117,10 @@ const Login = () => {
             <div>
               <button
                 type="submit"
+                disabled={isLoading}
                 className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primaryColor hover:bg-deepColor"
               >
-                Login
+                {isLoading ? "Logging in..." : "Login"}
               </button>
             </div>
             <div className={`${styles.normalFlex} gap-3 w-full`}>
