@@ -18,11 +18,15 @@ const ActivationPage = () => {
           .get(`${apiUrl}/user/activation/${activationCode}`)
           .then((res) => {
             console.log(res.data);
-            toast.success(res.data.message);
+            toast.success(res.data.message, {
+              toastId: "success1",
+            });
           })
           .catch((err) => {
             setError(true);
-            toast.error(err.response.data.message);
+            toast.error(err.response.data.message, {
+              toastId: "error1",
+            });
           });
         setIsLoading(false);
       };

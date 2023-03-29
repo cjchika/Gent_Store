@@ -36,14 +36,18 @@ const Signup = () => {
     await axios
       .post(`${apiUrl}/user/createUser`, newForm, config)
       .then((res) => {
-        toast.success(res.data.message);
+        toast.success(res.data.message, {
+          toastId: "success2",
+        });
         setFullName("");
         setEmail("");
         setPassword("");
         setAvatar();
       })
       .catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message, {
+          toastId: "error2",
+        });
       });
     setIsLoading(false);
   };

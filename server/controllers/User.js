@@ -35,10 +35,8 @@ export const createUser = async (req, res, next) => {
     const fileName = req.file.filename;
     const fileUrl = path.join(fileName);
 
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hashSync(password, 8);
 
-    // const user = { name, email, password, avatar: fileUrl };
     const user = new User({
       name,
       email,
@@ -105,22 +103,27 @@ export const loginUser = asyncErrors(async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return next(new ErrorHandler("Please provide all fields!", 400));
+      return next(new ErrorHandler("Please provide the all fields!", 400));
     }
 
     const user = await User.findOne({ email });
-
-    if (user.status !== "Active") {
-      return res.status(401).send({
-        message: "Pending account. Please verify your email.",
-      });
-    }
+    console.log(user);
 
     if (!user) {
       return next(new ErrorHandler("User doesn't exists!", 400));
     }
 
-    const isValidPassword = bcrypt.compare(password.user.password);
+    if (user.status !== "Active") {
+      next(
+        new ErrorHandler(
+          "Pending account. Please verify your email address.",
+          400
+        )
+      );
+    }
+
+    const isValidPassword = bcrypt.compare(password, user.password);
+    console.log(isValidPassword + " " + "127");
 
     if (!isValidPassword) {
       return next(
@@ -131,11 +134,12 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       );
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     delete user.password;
-
+    console.log(user);
     res.status(200).json({ token, user });
   } catch (error) {
+    console.log(error);
     return next(new ErrorHandler(error.message, 500));
   }
 });
