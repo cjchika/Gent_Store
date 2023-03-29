@@ -18,15 +18,21 @@ const Login = () => {
     setIsLoading(true);
 
     const loginData = { email, password };
+    const config = { headers: { "Content-Type": "application/json" } };
 
     await axios
-      .post(`${apiUrl}/user/loginUser`, loginData, { withCredentials: true })
+      .post(
+        `${apiUrl}/user/loginUser`,
+        loginData,
+        { withCredentials: true },
+        config
+      )
       .then((res) => {
         toast.success("Login Sucecess!", {
           toastId: "success3",
         });
-        // navigate("/");
-        // window.location.reload(true);
+        navigate("/");
+        window.location.reload(true);
       })
       .catch((error) => {
         toast.error(error.response.data.message, {

@@ -21,9 +21,8 @@ export const tokenDecode = (req) => {
   }
 };
 
-export const userAuth = asyncErrors(async (req, res, next) => {
+export const userAuth = async (req, res, next) => {
   const tokenDecoded = tokenDecode(req);
-
   if (!tokenDecoded) {
     return next(new ErrorHandler("Please login to continue", 401));
   }
@@ -35,7 +34,7 @@ export const userAuth = asyncErrors(async (req, res, next) => {
   req.user = user;
   console.log(user);
   next();
-});
+};
 
 // export const sellerAuth = asyncErrors(async(req,res,next) => {
 //   const {seller_token} = req.cookies;

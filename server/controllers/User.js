@@ -90,7 +90,7 @@ export const activateUser = asyncErrors(async (req, res, next) => {
     });
     delete user.password;
     res
-      .status(200)
+      .status(201)
       .json({ token, user, id: user._id, message: "User verified" });
     // console.log(user);
   } catch (error) {
@@ -138,7 +138,7 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       expiresIn: "24h",
     });
     delete user.password;
-    res.status(200).json({ token, user, id: user._id });
+    res.status(201).json({ token, user, id: user._id });
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
