@@ -78,18 +78,21 @@ export const activateUser = asyncErrors(async (req, res, next) => {
   try {
     const { activationCode } = req.params;
 
-    const user = User.findOne({ activationCode });
+    const user = await User.findOne({ activationCode });
 
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
     }
+    user.status = "Active";
 
-    const newUser = new User({
-      status: "Active",
-      ...req.body,
+    await user.save();
+
+    res.status(200).json({
+      message: "User verified",
+      success: true,
+      user,
     });
-
-    await newUser.save();
+    // console.log(user);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }

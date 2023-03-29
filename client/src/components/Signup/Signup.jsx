@@ -13,14 +13,16 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
@@ -31,8 +33,7 @@ const Signup = () => {
     newForm.append("password", password);
     newForm.append("avatar", avatar);
 
-    console.log(fullName, email, password, avatar);
-    axios
+    await axios
       .post(`${apiUrl}/user/createUser`, newForm, config)
       .then((res) => {
         toast.success(res.data.message);
@@ -42,8 +43,9 @@ const Signup = () => {
         setAvatar();
       })
       .catch((error) => {
-        toast.error(error.data.message);
+        toast.error(error.response.data.message);
       });
+    setIsLoading(false);
   };
 
   return (
@@ -170,9 +172,10 @@ const Signup = () => {
             <div>
               <button
                 type="submit"
+                disabled={isLoading}
                 className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primaryColor hover:bg-deepColor"
               >
-                Submit
+                {isLoading ? "Please wait..." : "Submit"}
               </button>
             </div>
             <div className={`${styles.normalFlex} gap-3 w-full`}>
