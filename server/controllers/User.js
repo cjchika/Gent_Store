@@ -108,7 +108,7 @@ export const loginUser = asyncErrors(async (req, res, next) => {
     const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
-      return next(new ErrorHandler("User doesn't exists!", 400));
+      return next(new ErrorHandler("User doesn't exist!", 400));
     }
 
     if (user.status !== "Active") {
@@ -119,9 +119,8 @@ export const loginUser = asyncErrors(async (req, res, next) => {
         )
       );
     }
-
     const isValidPassword = await user.comparePassword(password);
-    console.log(isValidPassword);
+    console.log("From login conroller " + isValidPassword);
 
     if (!isValidPassword) {
       return next(

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
@@ -51,7 +51,9 @@ UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
-  this.password = await bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 8);
+  return bcrypt.compare(enteredPassword, this.password);
+  console.log("Encrypted password " + this.password);
 });
 
 // JWT Token
@@ -63,7 +65,8 @@ UserSchema.methods.getJwtToken = function () {
 
 // Compare password
 UserSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  console.log("enteredPassword " + enteredPassword);
+  return bcrypt.compare(enteredPassword, this.password);
 };
 const User = mongoose.model("User", UserSchema);
 export default User;
