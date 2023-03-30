@@ -35,7 +35,7 @@ export const createUser = async (req, res, next) => {
     const fileName = req.file.filename;
     const fileUrl = path.join(fileName);
 
-    const hashedPassword = await bcrypt.hashSync(password, 8);
+    const hashedPassword = await bcrypt.hash(password, 8);
 
     const user = new User({
       name,
@@ -79,19 +79,16 @@ export const activateUser = asyncErrors(async (req, res, next) => {
     const user = await User.findOne({ activationCode });
 
     if (!user) {
-      return res.status(404).send({ message: "User Not found." });
+      return res.status(400).send({ message: "Invalid token." });
     }
+
     user.status = "Active";
 
     await user.save();
 
-    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
-    });
-    delete user.password;
-    res
-      .status(201)
-      .json({ token, user, id: user._id, message: "User verified" });
+    const token = user.getJwtToken();
+    // console.log(token);
+    res.status(201).json({ token, user, message: "User verified" });
     // console.log(user);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
@@ -108,7 +105,7 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       return next(new ErrorHandler("Please provide the all fields!", 400));
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
       return next(new ErrorHandler("User doesn't exists!", 400));
@@ -123,7 +120,8 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       );
     }
 
-    const isValidPassword = bcrypt.compare(password, user.password);
+    const isValidPassword = await user.comparePassword(password);
+    console.log(isValidPassword);
 
     if (!isValidPassword) {
       return next(
@@ -134,10 +132,7 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       );
     }
 
-    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
-    });
-    delete user.password;
+    const token = user.getJwtToken();
     res.status(201).json({ token, user, id: user._id });
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));

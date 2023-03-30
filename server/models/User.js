@@ -20,6 +20,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter your password."],
       min: [6, "Password should be greater than 6 characters."],
+      select: false,
     },
     status: {
       type: String,
@@ -56,13 +57,13 @@ UserSchema.pre("save", async function (next) {
 // JWT Token
 UserSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: 60 * 60 * 24,
+    expiresIn: "24h",
   });
 };
 
 // Compare password
-UserSchema.methods.comparePassword = async function (enteredPassord) {
-  return await bcrypt.compare(enteredPassord, this.password);
+UserSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 const User = mongoose.model("User", UserSchema);
 export default User;

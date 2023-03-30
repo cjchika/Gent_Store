@@ -23,12 +23,12 @@ const Login = () => {
     setIsLoading(false);
 
     if (response) {
-      // console.log(response);
+      console.log(response);
       toast.success("Login Sucecess!", {
         toastId: "success3",
       });
-      navigate("/");
-      window.location.reload(true);
+      // navigate("/");
+      // window.location.reload(true);
     }
 
     if (error) {
