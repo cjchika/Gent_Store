@@ -52,7 +52,6 @@ UserSchema.pre("save", async function (next) {
     next();
   }
   this.password = await bcrypt.hash(this.password, 8);
-  return bcrypt.compare(enteredPassword, this.password);
   console.log("Encrypted password " + this.password);
 });
 

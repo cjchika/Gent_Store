@@ -27,8 +27,8 @@ const Login = () => {
       toast.success("Login Sucecess!", {
         toastId: "success3",
       });
-      // navigate("/");
-      // window.location.reload(true);
+      navigate("/");
+      window.location.reload(true);
     }
 
     if (error) {

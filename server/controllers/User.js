@@ -35,12 +35,10 @@ export const createUser = async (req, res, next) => {
     const fileName = req.file.filename;
     const fileUrl = path.join(fileName);
 
-    const hashedPassword = await bcrypt.hash(password, 8);
-
     const user = new User({
       name,
       email,
-      password: hashedPassword,
+      password,
       activationCode: activationCode,
       avatar: fileUrl,
     });
