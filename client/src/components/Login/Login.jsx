@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
 import { toast } from "react-toastify";
 import userApi from "../../config/services/userAuth.api";
+import Logo from "../Layout/Logo";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,8 +42,9 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-priColor mt-6 text-center text-2xl font-semibold text-gray-900">
+      <div className="mx-auto sm:mx-auto sm:w-full sm:max-w-md">
+        <Logo align="auto" />
+        <h2 className="text-priColor mt-6 text-center text-xl font-semibold text-gray-900">
           Login to your account
         </h2>
       </div>

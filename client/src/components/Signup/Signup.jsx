@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { apiUrl } from "../../config/api";
 import { toast } from "react-toastify";
+import Logo from "../Layout/Logo";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -55,7 +56,8 @@ const Signup = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-priColor mt-6 text-center text-2xl font-semibold text-gray-900">
+        <Logo align="auto" />
+        <h2 className="text-priColor mt-6 text-center text-xl font-semibold text-gray-900">
           Sign up for an account
         </h2>
       </div>
