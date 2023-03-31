@@ -13,6 +13,7 @@ module.exports = {
       priColor: "#25AF4B",
       litePriColor: "#45BD66",
       secColor: "#163F5A",
+      deepSecColor: "#0b2a3f",
       faintColor: "#EDF1D6",
     },
     extend: {

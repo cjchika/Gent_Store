@@ -4,23 +4,25 @@ import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
 import Logo from "./Logo";
 import { FiSearch } from "react-icons/fi";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchData, setSearchData] = useState("");
+  const [searchData, setSearchData] = useState(null);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    console.log(term);
 
     const filteredProducts =
       productData &&
-      productData.filter((product) => {
-        product.name.toLowerCase().includes(term.toLowerCase());
-      });
+      productData.filter((product) =>
+        product.name.toLowerCase().includes(term.toLowerCase())
+      );
 
+    console.log(filteredProducts);
     setSearchData(filteredProducts);
+    console.log(searchData);
   };
 
   return (
@@ -40,7 +42,37 @@ const Header = () => {
             size={20}
             className="text-secColor absolute right-3 top-2 cursor-pointer"
           />
+          {searchData && searchData.length !== 0 ? (
+            <div className="absolute min-h-[30vh] bg-[#f8fafc] shadow-sm z-[9] p-4 mt-1">
+              {searchData &&
+                searchData.map((i, index) => {
+                  const m = i.name;
+
+                  const product_name = m.replace(/\s+/g, "-");
+                  return (
+                    <Link to={`/product/${product_name}`}>
+                      <div className="w-full flex items-start py-3 hover:bg-white">
+                        <img
+                          src={i.image_Url[0].url}
+                          alt=""
+                          className="w-[40px] h-[40px] mr-[10px]"
+                        />
+                        <h1>{i.name}</h1>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
+          ) : null}
         </div>
+
+        <button
+          className={`text-white text-sm bg-secColor p-3 px-4 rounded-full cursor-pointer hover:bg-deepSecColor`}
+        >
+          <Link to="/seller" className="flex items-center">
+            <p>Become Seller</p> <IoIosArrowForward className="ml-1" />
+          </Link>
+        </button>
       </div>
     </div>
   );
