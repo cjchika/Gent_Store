@@ -56,7 +56,7 @@ const ActivationPage = () => {
         <div className="text-center">
           <p className="mb-5 text-lg">Your account has been verified!</p>
           <Link
-            className="bg-primaryColor hover:bg-deepColor p-3 px-5 rounded-md text-white"
+            className="bg-priColor hover:bg-litePriColor p-3 px-5 rounded-md text-white"
             to={"/login"}
           >
             {" "}

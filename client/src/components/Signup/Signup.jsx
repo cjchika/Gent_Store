@@ -55,7 +55,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-primaryColor mt-6 text-center text-2xl font-semibold text-gray-900">
+        <h2 className="text-priColor mt-6 text-center text-2xl font-semibold text-gray-900">
           Sign up for an account
         </h2>
       </div>
@@ -142,7 +142,7 @@ const Signup = () => {
             <div>
               <label
                 htmlFor="avatar"
-                className="block text-sm font-medium text-primaryColor"
+                className="block text-sm font-medium text-priColor"
               ></label>
               <div className="mt-2 flex items-center">
                 <span className="inline-block h-8 w-8 rounded-full overflow-hidden">
@@ -158,7 +158,7 @@ const Signup = () => {
                 </span>
                 <label
                   htmlFor="file-input"
-                  className="cursor-pointer ml-5 flex items-center justify-center px-4 py-2 border border-faintColor rounded-md shadow-sm text-sm font-medium text-primaryColor bg-white hover:bg-faintColor"
+                  className="cursor-pointer ml-5 flex items-center justify-center px-4 py-2 border border-faintColor rounded-md shadow-sm text-sm font-medium text-priColor bg-white hover:bg-faintColor"
                 >
                   <span>Upload photo</span>
                   <input
@@ -177,7 +177,7 @@ const Signup = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primaryColor hover:bg-deepColor"
+                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-priColor hover:bg-litePriColor"
               >
                 {isLoading ? "Please wait..." : "Submit"}
               </button>
@@ -186,7 +186,7 @@ const Signup = () => {
               <h4>Already have an account?</h4>
               <Link
                 to="/login"
-                className="text-primaryColor hover:text-deepColor"
+                className="text-priColor hover:text-litePriColor"
               >
                 Sign in
               </Link>

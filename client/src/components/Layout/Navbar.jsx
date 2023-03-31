@@ -13,7 +13,7 @@ const Navbar = ({ active }) => {
               to={nav.url}
               className={`${
                 active === index + 1
-                  ? "text-primaryColor"
+                  ? "text-priColor"
                   : "text-black 800px:text-[#fff]"
               }`}
             >

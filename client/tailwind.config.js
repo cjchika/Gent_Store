@@ -10,9 +10,9 @@ module.exports = {
       transparent: "transparent",
       white: "#ffffff",
       black: "#00040a",
-      primaryColor: "#609966",
-      liteColor: "#9DC08B",
-      deepColor: "#40513B",
+      priColor: "#25AF4B",
+      litePriColor: "#45BD66",
+      secColor: "#163F5A",
       faintColor: "#EDF1D6",
     },
     extend: {

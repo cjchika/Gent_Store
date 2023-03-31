@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="text-primaryColor mt-6 text-center text-2xl font-semibold text-gray-900">
+        <h2 className="text-priColor mt-6 text-center text-2xl font-semibold text-gray-900">
           Login to your account
         </h2>
       </div>
@@ -106,13 +106,13 @@ const Login = () => {
                   type="checkbox"
                   name="remember-me"
                   id="remember-me"
-                  className="h-4 w-4 text-primaryColor focus:[#3b82f6] border-[#93c5fd] rounded"
+                  className="h-4 w-4 text-priColor focus:[#3b82f6] border-[#93c5fd] rounded"
                 />
                 <label className="ml-2 block text-sm">Remember me</label>
               </div>
               <a
                 href="/forgot-password"
-                className="font-medium text-primaryColor hover:text-deepColor text-sm"
+                className="font-medium text-priColor hover:text-litePriColor text-sm"
               >
                 Forgot your password?
               </a>
@@ -121,7 +121,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primaryColor hover:bg-deepColor"
+                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-priColor hover:bg-litePriColor"
               >
                 {isLoading ? "Logging in..." : "Login"}
               </button>
@@ -130,7 +130,7 @@ const Login = () => {
               <h4>Don't have an account?</h4>
               <Link
                 to="/signup"
-                className="text-primaryColor hover:text-deepColor"
+                className="text-priColor hover:text-litePriColor"
               >
                 Sign up
               </Link>
