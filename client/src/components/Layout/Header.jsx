@@ -12,6 +12,7 @@ import DropDown from "./DropDown";
 import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
 import Cart from "../Cart/Cart";
+import Wishlist from "../Wishlist/Wishlist";
 
 const Header = ({ activeHeader }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -162,7 +163,7 @@ const Header = ({ activeHeader }) => {
           {openCart && <Cart setOpenCart={setOpenCart} />}
 
           {/* WISHLIST POPUP */}
-          {/* {openWishlist && <Wishlist setOpenWishlist={setOpenWishlist} /> } */}
+          {openWishlist && <Wishlist setOpenWishlist={setOpenWishlist} />}
         </div>
 
         {/* <button
