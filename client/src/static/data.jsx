@@ -2,7 +2,7 @@ import { MdComputer, MdChildCare } from "react-icons/md";
 import { HiGift } from "react-icons/hi";
 import { GiRunningShoe, GiClothes, GiSittingDog } from "react-icons/gi";
 import { FaBaby, FaMobile } from "react-icons/fa";
-import { SiApplemusic } from "react-icons/si";
+import { IoGameController } from "react-icons/io5";
 import { CgMoreO } from "react-icons/cg";
 
 // navigation Data
@@ -248,7 +248,7 @@ export const categoriesData = [
     id: 9,
     title: "Music and Gaming",
     subTitle: "",
-    icon: SiApplemusic,
+    icon: IoGameController,
   },
   {
     id: 10,

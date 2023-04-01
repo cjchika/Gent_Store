@@ -5,19 +5,20 @@ import styles from "../../styles/styles";
 
 const Navbar = ({ active }) => {
   return (
-    <div className={`block 800px:${styles.normalFlex}`}>
+    <div
+      className={`block 800px:${styles.normalFlex} gap-5 1100px:gap-10 text-sm`}
+    >
       {navItems &&
         navItems.map((nav, index) => (
-          <div className="flex">
-            <Link
-              to={nav.url}
-              className={`${
-                active === index + 1 ? "text-priColor" : "text-secColor"
-              }`}
-            >
-              {nav.title}
-            </Link>
-          </div>
+          <Link
+            key={index}
+            to={nav.url}
+            className={`${
+              active === index + 1 ? "text-priColor" : "text-secColor"
+            } whitespace-nowrap`}
+          >
+            {nav.title}
+          </Link>
         ))}
     </div>
   );
