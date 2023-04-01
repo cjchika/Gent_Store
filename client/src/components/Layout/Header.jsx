@@ -4,15 +4,23 @@ import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
 import Logo from "./Logo";
 import { FiSearch } from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
+import { MdFavoriteBorder } from "react-icons/md";
 import { IoIosArrowForward, IoMdArrowDropdown } from "react-icons/io";
+import { IoCartOutline } from "react-icons/io5";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
 
 const Header = ({ activeHeader }) => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [dropdown, setDropDown] = useState(false);
   const [active, setActive] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
+  const [openWishlist, setOpenWishlist] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -66,11 +74,10 @@ const Header = ({ activeHeader }) => {
             )}
           </div>
           {/* Other items */}
-
           <Navbar active={activeHeader} />
 
           {/* SEARCH BOX */}
-          <div className="w-[50%] relative">
+          <div className="w-full relative">
             <input
               type="text"
               placeholder="Search products"
@@ -82,7 +89,7 @@ const Header = ({ activeHeader }) => {
               size={20}
               className="text-secColor absolute right-3 top-2 cursor-pointer"
             />
-            {searchData && searchData.length !== 0 ? (
+            {searchData && searchData.length !== 0 && (
               <div className="absolute min-h-[30vh] bg-[#fff] shadow-sm z-[9] p-4 mt-1">
                 {searchData &&
                   searchData.map((i, index) => {
@@ -103,17 +110,61 @@ const Header = ({ activeHeader }) => {
                     );
                   })}
               </div>
-            ) : null}
+            )}
+          </div>
+        </div>
+
+        {/* USER | WISHLIST | CART*/}
+        <div className="flex items-center gap-4 ml-5">
+          {/* User */}
+          <div className={`${styles.normalFlex} `}>
+            <div className="relative cursor-pointer">
+              {isAuthenticated ? (
+                <Link to="/profile">
+                  <AiOutlineUser size={25} className="text-secColor" />
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <AiOutlineUser size={25} className="text-secColor" />
+                </Link>
+              )}
+            </div>
           </div>
 
-          {/* <button
+          {/* Wishlist */}
+          <div className={`${styles.normalFlex} `}>
+            <div
+              className="relative cursor-pointer"
+              onClick={() => setOpenWishlist(true)}
+            >
+              <MdFavoriteBorder size={25} className="text-secColor" />
+              <span className="absolute right-0 top-0 rounded-full bg-priColor w-3 top right p-0 m-0 text-white text-xs leading-tight text-center">
+                0
+              </span>
+            </div>
+          </div>
+
+          {/* Cart */}
+          <div className={`${styles.normalFlex} `}>
+            <div
+              className="relative cursor-pointer"
+              onClick={() => setOpenCart(true)}
+            >
+              <IoCartOutline size={25} className="text-secColor" />
+              <span className="absolute right-0 top-0 rounded-full bg-priColor w-3 top right p-0 m-0 text-white text-xs leading-tight text-center">
+                2
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* <button
           className={`text-white text-sm bg-secColor p-3 px-4 rounded-full cursor-pointer hover:bg-deepSecColor`}
         >
           <Link to="/seller" className="flex items-center">
             <p>Become Seller</p> <IoIosArrowForward className="ml-1" />
           </Link>
         </button> */}
-        </div>
       </div>
     </>
   );
