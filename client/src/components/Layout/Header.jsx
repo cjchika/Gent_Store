@@ -153,15 +153,16 @@ const Header = ({ activeHeader }) => {
             >
               <IoCartOutline size={25} className="text-secColor" />
               <span className="absolute right-0 top-0 rounded-full bg-priColor w-3 top right p-0 m-0 text-white text-xs leading-tight text-center">
-                2
+                3
               </span>
             </div>
           </div>
 
           {/* CART POPUP */}
-          {open && <Cart setOpenCart={setOpenCart} />}
+          {openCart && <Cart setOpenCart={setOpenCart} />}
 
           {/* WISHLIST POPUP */}
+          {/* {openWishlist && <Wishlist setOpenWishlist={setOpenWishlist} /> } */}
         </div>
 
         {/* <button

@@ -4,6 +4,7 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineMinus, HiPlus } from "react-icons/hi";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
+import CartSingleItem from "./CartSingleItem";
 
 const Cart = ({ setOpenCart }) => {
   const cartData = [
@@ -30,30 +31,33 @@ const Cart = ({ setOpenCart }) => {
         <div>
           <div className="flex w-full justify-end pt-5 pr-5">
             <RxCross1
-              size={25}
+              size={16}
               className="cursor-pointer"
               onClick={() => setOpenCart(false)}
             />
           </div>
           {/* Items */}
-          <div className={`${styles.normalFlex} p-4`}>
+          <div className={`${styles.normalFlex} p-2 px-4 text-secColor`}>
             <IoBagHandleOutline size={25} />
-            <h5 className="pl-5 text-base font-semibold">5 Items</h5>
+            <h5 className="pl-5 text-base font-semibold">3 Items</h5>
           </div>
           {/* Single Item */}
           <br />
-          <div className="w-full border-t">
-            {/* {cartData && cartData.map((item, index) => <CartSingleItem key={index} item={item} />)} */}
+          <div className="w-full border-t border-secColor border-opacity-30">
+            {cartData &&
+              cartData.map((item, index) => (
+                <CartSingleItem key={index} item={item} />
+              ))}
           </div>
         </div>
 
         <div className="px-5 mb-3">
           <Link to="/checkout">
-            <div
-              className={`h-[45px] flex items-center justify-center w-[100%] bg-[#e44343] rounded-md`}
+            <button
+              className={`text-sm py-3 text-white flex items-center justify-center w-[100%] hover:bg-deepSecColor bg-secColor rounded-xl`}
             >
-              <h1>Checkout Now (USD $2000) </h1>
-            </div>
+              Checkout (USD $2000){" "}
+            </button>
           </Link>
         </div>
       </div>
