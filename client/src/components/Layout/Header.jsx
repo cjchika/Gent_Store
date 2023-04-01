@@ -11,6 +11,7 @@ import { IoCartOutline } from "react-icons/io5";
 import DropDown from "./DropDown";
 import Navbar from "./Navbar";
 import { useSelector } from "react-redux";
+import Cart from "../Cart/Cart";
 
 const Header = ({ activeHeader }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -158,6 +159,7 @@ const Header = ({ activeHeader }) => {
           </div>
 
           {/* CART POPUP */}
+          {open && <Cart setOpenCart={setOpenCart} />}
 
           {/* WISHLIST POPUP */}
         </div>
