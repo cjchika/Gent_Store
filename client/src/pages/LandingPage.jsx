@@ -3,7 +3,7 @@ import Header from "../components/Layout/Header";
 const LandingPage = () => {
   return (
     <>
-      <Header />
+      <Header activeHeader={1} />
     </>
   );
 };

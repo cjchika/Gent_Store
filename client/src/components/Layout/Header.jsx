@@ -6,8 +6,9 @@ import Logo from "./Logo";
 import { FiSearch } from "react-icons/fi";
 import { IoIosArrowForward, IoMdArrowDropdown } from "react-icons/io";
 import DropDown from "./DropDown";
+import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ activeHeader }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [dropdown, setDropDown] = useState(false);
@@ -35,7 +36,6 @@ const Header = () => {
         {/* NAVITEMS */}
 
         {/* Categories Dropdown */}
-
         <div
           onClick={() => setDropDown(!dropdown)}
           className="relative   w-[270px] hidden 1000px:block"
@@ -51,6 +51,10 @@ const Header = () => {
               setDropDown={setDropDown}
             />
           )}
+        </div>
+        {/* Other items */}
+        <div className={`${styles.normalFlex}`}>
+          <Navbar active={activeHeader} />
         </div>
 
         {/* SEARCH BOX */}

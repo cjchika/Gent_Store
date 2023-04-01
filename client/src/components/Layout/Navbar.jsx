@@ -12,9 +12,7 @@ const Navbar = ({ active }) => {
             <Link
               to={nav.url}
               className={`${
-                active === index + 1
-                  ? "text-priColor"
-                  : "text-black 800px:text-[#fff]"
+                active === index + 1 ? "text-priColor" : "text-secColor"
               }`}
             >
               {nav.title}

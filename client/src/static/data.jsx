@@ -204,19 +204,19 @@ export const categoriesData = [
   },
   {
     id: 2,
-    title: "Cosmetics and body care",
+    title: "Cosmetics and Body Care",
     subTitle: "",
     icon: MdChildCare,
   },
   {
     id: 3,
-    title: "Accesories",
+    title: "Accessories",
     subTitle: "",
     icon: FaBaby,
   },
   {
     id: 4,
-    title: "Cloths",
+    title: "Clothes",
     subTitle: "",
     icon: GiClothes,
   },

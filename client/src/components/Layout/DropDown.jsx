@@ -12,12 +12,12 @@ const DropDown = ({ categoriesData, setDropDown }) => {
   };
 
   return (
-    <div className="pb-4 w-[270px] bg-white absolute z-30 rounded-b-md shadow-sm p-2 px-4 mt-3">
+    <div className="pb-4 w-[270px] bg-white absolute z-30 rounded-b-lg shadow-sm p-3 mt-3">
       {categoriesData &&
         categoriesData.map((item, index) => (
           <div
             key={index}
-            className={`${styles.normalFlex} text-secColor cursor-pointer `}
+            className={`${styles.normalFlex} px-2 text-secColor cursor-pointer hover:bg-secColor hover:bg-opacity-5`}
             onClick={() => submitHandler(item)}
           >
             <item.icon size={20} className="" />
