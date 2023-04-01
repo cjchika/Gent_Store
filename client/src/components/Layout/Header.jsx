@@ -4,11 +4,13 @@ import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
 import Logo from "./Logo";
 import { FiSearch } from "react-icons/fi";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward, IoMdArrowDropdown } from "react-icons/io";
+import DropDown from "./DropDown";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
+  const [dropdown, setDropDown] = useState(false);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -29,6 +31,28 @@ const Header = () => {
     <div className={`${styles.section}`}>
       <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
         <Logo align="" />
+
+        {/* NAVITEMS */}
+
+        {/* Categories Dropdown */}
+
+        <div
+          onClick={() => setDropDown(!dropdown)}
+          className="relative   w-[270px] hidden 1000px:block"
+        >
+          <div className="flex items-center gap-1 cursor-pointer text-sm">
+            <p>Categories</p>
+            <IoMdArrowDropdown />
+          </div>
+
+          {dropdown && (
+            <DropDown
+              categoriesData={categoriesData}
+              setDropDown={setDropDown}
+            />
+          )}
+        </div>
+
         {/* SEARCH BOX */}
         <div className="w-[50%] relative">
           <input
@@ -66,13 +90,13 @@ const Header = () => {
           ) : null}
         </div>
 
-        <button
+        {/* <button
           className={`text-white text-sm bg-secColor p-3 px-4 rounded-full cursor-pointer hover:bg-deepSecColor`}
         >
           <Link to="/seller" className="flex items-center">
             <p>Become Seller</p> <IoIosArrowForward className="ml-1" />
           </Link>
-        </button>
+        </button> */}
       </div>
     </div>
   );
