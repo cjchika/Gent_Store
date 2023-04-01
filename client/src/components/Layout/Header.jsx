@@ -156,6 +156,10 @@ const Header = ({ activeHeader }) => {
               </span>
             </div>
           </div>
+
+          {/* CART POPUP */}
+
+          {/* WISHLIST POPUP */}
         </div>
 
         {/* <button

@@ -118,7 +118,7 @@ export const loginUser = asyncErrors(async (req, res, next) => {
       );
     }
     const isValidPassword = await user.comparePassword(password);
-    console.log("From login conroller " + isValidPassword);
+    // console.log("From login conroller " + isValidPassword);
 
     if (!isValidPassword) {
       return next(
