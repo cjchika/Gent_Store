@@ -1,5 +1,6 @@
 import React from "react";
 import { heroData } from "../../../static/data";
+import { Link } from "react-router-dom";
 import SwiperCore, {
   Pagination,
   Controller,
@@ -28,17 +29,31 @@ const Hero = () => {
           <SwiperSlide key={index}>
             <div
               style={{
-                backgroundPosition: "top",
+                backgroundPosition: "bottom",
                 backgroundImage: `url(${item.backgroundImg})`,
                 backgroundSize: "cover",
               }}
             >
-              <div className="h-[400px] p-8 flex items-center justify-between">
-                <div>
-                  <h1 className="text-white">{item.title}</h1>
+              <div className="600px:h-[450px] p-5 800px:px-[40px] flex flex-col 600px:flex-row items-center justify-start 400px:justify-between">
+                <div className="block 600px:hidden h-[400px] w-full mb-8 600px:w-[50%]">
+                  <img className="w-full h-full object-fill" src={item.image} />
                 </div>
-                <div>
-                  <img className="w-full h-[350px]" src={item.image} />
+                <div className="w-full mb-5 600px:mb-0 600px:w-[60%] ">
+                  <p className="text-white text-xl 800px:text-2xl mb-3">
+                    {item.description}
+                  </p>
+                  <h1 className="text-white font-medium text-[30px] uppercase 800px:my-6 1000px:text-[55px]">
+                    {item.title}.
+                  </h1>
+                  <p className="mt-3 text-white text-xl">UP TO 80% OFF</p>
+                  <Link to="/products">
+                    <button className="text-secColor hover:text-deepSecColor font-medium bg-white p-3 px-7 rounded-full mt-8 shadow-md">
+                      Shop Now
+                    </button>
+                  </Link>
+                </div>
+                <div className="hidden 600px:block 600px:h-[400px] w-full 600px:w-auto">
+                  <img className="w-full h-full" src={item.image} />
                 </div>
               </div>
             </div>

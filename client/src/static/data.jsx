@@ -5,11 +5,11 @@ import { FaBaby, FaMobile } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import { CgMoreO } from "react-icons/cg";
 import iPhoneImg from "./images/iPhone.png";
-import iPhoneBG from "./images/iPhoneBG.png";
+import iPhoneBG from "./images/BG1.png";
 import iWatchImg from "./images/iWatch.png";
 import iWatchBG from "./images/iWatchBG.png";
 import macbookImg from "./images/macbook.png";
-import macbookBG from "./images/MacBookBG.png";
+import macbookBG from "./images/BG2.png";
 
 export const heroData = [
   {
