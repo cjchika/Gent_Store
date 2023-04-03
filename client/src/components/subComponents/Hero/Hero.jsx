@@ -45,7 +45,7 @@ const Hero = () => {
                   <h1 className="text-white font-medium text-[30px] uppercase 800px:my-6 1000px:text-[55px]">
                     {item.title}.
                   </h1>
-                  <p className="mt-3 text-white text-xl">UP TO 80% OFF</p>
+                  <p className="mt-3 text-white text-xl">GET UP TO 80% OFF</p>
                   <Link to="/products">
                     <button className="text-secColor hover:text-deepSecColor font-medium bg-white p-3 px-7 rounded-full mt-8 shadow-md">
                       Shop Now
