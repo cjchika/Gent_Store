@@ -4,6 +4,33 @@ import { GiRunningShoe, GiClothes, GiSittingDog } from "react-icons/gi";
 import { FaBaby, FaMobile } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import { CgMoreO } from "react-icons/cg";
+import iPhoneImg from "./images/iPhone.png";
+import iPhoneBG from "./images/iPhoneBG.png";
+import iWatchImg from "./images/iWatch.png";
+import iWatchBG from "./images/iWatchBG.png";
+import macbookImg from "./images/macbook.png";
+import macbookBG from "./images/MacBookBG.png";
+
+export const heroData = [
+  {
+    title: "Smart Wearable",
+    description: "Best Deal Online on smart watches",
+    image: iWatchImg,
+    backgroundImg: iWatchBG,
+  },
+  {
+    title: "Luxury Macbooks",
+    description: "Best Deal Online on high-end devices",
+    image: macbookImg,
+    backgroundImg: macbookBG,
+  },
+  {
+    title: "Trendy Gadgets",
+    description: "Best Deal Online on trendy iPhones",
+    image: iPhoneImg,
+    backgroundImg: iPhoneBG,
+  },
+];
 
 // navigation Data
 export const navItems = [
