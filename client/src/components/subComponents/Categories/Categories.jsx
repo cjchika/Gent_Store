@@ -1,7 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { brandingData, categoriesData } from "../../../static/data";
+import { brandingData, categories } from "../../../static/data";
 import styles from "../../../styles/styles";
+import SwiperCore, {
+  Pagination,
+  Controller,
+  Thumbs,
+  Scrollbar,
+  Autoplay,
+} from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+SwiperCore.use([Pagination, Controller, Thumbs, Scrollbar, Autoplay]);
 
 const Categories = () => {
   const navigate = useNavigate();
@@ -37,21 +47,24 @@ const Categories = () => {
         className={`${styles.section} bg-white p-6 rounded-lg mb-12`}
         id="categories"
       >
-        <div className="grid grid-cols-1 gap-[5px] md:grid-cols-2 md:gap-[10px] lg:grid-cols-4 lg:gap-[20px] xl:grid-cols-5 xl:gap-[30px]">
-          {categoriesData &&
-            categoriesData.map((item, index) => {
+        <div className="">
+          {categories &&
+            categories.map((item, index) => {
               const handleSubmit = (i) => {
                 navigate(`/products?category=${item.title}`);
               };
               return (
-                <div
-                  className="w-full h-[100px] flex items-center justify-between cursor-pointer overflow-hidden"
-                  key={item.id}
-                  onClick={() => handleSubmit(item)}
+                <Swiper
+                  modules={Autoplay}
+                  id="main"
+                  loop={true}
+                  autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                  }}
                 >
-                  <h4 className={`text-[18px] leading-[1.3]`}>{item.title}</h4>
-                  <item.icon />
-                </div>
+                  <SwiperSlide key={index}></SwiperSlide>
+                </Swiper>
               );
             })}
         </div>

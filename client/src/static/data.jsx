@@ -153,6 +153,69 @@ export const categoriesData = [
   },
 ];
 
+export const categories = [
+  {
+    id: 1,
+    title: "Laptops",
+    subTitle: "",
+    icon: MdComputer,
+  },
+  {
+    id: 2,
+    title: "Cosmetics",
+    subTitle: "",
+    icon: MdChildCare,
+  },
+  {
+    id: 3,
+    title: "Accessories",
+    subTitle: "",
+    icon: FaBaby,
+  },
+  {
+    id: 4,
+    title: "Clothes",
+    subTitle: "",
+    icon: GiClothes,
+  },
+  {
+    id: 5,
+    title: "Shoes",
+    subTitle: "",
+    icon: GiRunningShoe,
+  },
+  {
+    id: 6,
+    title: "Gifts",
+    subTitle: "",
+    icon: HiGift,
+  },
+  {
+    id: 7,
+    title: "Pet Care",
+    subTitle: "",
+    icon: GiSittingDog,
+  },
+  {
+    id: 8,
+    title: "Mobile",
+    subTitle: "",
+    icon: FaMobile,
+  },
+  {
+    id: 9,
+    title: "Gaming",
+    subTitle: "",
+    icon: IoGameController,
+  },
+  {
+    id: 10,
+    title: "Others",
+    subTitle: "",
+    icon: CgMoreO,
+  },
+];
+
 // product Data
 export const productData = [
   {
