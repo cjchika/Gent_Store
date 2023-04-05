@@ -7,7 +7,7 @@ const Categories = () => {
   return (
     <>
       <div className="my-5 mt-10">
-        <h1 className="capitalize px-5 md:px-10 text-xl font-medium">
+        <h1 className="capitalize px-5 md:px-10 text-2xl font-semibold text-secColor">
           Shop our top categories
         </h1>
       </div>
