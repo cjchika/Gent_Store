@@ -15,6 +15,15 @@ import iWatchImg from "./images/iWatch.png";
 import iWatchBG from "./images/iWatchBG.png";
 import macbookImg from "./images/macbook.png";
 import macbookBG from "./images/BG2.png";
+import GamePadImg from "./images/catimg1.png";
+import GiftImg from "./images/catimg2.png";
+import PetImg from "./images/catimg3.png";
+import SuitImg from "./images/catimg4.png";
+import ShoeImg from "./images/catimg5.png";
+import LaptopImg from "./images/catimg6.png";
+import WatchImg from "./images/catimg7.png";
+import CosmeticImg from "./images/catimg8.png";
+import iPhone from "./images/catimg9.png";
 
 export const heroData = [
   {
@@ -157,62 +166,47 @@ export const categories = [
   {
     id: 1,
     title: "Laptops",
-    subTitle: "",
-    icon: MdComputer,
+    img: LaptopImg,
   },
   {
     id: 2,
     title: "Cosmetics",
-    subTitle: "",
-    icon: MdChildCare,
+    img: CosmeticImg,
   },
   {
     id: 3,
     title: "Accessories",
-    subTitle: "",
-    icon: FaBaby,
+    img: WatchImg,
   },
   {
     id: 4,
     title: "Clothes",
-    subTitle: "",
-    icon: GiClothes,
+    img: SuitImg,
   },
   {
     id: 5,
     title: "Shoes",
-    subTitle: "",
-    icon: GiRunningShoe,
+    img: ShoeImg,
   },
   {
     id: 6,
     title: "Gifts",
-    subTitle: "",
-    icon: HiGift,
+    img: GiftImg,
   },
   {
     id: 7,
     title: "Pet Care",
-    subTitle: "",
-    icon: GiSittingDog,
+    img: PetImg,
   },
   {
     id: 8,
     title: "Mobile",
-    subTitle: "",
-    icon: FaMobile,
+    img: iPhone,
   },
   {
     id: 9,
     title: "Gaming",
-    subTitle: "",
-    icon: IoGameController,
-  },
-  {
-    id: 10,
-    title: "Others",
-    subTitle: "",
-    icon: CgMoreO,
+    img: GamePadImg,
   },
 ];
 

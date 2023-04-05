@@ -1,20 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { brandingData, categories } from "../../../static/data";
+import { brandingData } from "../../../static/data";
 import styles from "../../../styles/styles";
-import SwiperCore, {
-  Pagination,
-  Controller,
-  Thumbs,
-  Scrollbar,
-  Autoplay,
-} from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
-SwiperCore.use([Pagination, Controller, Thumbs, Scrollbar, Autoplay]);
+import CategoryItem from "./CategoryItem";
 
 const Categories = () => {
-  const navigate = useNavigate();
   return (
     <>
       <div className="my-10">
@@ -42,33 +31,7 @@ const Categories = () => {
             ))}
         </div>
       </div>
-
-      <div
-        className={`${styles.section} bg-white p-6 rounded-lg mb-12`}
-        id="categories"
-      >
-        <div className="">
-          {categories &&
-            categories.map((item, index) => {
-              const handleSubmit = (i) => {
-                navigate(`/products?category=${item.title}`);
-              };
-              return (
-                <Swiper
-                  modules={Autoplay}
-                  id="main"
-                  loop={true}
-                  autoplay={{
-                    delay: 4000,
-                    disableOnInteraction: false,
-                  }}
-                >
-                  <SwiperSlide key={index}></SwiperSlide>
-                </Swiper>
-              );
-            })}
-        </div>
-      </div>
+      <CategoryItem />
     </>
   );
 };
