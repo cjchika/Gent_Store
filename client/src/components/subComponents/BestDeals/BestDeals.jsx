@@ -9,7 +9,7 @@ const BestDeals = () => {
   useEffect(() => {
     const products =
       productData && productData.sort((a, b) => b.total_sell - a.total_sell);
-    setData(products.slice(0.1));
+    setData(products.slice(0, 10));
   }, []);
 
   return (
@@ -18,11 +18,9 @@ const BestDeals = () => {
         <div className={`${styles.heading}`}>
           <h1 className="text-secColor">Best Deals</h1>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap gap-3">
           {data &&
-            data.map((item, index) => {
-              <ProductCard item={item} key={index} />;
-            })}
+            data.map((item, index) => <ProductCard item={item} key={index} />)}
         </div>
       </div>
     </div>

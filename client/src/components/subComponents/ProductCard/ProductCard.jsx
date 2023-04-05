@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 
 const ProductCard = ({ item }) => {
-  return <div>{item.name}</div>;
+  return <div>Product Card</div>;
 };
 
 export default ProductCard;
