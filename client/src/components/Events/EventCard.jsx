@@ -10,8 +10,9 @@ const EventCard = ({ active, item }) => {
         active ? "unset" : "mb-12"
       } lg:flex p-2`}
     >
+      <CountDown item={item} />
       <div className="w-full lg:-w[50%] m-auto mb-7 md:mb-0">
-        <img src={`${item.image_Url[0].url}`} alt="" />
+        <img className="mx-auto" src={`${item.image_Url[0].url}`} alt="" />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center lg:pr-3">
         <h2
@@ -35,8 +36,6 @@ const EventCard = ({ active, item }) => {
             120 sold
           </span>
         </div>
-        <CountDown item={item} />
-        <br />
       </div>
     </div>
   );

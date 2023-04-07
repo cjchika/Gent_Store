@@ -11,15 +11,15 @@ const CountDown = ({ item }) => {
   });
 
   function calculateTimeLeft() {
-    const difference = +new Date(item.Finish_Date) - +new Date();
+    const difference = +new Date("2023-4-31") - +new Date(); //item.Finish_Date
     let timeLeft = {};
 
     if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        Day: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        Hr: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        Min: Math.floor((difference / 1000 / 60) % 60),
+        Sec: Math.floor((difference / 1000) % 60),
       };
     }
 
@@ -32,14 +32,15 @@ const CountDown = ({ item }) => {
     }
 
     return (
-      <span className="text-[25px] text-secColor">
-        {timeLeft[interval]} {interval}{" "}
+      <span className="text-base font-medium text-white">
+        {timeLeft[interval]}
+        {interval}{" "}
       </span>
     );
   });
 
   return (
-    <div>
+    <div className="bg-priColor  absolute p-2 px-4 rounded-lg">
       {timerComponents.length ? (
         timerComponents
       ) : (
