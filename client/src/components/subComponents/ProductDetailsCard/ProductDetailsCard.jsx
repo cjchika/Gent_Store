@@ -18,7 +18,7 @@ const ProductdetailsCard = ({ setOpen, item }) => {
     <div className="bg-[#fff]">
       {item && (
         <div className="fixed w-full h-screen top-0 left-0 bg-[#00000030] z-40 flex items-center justify-center">
-          <div className="w-[90%] 800px:w-[80%] lg:w-[60%] overflow-y-scroll md:overflow-y-hidden  h-[85vh] md:h-auto  p-6 bg-white rounded-md shadow-sm relative">
+          <div className="w-[90%] 800px:w-[80%] lg:w-[60%] overflow-y-scroll 800px:overflow-y-hidden  h-[80vh] 800px:h-auto  p-6 bg-white rounded-md shadow-sm relative">
             <RxCross1
               size={18}
               className="absolute right-3 top-3 z-50 text-deepSecColor"

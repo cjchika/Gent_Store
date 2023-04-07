@@ -5,6 +5,7 @@ import BestDeals from "../components/subComponents/BestDeals/BestDeals";
 import FeaturedProduct from "../components/subComponents/FeaturedProduct/FeaturedProduct";
 import Events from "../components/Events/Events";
 import Brands from "../components/subComponents/Brands/Brands";
+import Footer from "../components/Layout/Footer";
 
 const LandingPage = () => {
   return (
@@ -16,6 +17,7 @@ const LandingPage = () => {
       <Events />
       <FeaturedProduct />
       <Brands />
+      <Footer />
     </>
   );
 };
