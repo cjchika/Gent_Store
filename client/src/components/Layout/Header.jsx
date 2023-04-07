@@ -223,11 +223,11 @@ const Header = ({ activeHeader }) => {
                 />
               </div>
 
-              <div className="my-8 w-[92%] m-auto h-[40px relative]">
+              <div className="my-8 w-[92%] m-auto h-[40px]  relative">
                 <input
                   type="search"
                   placeholder="Search Product..."
-                  className="h-[40px] w-full px-2 border-[#3957db] border-[2px] rounded-md"
+                  className="h-[40px] w-full px-2 border-secColor border rounded-md"
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
@@ -256,7 +256,7 @@ const Header = ({ activeHeader }) => {
 
               <Navbar active={activeHeader} />
 
-              <div className="flex w-full justify-center">
+              <div className="flex flex-col p-2 px-3 w-full justify-center text-secColor">
                 {isAuthenticated ? (
                   <div>
                     <Link to="/profile">
@@ -267,13 +267,13 @@ const Header = ({ activeHeader }) => {
                   <>
                     <Link
                       to="/login"
-                      className="text-[18px] pr-[10px] text-[#000000b7]"
+                      className="text-base pr-[10px] text-white my-1 bg-secColor rounded-md p-2 px-3"
                     >
-                      Login /
+                      Login
                     </Link>
                     <Link
-                      to="/sign-up"
-                      className="text-[18px] text-[#000000b7]"
+                      to="/signup"
+                      className="text-base text-white my-1 bg-secColor rounded-md p-2 px-3"
                     >
                       Sign up
                     </Link>

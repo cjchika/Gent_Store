@@ -25,7 +25,7 @@ const Faq = () => {
   };
 
   return (
-    <div className={`${styles.section} my-8 text-secColor`}>
+    <div className={`${styles.section} my-8 text-secColor `}>
       <h2 className="text-3xl font-bold text-gray-900 mb-8">FAQ</h2>
       <div className="mx-auto space-y-4">
         {/* single Faq */}
@@ -233,7 +233,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(6)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-left text-lg font-medium text-gray-900">
               Do you offer international shipping?
             </span>
             {activeTab === 6 ? (
@@ -280,7 +280,7 @@ const Faq = () => {
             className="flex items-center justify-between w-full"
             onClick={() => toggleTab(7)}
           >
-            <span className="text-lg font-medium text-gray-900">
+            <span className="text-left text-lg font-medium text-gray-900">
               What payment methods do you accept?
             </span>
             {activeTab === 7 ? (
