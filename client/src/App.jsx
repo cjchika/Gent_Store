@@ -8,13 +8,15 @@ import {
   ProductsPage,
   BestSellingPage,
   FAQPage,
+  CheckoutPage,
   ProductDetailsPage,
-} from "./Routes.js";
+} from "./routes/Routes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "./redux/store.js";
 import { getUser } from "./redux/actions/user.js";
 import { useSelector } from "react-redux";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 const App = () => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
@@ -39,6 +41,14 @@ const App = () => {
         <Route path="/product/:name" element={<ProductDetailsPage />} />
         <Route path="/best-selling" element={<BestSellingPage />} />
         <Route path="/faq" element={<FAQPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <ToastContainer
         position="top-right"
