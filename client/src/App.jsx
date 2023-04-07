@@ -7,6 +7,7 @@ import {
   LandingPage,
   ProductsPage,
   BestSellingPage,
+  FAQPage,
 } from "./Routes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -34,6 +35,7 @@ const App = () => {
         />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/best-selling" element={<BestSellingPage />} />
+        <Route path="/faq" element={<FAQPage />} />
       </Routes>
       <ToastContainer
         position="top-right"
