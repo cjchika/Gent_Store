@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styles from "../../styles/styles";
-import { HiOutlineMinus } from "react-icons/hi";
+import { IoBagHandleOutline } from "react-icons/io5";
+import { HiOutlineMinus, HiPlus } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
 const CartSingleItem = ({ item }) => {
   const [value, setValue] = useState(1);
@@ -10,12 +12,19 @@ const CartSingleItem = ({ item }) => {
   return (
     <div className="border-b p-4 border-secColor border-opacity-30">
       <div className="w-full flex items-center">
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <div
-            className={`bg-secColor text-white border rounded-full  ${styles.normalFlex} justify-center cursor-pointer`}
+            className={`bg-[#e44343] rounded-full w-[20px] h-[20px]   ${styles.normalFlex} justify-center cursor-pointer`}
+            onClick={() => setValue(value + 1)}
+          >
+            <HiPlus size={14} color="#fff" />
+          </div>
+          <span className="text-secColor font-semibold">{value}</span>
+          <div
+            className={`bg-priColor rounded-full w-[20px] h-[20px]   ${styles.normalFlex} justify-center cursor-pointer`}
             onClick={() => setValue(value === 1 ? 1 : value - 1)}
           >
-            <HiOutlineMinus size={14} />
+            <HiOutlineMinus size={14} color="#fff" />
           </div>
         </div>
         <img
