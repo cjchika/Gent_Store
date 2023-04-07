@@ -11,7 +11,7 @@ const EventCard = ({ active, item }) => {
       } lg:flex p-2`}
     >
       <CountDown item={item} />
-      <div className="w-full lg:-w[50%] m-auto mb-7 md:mb-0">
+      <div className="w-full lg:-w[50%] m-auto mb-7 md:mb-0 mt-8">
         <img className="mx-auto" src={`${item.image_Url[0].url}`} alt="" />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center lg:pr-3">
