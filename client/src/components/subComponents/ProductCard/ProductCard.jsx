@@ -24,13 +24,13 @@ const ProductCard = ({ item }) => {
         <div className="p-3">
           <Link to={`/product/${productName}`}>
             <img
-              className="w-full h-[170px] object-contain"
+              className="w-full h-[150px] object-contain"
               src={item.image_Url[0].url}
               alt="product image"
             />
           </Link>
         </div>
-        <div className="bg-priColor bg-opacity-10 rounded-b-lg  px-3">
+        <div className=" bg-priColor bg-opacity-10 rounded-b-lg  px-3">
           <Link to="/">
             <h5
               className={`${styles.shop_name} text-secColor font-semibold text-xs`}
@@ -40,8 +40,8 @@ const ProductCard = ({ item }) => {
           </Link>
           <Link to="/">
             <h4 className="text-sm text-deepSecColor">
-              {item.name.length > 50
-                ? item.name.slice(0, 50) + "..."
+              {item.name.length > 40
+                ? item.name.slice(0, 40) + "..."
                 : item.name}
             </h4>
 

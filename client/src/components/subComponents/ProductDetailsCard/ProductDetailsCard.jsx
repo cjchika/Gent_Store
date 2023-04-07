@@ -18,7 +18,7 @@ const ProductdetailsCard = ({ setOpen, item }) => {
     <div className="bg-[#fff]">
       {item && (
         <div className="fixed w-full h-screen top-0 left-0 bg-[#00000030] z-40 flex items-center justify-center">
-          <div className="w-[90%] 800px:w-[80%] lg:w-[60%] overflow-y-scroll md:overflow-y-hidden  h-[90vh] md:h-auto  p-6 bg-white rounded-md shadow-sm relative">
+          <div className="w-[90%] 800px:w-[80%] lg:w-[60%] overflow-y-scroll md:overflow-y-hidden  h-[85vh] md:h-auto  p-6 bg-white rounded-md shadow-sm relative">
             <RxCross1
               size={18}
               className="absolute right-3 top-3 z-50 text-deepSecColor"
@@ -114,8 +114,8 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                 <button
                   className={`w-full justify-center flex ml-auto items-center p-2 px-3 bg-secColor hover:bg-deepSecColor mt-6 rounded-md  text-white`}
                 >
-                  <span>Add To Cart</span>{" "}
-                  <AiOutlineShoppingCart size={20} className="ml-1" />
+                  <span className="uppercase">Add To Cart</span>{" "}
+                  <AiOutlineShoppingCart size={20} className="ml-2" />
                 </button>
               </div>
             </div>
