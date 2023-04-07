@@ -91,7 +91,7 @@ const Header = ({ activeHeader }) => {
               placeholder="Search products"
               value={searchTerm}
               onChange={handleSearchChange}
-              className="text-sm h-[40px] w-full px-3 rounded-full bg-[#F6F6F5]  focus:border focus:border-secColor"
+              className="text-sm h-[40px] w-full lg:w-[350px] px-3 rounded-full bg-[#F6F6F5]  focus:border focus:border-secColor"
             />
             <FiSearch
               size={20}
