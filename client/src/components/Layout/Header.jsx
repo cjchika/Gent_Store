@@ -259,8 +259,9 @@ const Header = ({ activeHeader }) => {
               <div className="flex flex-col p-2 px-3 w-full justify-center text-secColor">
                 {isAuthenticated ? (
                   <div>
-                    <Link to="/profile">
-                      <AiOutlineUser size={25} className="text-secColor" />
+                    <Link to="/profile" className="flex items-center">
+                      <AiOutlineUser size={25} className="text-secColor mr-3" />
+                      <span>My Profile </span>
                     </Link>
                   </div>
                 ) : (
