@@ -11,7 +11,9 @@ const Checkout = () => {
         <div className="w-full 800px:w-[65%]">
           <ShippingInfo />
         </div>
-        <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">Cart Data</div>
+        <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
+          <CartData />
+        </div>
       </div>
       <button
         onClick={() => navigate("/payment")}
@@ -150,6 +152,44 @@ const ShippingInfo = () => {
             />
           </div>
         </div>
+      </form>
+    </div>
+  );
+};
+
+const CartData = () => {
+  return (
+    <div className="w-full bg-white rounded-lg p-5 pb-8">
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium text-[#000000a4]">Subtotal:</h3>
+        <h5 className="text-lg font-semibold text-secColor">$2500.50</h5>
+      </div>
+      <br />
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium text-[#000000a4]">Shipping:</h3>
+        <h5 className="text-lg font-semibold text-secColor">-</h5>
+      </div>
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-medium text-[#000000a4]">Discount:</h3>
+        <h5 className="text-lg font-semibold text-secColor">-</h5>
+      </div>
+      <h5 className="text-lg font-semibold text-end pt-5 text-secColor">
+        $2500.00
+      </h5>
+      <br />
+      <form>
+        <input
+          type="text"
+          className={`${styles.input} rounded-lg h-[40px] pl-2 border-secColor focus:border-priColor`}
+          placeholder="Coupon Code"
+          required
+        />
+        <input
+          className={`w-full h-[40px] border border-[#f63b60] text-center text-[#f63b60] rounded-lg mt-8 cursor-pointer`}
+          required
+          value="Apply code"
+          type="submit"
+        />
       </form>
     </div>
   );
