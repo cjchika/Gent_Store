@@ -44,7 +44,7 @@ const CountDown = ({ item }) => {
       {timerComponents.length ? (
         timerComponents
       ) : (
-        <span className="text-[red] text-base">Promo Closed</span>
+        <span className="text-white text-base">Promo Closed</span>
       )}
     </div>
   );
