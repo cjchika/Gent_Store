@@ -8,6 +8,7 @@ import FAQPage from "../pages/FAQPage.jsx";
 import ProductDetailsPage from "../pages/ProductDetailsPage.jsx";
 import CheckoutPage from "../pages/CheckoutPage.jsx";
 import PaymentPage from "../pages/PaymentPage.jsx";
+import OrderSuccessPage from "../pages/OrderSuccessPage.jsx";
 
 export {
   LoginPage,
@@ -19,5 +20,6 @@ export {
   FAQPage,
   CheckoutPage,
   PaymentPage,
+  OrderSuccessPage,
   ProductDetailsPage,
 };
