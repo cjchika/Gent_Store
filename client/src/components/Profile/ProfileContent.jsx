@@ -124,12 +124,36 @@ const ProfileContent = ({ active }) => {
           </div>
         </>
       )}
-
       {/* Order */}
       {active === 2 && (
         <div>
           {" "}
           <AllOrders />{" "}
+        </div>
+      )}
+      {/* Refund */}
+      {active === 3 && (
+        <div>
+          <AllRefundOrders />
+        </div>
+      )}
+
+      {/* Track order */}
+      {active === 5 && (
+        <div>
+          <TrackOrder />
+        </div>
+      )}
+      {/* Payment */}
+      {active === 6 && (
+        <div>
+          <PaymentMethod />
+        </div>
+      )}
+      {/*  user Address */}
+      {active === 7 && (
+        <div>
+          <Address />
         </div>
       )}
     </div>
@@ -216,7 +240,7 @@ const AllOrders = () => {
     });
 
   return (
-    <div className="pl-8 pt-1 hidden 1000px:block">
+    <div className="pl-8 pt-1 ">
       <DataGrid
         rows={row}
         columns={columns}
@@ -224,6 +248,252 @@ const AllOrders = () => {
         disableSelectionOnClick
         autoHeight
       />
+    </div>
+  );
+};
+
+const AllRefundOrders = () => {
+  const orders = [
+    {
+      _id: "7463hvbfbhfbrtr28820221",
+      orderItems: [
+        {
+          name: "Iphone 14 pro max",
+        },
+      ],
+      totalPrice: 120,
+      orderStatus: "Processing",
+    },
+  ];
+
+  const columns = [
+    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+
+    {
+      field: "status",
+      headerName: "Status",
+      minWidth: 130,
+      flex: 0.7,
+      cellClassName: (params) => {
+        return params.getValue(params.id, "status") === "Delivered"
+          ? "greenColor"
+          : "redColor";
+      },
+    },
+    {
+      field: "itemsQty",
+      headerName: "Items Qty",
+      type: "number",
+      minWidth: 130,
+      flex: 0.7,
+    },
+
+    {
+      field: "total",
+      headerName: "Total",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
+
+    {
+      field: " ",
+      flex: 1,
+      minWidth: 150,
+      headerName: "",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={`/order/${params.id}`}>
+              <Button>
+                <AiOutlineArrowRight size={20} />
+              </Button>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
+
+  const row = [];
+
+  orders &&
+    orders.forEach((item) => {
+      row.push({
+        id: item._id,
+        itemsQty: item.orderItems.length,
+        total: "US$ " + item.totalPrice,
+        status: item.orderStatus,
+      });
+    });
+
+  return (
+    <div className="pl-8 pt-1 ">
+      <DataGrid
+        rows={row}
+        columns={columns}
+        pageSize={10}
+        autoHeight
+        disableSelectionOnClick
+      />
+    </div>
+  );
+};
+
+const TrackOrder = () => {
+  const orders = [
+    {
+      _id: "7463hvbfbhfbrtr28820221",
+      orderItems: [
+        {
+          name: "Iphone 14 pro max",
+        },
+      ],
+      totalPrice: 120,
+      orderStatus: "Processing",
+    },
+  ];
+
+  const columns = [
+    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+    {
+      field: "status",
+      headerName: "Status",
+      minWidth: 130,
+      flex: 0.7,
+      cellClassName: (params) => {
+        return params.getValue(params.id, "status") === "Delivered"
+          ? "greenColor"
+          : "redColor";
+      },
+    },
+    {
+      field: "itemsQty",
+      headerName: "Items Qty",
+      type: "number",
+      minWidth: 130,
+      flex: 0.7,
+    },
+
+    {
+      field: "total",
+      headerName: "Total",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
+    {
+      field: " ",
+      flex: 1,
+      minWidth: 130,
+      headerName: "",
+      type: "number",
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link to={`/order/${params.id}`}>
+              <Button>
+                <MdOutlineTrackChanges size={20} />
+              </Button>
+            </Link>
+          </>
+        );
+      },
+    },
+  ];
+
+  const row = [];
+
+  orders &&
+    orders.forEach((item) => {
+      row.push({
+        id: item._id,
+        itemsQty: item.orderItems.length,
+        total: "US$ " + item.totalPrice,
+        status: item.orderStatus,
+      });
+    });
+
+  return (
+    <div className="pl-8 pt-1">
+      <DataGrid
+        rows={row}
+        columns={columns}
+        pageSize={10}
+        disableSelectionOnClick
+        autoHeight
+      />
+    </div>
+  );
+};
+
+const PaymentMethod = () => {
+  return (
+    <div className="w-full px-5">
+      <div className="flex flex-col  sm:flex-row w-full items-start sm:items-center justify-between">
+        <h1 className="text-xl font-[600] text-secColor pb-2">
+          Payment Methods
+        </h1>
+        <button
+          className={`bg-secColor hover:bg-deepSecColor p-3 px-8 rounded-lg text-white`}
+        >
+          Add New
+        </button>
+      </div>
+      <br />
+      <div className="w-full gap-5 md:gap-0 pb-5 md:pb-0 bg-white h-min 800px:h-[70px] rounded-md flex flex-col md:flex-row items-start md:items-center px-3 shadow justify-between pr-10">
+        <div className="flex items-center">
+          <img
+            src="https://bonik-react.vercel.app/assets/images/payment-methods/Visa.svg"
+            alt=""
+          />
+          <h5 className="md:pl-5 font-[600] text-lg 800px:text-[unset]">
+            CJ Chika
+          </h5>
+        </div>
+        <div className="md:pl-8 flex items-center">
+          <h6 className="text-[12px] 800px:text-[unset]">1234 **** *** ****</h6>
+          <h5 className="pl-6 text-[12px] 800px:text-[unset]">08/2022</h5>
+        </div>
+        <div className="min-w-[10%] flex items-center justify-between md:pl-8">
+          <AiOutlineDelete size={25} className="text-secColor cursor-pointer" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Address = () => {
+  return (
+    <div className="w-full px-5">
+      <div className="flex w-full flex-col  sm:flex-row items-start sm:items-center justify-between">
+        <h1 className="text-xl font-[600] text-secColor pb-2">My Addresses</h1>
+        <button
+          className={`bg-secColor hover:bg-deepSecColor p-3 px-8 rounded-lg text-white`}
+        >
+          Add New
+        </button>
+      </div>
+      <br />
+      <div className="w-full gap-5 md:gap-0 p-5 bg-white h-min 800px:h-[70px] rounded-md flex flex-col md:flex-row items-start md:items-center px-3 shadow justify-between pr-10">
+        <div className="flex items-center">
+          <h5 className="md:pl-5 font-[600]">Default</h5>
+        </div>
+        <div className="md:pl-8 flex items-center">
+          <h6 className="text-xs 800px:text-[unset]">
+            494 Erdman Pasaage, FCT Abuja, Nigeria
+          </h6>
+        </div>
+        <div className="md:pl-8 flex items-center">
+          <h6 className="text-xs 800px:text-[unset]">(213) 840-9416</h6>
+        </div>
+        <div className="min-w-[10%] flex items-center justify-between md:pl-8">
+          <AiOutlineDelete size={25} className="text-secColor cursor-pointer" />
+        </div>
+      </div>
     </div>
   );
 };
