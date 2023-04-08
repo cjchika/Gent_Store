@@ -38,7 +38,7 @@ const ShippingInfo = () => {
       <form>
         <div className="w-full flex items-center pb-3">
           <div className="w-[50%]">
-            <label htmlFor="name" className="block pb-2 text-priColor">
+            <label htmlFor="name" className="block pb-2 text-secColor">
               Full Name
             </label>
             <input
@@ -50,7 +50,7 @@ const ShippingInfo = () => {
           </div>
 
           <div className="w-[50%]">
-            <label htmlFor="email" className="block pb-2 text-priColor">
+            <label htmlFor="email" className="block pb-2 text-secColor">
               Email
             </label>
             <input
@@ -65,7 +65,7 @@ const ShippingInfo = () => {
         {/* No2  */}
         <div className="w-full flex items-center pb-3">
           <div className="w-[50%]">
-            <label htmlFor="number" className="block pb-2 text-priColor">
+            <label htmlFor="number" className="block pb-2 text-secColor">
               Phone Number
             </label>
             <input
@@ -77,7 +77,7 @@ const ShippingInfo = () => {
           </div>
 
           <div className="w-[50%]">
-            <label htmlFor="zipcode" className="block pb-2 text-priColor">
+            <label htmlFor="zipcode" className="block pb-2 text-secColor">
               Zip Code
             </label>
             <input
@@ -92,7 +92,7 @@ const ShippingInfo = () => {
         {/* No3  */}
         <div className="w-full flex items-center pb-3">
           <div className="w-[50%]">
-            <label htmlFor="country" className="block pb-2 text-priColor">
+            <label htmlFor="country" className="block pb-2 text-secColor">
               Country
             </label>
             <select
@@ -100,7 +100,7 @@ const ShippingInfo = () => {
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             >
-              <option className="block pb-2 text-priColor" value="">
+              <option className="block pb-2 text-secColor" value="">
                 Select your country
               </option>
               {Country &&
@@ -113,11 +113,11 @@ const ShippingInfo = () => {
           </div>
 
           <div className="w-[50%]">
-            <label htmlFor="country" className="block pb-2 text-priColor">
+            <label htmlFor="country" className="block pb-2 text-secColor">
               State
             </label>
             <select className="w-[95%] border h-[40px] rounded-lg">
-              <option className="block pb-2 text-priColor" value="">
+              <option className="block pb-2 text-secColor" value="">
                 Select your State
               </option>
               {State &&
@@ -133,7 +133,7 @@ const ShippingInfo = () => {
         {/* No4 */}
         <div className="w-full flex pb-3">
           <div className="w-[50%]">
-            <label htmlFor="address" className="block pb-2 text-priColor">
+            <label htmlFor="address" className="block pb-2 text-secColor">
               Address 1
             </label>
             <input
@@ -144,7 +144,7 @@ const ShippingInfo = () => {
             />
           </div>
           <div className="w-[50%]">
-            <label className="block pb-2 text-priColor">Address 2</label>
+            <label className="block pb-2 text-secColor">Address 2</label>
             <input
               placeholder="Address 2"
               type="address"
