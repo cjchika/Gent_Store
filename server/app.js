@@ -20,7 +20,7 @@ app.use(
     origin: true,
   })
 );
-app.use(`${process.cwd()}/uploads`, express.static("/uploads"));
+app.use(`/`, express.static("uploads"));
 
 // Configuration
 if (process.env.NODE_ENV !== "PRODUCTION") {
