@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfileContent = () => {
+const ProfileContent = ({ active }) => {
   return <div>ProfileContent</div>;
 };
 
