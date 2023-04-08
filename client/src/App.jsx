@@ -9,6 +9,7 @@ import {
   BestSellingPage,
   FAQPage,
   CheckoutPage,
+  PaymentPage,
   ProductDetailsPage,
 } from "./routes/Routes.js";
 import { ToastContainer } from "react-toastify";
@@ -49,6 +50,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
       <ToastContainer
         position="top-right"

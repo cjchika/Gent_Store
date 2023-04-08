@@ -44,7 +44,7 @@ const ShippingInfo = () => {
               type="name"
               placeholder="Name"
               required
-              className={`${styles.input} w-[95%] border border-secColor focus:border-priColor`}
+              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
 
@@ -56,7 +56,7 @@ const ShippingInfo = () => {
               type="email"
               placeholder="Email address"
               required
-              className={`${styles.input} w-[95%] border border-secColor focus:border-priColor`}
+              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
         </div>
@@ -71,7 +71,7 @@ const ShippingInfo = () => {
               type="number"
               placeholder="Phone number"
               required
-              className={`${styles.input} w-[95%] border border-secColor focus:border-priColor`}
+              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
 
@@ -83,7 +83,7 @@ const ShippingInfo = () => {
               type="number"
               placeholder="Zip Code"
               required
-              className={`${styles.input} w-[95%] border border-secColor focus:border-priColor`}
+              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
         </div>
@@ -148,7 +148,7 @@ const ShippingInfo = () => {
               placeholder="Address 2"
               type="address"
               required
-              className={`${styles.input}`}
+              className={`${styles.input} !w-[95%]`}
             />
           </div>
         </div>
