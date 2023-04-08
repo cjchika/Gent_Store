@@ -16,6 +16,7 @@ const ProfileSidebar = ({ active, setActive }) => {
 
   return (
     <div className="w-full bg-white shadow-sm rounded-xl p-4 pt-8">
+      {/* Profile Icon */}
       <div
         onClick={() => setActive(1)}
         className="flex items-center cursor-pointer w-full mb-8"
@@ -38,7 +39,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <HiOutlineShoppingBag
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 2 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
@@ -54,7 +55,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <HiOutlineReceiptRefund
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 3 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
@@ -67,11 +68,11 @@ const ProfileSidebar = ({ active, setActive }) => {
 
       <div
         className="flex items-center cursor-pointer w-full mb-8"
-        onClick={() => setActive(4) || navigate("/inbox")}
+        onClick={() => setActive(4)}
       >
         <AiOutlineMessage
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 4 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
@@ -88,7 +89,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <MdOutlineTrackChanges
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 5 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
@@ -105,7 +106,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <AiOutlineCreditCard
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 6 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
@@ -122,7 +123,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <TbAddressBook
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 7 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
@@ -139,7 +140,7 @@ const ProfileSidebar = ({ active, setActive }) => {
       >
         <AiOutlineLogin
           size={20}
-          className={active === 1 ? "text-priColor" : "text-secColor"}
+          className={active === 8 ? "text-priColor" : "text-secColor"}
         />
         <span
           className={`pl-3 ${
