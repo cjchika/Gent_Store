@@ -10,13 +10,36 @@ import { TbAddressBook } from "react-icons/tb";
 import { RxPerson } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { profileSideBarContent } from "../../static/data";
 
 const ProfileSidebar = ({ active, setActive }) => {
   const navigate = useNavigate();
+  console.log(active);
 
   return (
     <div className="w-full bg-white shadow-sm rounded-xl p-4 pt-8">
       {/* Profile Icon */}
+
+      {/* {profileSideBarContent.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => setActive(`${item.id}`)}
+          className="flex items-center cursor-pointer w-full mb-8"
+        >
+          <item.icon
+            size={20}
+            className={active === item.id ? "text-priColor" : "text-secColor"}
+          />
+          <span
+            className={`pl-3 ${
+              active === item.id ? "text-priColor" : "text-secColor"
+            } 800px:block hidden`}
+          >
+            {item.title}
+          </span>
+        </div>
+      ))} */}
+
       <div
         onClick={() => setActive(1)}
         className="flex items-center cursor-pointer w-full mb-8"

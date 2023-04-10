@@ -25,6 +25,27 @@ import WatchImg from "./images/catimg7.png";
 import CosmeticImg from "./images/catimg8.png";
 import iPhone from "./images/catimg9.png";
 
+import {
+  AiOutlineCreditCard,
+  AiOutlineLogin,
+  AiOutlineMessage,
+} from "react-icons/ai";
+import { HiOutlineReceiptRefund, HiOutlineShoppingBag } from "react-icons/hi";
+import { MdOutlineTrackChanges } from "react-icons/md";
+import { TbAddressBook } from "react-icons/tb";
+import { RxPerson } from "react-icons/rx";
+
+export const profileSideBarContent = [
+  { id: 1, title: "Profile", icon: RxPerson },
+  { id: 2, title: "Orders", icon: HiOutlineShoppingBag },
+  { id: 3, title: "Refunds", icon: HiOutlineReceiptRefund },
+  { id: 4, title: "Inbox", icon: AiOutlineMessage },
+  { id: 5, title: "Track Order", icon: MdOutlineTrackChanges },
+  { id: 6, title: "Payment Methods", icon: AiOutlineCreditCard },
+  { id: 7, title: "Address", icon: TbAddressBook },
+  { id: 8, title: "Log Out", icon: AiOutlineLogin },
+];
+
 export const heroData = [
   {
     title: "Smart Wearable",
