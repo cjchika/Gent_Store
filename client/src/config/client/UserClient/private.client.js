@@ -1,24 +1,25 @@
 import axios from "axios";
 import queryString from "query-string";
-import { apiUrl } from "../api";
+import { apiUrl } from "../../api";
 
-const publicClient = axios.create({
+const privateClient = axios.create({
   baseURL: apiUrl,
   paramsSerializer: {
     encode: (params) => queryString.stringify(params),
   },
 });
 
-publicClient.interceptors.request.use(async (config) => {
+privateClient.interceptors.request.use(async (config) => {
   return {
     ...config,
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("tok")}`,
     },
   };
 });
 
-publicClient.interceptors.response.use(
+privateClient.interceptors.response.use(
   (response) => {
     if (response && response.data) return response.data;
   },
@@ -27,4 +28,4 @@ publicClient.interceptors.response.use(
   }
 );
 
-export default publicClient;
+export default privateClient;

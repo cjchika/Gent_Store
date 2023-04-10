@@ -1,5 +1,5 @@
-import privateClient from "../client/private.client";
-import publicClient from "../client/public.client";
+import privateClient from "../client/UserClient/private.client";
+import publicClient from "../client/UserClient/public.client";
 
 const userEndpoints = {
   activateUser: ({ activationCode }) => `user/activation/${activationCode}`,

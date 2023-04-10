@@ -1,6 +1,6 @@
 import axios from "axios";
 import queryString from "query-string";
-import { apiUrl } from "../api";
+import { apiUrl } from "../../api";
 
 const privateClient = axios.create({
   baseURL: apiUrl,
