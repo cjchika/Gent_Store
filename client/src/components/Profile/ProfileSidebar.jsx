@@ -16,6 +16,13 @@ const ProfileSidebar = ({ active, setActive }) => {
   const navigate = useNavigate();
   console.log(active);
 
+  const handleLogout = () => {
+    localStorage.setItem("tok", null);
+    navigate("/");
+    toast.success("Logout Success.");
+    window.location.reload(true);
+  };
+
   return (
     <div className="w-full bg-white shadow-sm rounded-xl p-4 pt-8">
       {/* Profile Icon */}
@@ -159,7 +166,7 @@ const ProfileSidebar = ({ active, setActive }) => {
 
       <div
         className="single_item flex items-center cursor-pointer w-full mb-8"
-        onClick={console.log("Clicked")}
+        onClick={handleLogout}
       >
         <AiOutlineLogin
           size={20}
