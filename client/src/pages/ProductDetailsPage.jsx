@@ -8,16 +8,18 @@ import SuggestedProducts from "../components/Products/SuggestedProducts";
 import { productData } from "../static/data";
 
 const ProductDetailsPage = () => {
-  const { name } = useParams;
-  const [data, setData] = useState();
+  const { name } = useParams();
   const productName = name.replace(/-/g, " ");
+  const [data, setData] = useState(null);
+
+  console.log(name);
 
   useEffect(() => {
-    //   const prod = productData && productData.find((prod) => prod.name === productName)
-    setData(
-      productData && productData.find((prod) => prod.name === productName)
-    );
+    const prod = productData.find((prod) => prod.name === productName);
+    setData(prod);
   }, []);
+  // console.log(productData);
+  console.log(data);
 
   return (
     <>
