@@ -232,7 +232,7 @@ const ProductDetailsInfo = ({ item, products }) => {
       )}
 
       {active === 2 && (
-        <div className="w-full justify-center min-h-[40vh] flex items-center">
+        <div className="w-full text-secColor justify-center min-h-[40vh] flex items-center">
           <p>No Reviews yet!</p>
         </div>
       )}
@@ -255,31 +255,33 @@ const ProductDetailsInfo = ({ item, products }) => {
                 </div>
               </div>
             </Link>
-            <p className="pt-2">{item.shop.description || "The Description"}</p>
+            <p className="pt-2 text-secColor">
+              {item.shop.description || "The Description"}
+            </p>
           </div>
           <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
             <div className="text-left">
-              <h5 className="font-[600]">
+              <h5 className="font-semibold text-secColor">
                 Joined on:{" "}
-                <span className="font-[500]">
+                <span className="font-medium text-secColor">
                   {item.shop?.createdAt?.slice(0, 10) || null}
                 </span>
               </h5>
-              <h5 className="font-[600] pt-3">
+              <h5 className="font-semibold text-secColor pt-3">
                 Total Products:{" "}
-                <span className="font-[500]">
+                <span className="font-medium text-secColor">
                   {products && products.length}
                 </span>
               </h5>
-              <h5 className="font-[600] pt-3">
-                Total Reviews: <span className="font-[500]">324</span>
+              <h5 className="font-semibold text-secColor pt-3">
+                Total Reviews: <span className="font-medium">324</span>
               </h5>
               <Link to="/">
-                <div
-                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
+                <button
+                  className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3 hover:bg-deepSecColor`}
                 >
-                  <h4 className="text-white">Visit Shop</h4>
-                </div>
+                  Back to Shop
+                </button>
               </Link>
             </div>
           </div>
