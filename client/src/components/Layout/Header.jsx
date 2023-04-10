@@ -67,7 +67,7 @@ const Header = ({ activeHeader }) => {
           {/* Categories Dropdown */}
           <div
             onClick={() => setDropDown(!dropdown)}
-            className="relative  hidden 1000px:block pr-10"
+            className="relative  hidden 1000px:block pr-6"
           >
             <div className="flex items-center gap-1 cursor-pointer text-sm text-secColor">
               <p>Categories</p>
@@ -91,7 +91,7 @@ const Header = ({ activeHeader }) => {
               placeholder="Search products"
               value={searchTerm}
               onChange={handleSearchChange}
-              className="text-sm h-[40px] w-full lg:w-[300px] xl:w-[350px] px-3 rounded-full bg-[#F6F6F5]  focus:border focus:border-secColor"
+              className="text-sm h-[40px] w-full lg:w-[300px] px-3 rounded-full bg-[#F6F6F5]  focus:border focus:border-secColor"
             />
             <FiSearch
               size={20}
@@ -175,8 +175,11 @@ const Header = ({ activeHeader }) => {
             className={`ml-2 bg-secColor hover:bg-deepSecColor p-2 px-3 rounded-lg`}
           >
             <Link to="/create-shop">
-              <h1 className="text-[#fff] flex items-center text-sm ">
+              <h1 className="text-[#fff] xl:flex items-center text-sm hidden">
                 Become Seller <IoIosArrowForward className="ml-1" />
+              </h1>
+              <h1 className="text-[#fff] flex items-center text-sm xl:hidden">
+                Seller <IoIosArrowForward className="ml-1" />
               </h1>
             </Link>
           </button>
@@ -278,7 +281,7 @@ const Header = ({ activeHeader }) => {
                   <>
                     <Link
                       to="/login"
-                      className="text-base pr-[10px] text-white my-1 bg-secColor rounded-md p-2 px-3"
+                      className="text-base text-white my-1 bg-secColor rounded-md p-2 px-3"
                     >
                       Login
                     </Link>
@@ -291,6 +294,15 @@ const Header = ({ activeHeader }) => {
                   </>
                 )}
               </div>
+              <button
+                className={`ml-3 border border-secColor hover:bg-deepSecColor p-2 px-3 w-[90%] 600px:w-[95%] rounded-lg`}
+              >
+                <Link to="/create-shop">
+                  <h1 className="text-secColor flex items-center text-base ">
+                    Become Seller <IoIosArrowForward className="ml-1" />
+                  </h1>
+                </Link>
+              </button>
             </div>
           </div>
         )}
