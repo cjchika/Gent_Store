@@ -91,7 +91,7 @@ const Header = ({ activeHeader }) => {
               placeholder="Search products"
               value={searchTerm}
               onChange={handleSearchChange}
-              className="text-sm h-[40px] w-full lg:w-[350px] px-3 rounded-full bg-[#F6F6F5]  focus:border focus:border-secColor"
+              className="text-sm h-[40px] w-full lg:w-[300px] xl:w-[350px] px-3 rounded-full bg-[#F6F6F5]  focus:border focus:border-secColor"
             />
             <FiSearch
               size={20}
@@ -170,6 +170,16 @@ const Header = ({ activeHeader }) => {
 
           {/* WISHLIST POPUP */}
           {openWishlist && <Wishlist setOpenWishlist={setOpenWishlist} />}
+
+          <button
+            className={`ml-2 bg-secColor hover:bg-deepSecColor p-2 px-3 rounded-lg`}
+          >
+            <Link to="/create-shop">
+              <h1 className="text-[#fff] flex items-center text-sm ">
+                Become Seller <IoIosArrowForward className="ml-1" />
+              </h1>
+            </Link>
+          </button>
         </div>
       </div>
 

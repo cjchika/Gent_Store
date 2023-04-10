@@ -7,7 +7,7 @@ const Navbar = ({ active }) => {
   return (
     <>
       <div
-        className={`hidden 800px:${styles.normalFlex} gap-5 1100px:gap-10 pr-7 text-sm`}
+        className={`hidden 800px:${styles.normalFlex} gap-5 1100px:gap-4 pr-7 text-sm`}
       >
         {navItems &&
           navItems.map((nav, index) => (
