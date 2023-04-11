@@ -54,7 +54,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-secColor"
               >
                 Email Address
               </label>
@@ -73,7 +73,7 @@ const Login = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-secColor"
               >
                 Password
               </label>
@@ -129,7 +129,7 @@ const Login = () => {
               </button>
             </div>
             <div className={`${styles.normalFlex} gap-3 w-full`}>
-              <h4>Don't have an account?</h4>
+              <h4 className="text-secColor">Don't have an account?</h4>
               <Link
                 to="/signup"
                 className="text-priColor hover:text-litePriColor"

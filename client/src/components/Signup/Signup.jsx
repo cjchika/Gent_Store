@@ -68,7 +68,7 @@ const Signup = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-secColor"
               >
                 Full Name
               </label>
@@ -89,7 +89,7 @@ const Signup = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-secColor"
               >
                 Email Address
               </label>
@@ -110,7 +110,7 @@ const Signup = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-secColor"
               >
                 Password
               </label>
@@ -155,7 +155,7 @@ const Signup = () => {
                       className="h-full w-full object-cover rounded-full"
                     />
                   ) : (
-                    <RxAvatar className="h-8 w-8" />
+                    <RxAvatar className="h-8 w-8 text-secColor" />
                   )}
                 </span>
                 <label
@@ -185,7 +185,7 @@ const Signup = () => {
               </button>
             </div>
             <div className={`${styles.normalFlex} gap-3 w-full`}>
-              <h4>Already have an account?</h4>
+              <h4 className="text-secColor">Already have an account?</h4>
               <Link
                 to="/login"
                 className="text-priColor hover:text-litePriColor"
