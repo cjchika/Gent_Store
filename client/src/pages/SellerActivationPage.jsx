@@ -57,7 +57,7 @@ const SellerActivationPage = () => {
           <p className="mb-5 text-lg">Your seller account has been verified!</p>
           <Link
             className="bg-priColor hover:bg-litePriColor p-3 px-5 rounded-md text-white"
-            to={"/shop-login"}
+            to={"/seller-login"}
           >
             {" "}
             Please Login{" "}

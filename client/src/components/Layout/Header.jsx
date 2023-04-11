@@ -21,7 +21,7 @@ import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeader }) => {
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { isUserAuthenticated, user } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [dropdown, setDropDown] = useState(false);
@@ -127,7 +127,7 @@ const Header = ({ activeHeader }) => {
           {/* User */}
           <div className={`${styles.normalFlex} `}>
             <div className="relative cursor-pointer">
-              {isAuthenticated ? (
+              {isUserAuthenticated ? (
                 <Link to="/profile">
                   <AiOutlineUser size={25} className="text-secColor" />
                 </Link>
@@ -270,7 +270,7 @@ const Header = ({ activeHeader }) => {
               <Navbar active={activeHeader} />
 
               <div className="flex flex-col p-2 px-3 w-full justify-center text-secColor">
-                {isAuthenticated ? (
+                {isUserAuthenticated ? (
                   <div>
                     <Link to="/profile" className="flex items-center">
                       <AiOutlineUser size={25} className="text-secColor mr-3" />

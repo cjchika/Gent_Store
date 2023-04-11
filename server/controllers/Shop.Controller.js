@@ -6,7 +6,7 @@ import fs from "fs";
 import jwt from "jsonwebtoken";
 import sendMail from "../handlers/sendMail.js";
 import { activationCode } from "../handlers/ActivationCode.js";
-import { sendShopToken } from "../handlers/sendShopToken.js";
+import { sendShopToken } from "../handlers/shopToken.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -132,6 +132,26 @@ export const loginShop = asyncErrors(async (req, res, next) => {
 
     const token = seller.getJwtToken();
     res.status(201).json({ token, seller, id: seller._id });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+
+// GET SELLER
+
+export const getSeller = asyncErrors(async (req, res, next) => {
+  try {
+    const seller = await Shop.findById(req.seller.id);
+
+    if (!seller) {
+      return next(new ErrorHandler("User doesn't exit", 400));
+    }
+    delete seller.password;
+    res.status(200).json({
+      success: true,
+      seller,
+    });
+    console.log(seller);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }

@@ -2,6 +2,8 @@ import jwt from "jsonwebtoken";
 import ErrorHandler from "../handlers/ErrorHandler.js";
 import User from "../models/User.js";
 import dotenv from "dotenv";
+import { asyncErrors } from "./catchAsyncErrors.js";
+import Shop from "../models/Shop.Model.js";
 
 dotenv.config();
 
@@ -26,6 +28,7 @@ export const userAuth = async (req, res, next) => {
   if (!tokenDecoded) {
     return next(new ErrorHandler("Please login to continue", 401));
   }
+  // console.log(tokenDecoded);
 
   const user = await User.findById(tokenDecoded.id);
 
@@ -36,16 +39,19 @@ export const userAuth = async (req, res, next) => {
   next();
 };
 
-// export const sellerAuth = asyncErrors(async(req,res,next) => {
-//   const {seller_token} = req.cookies;
+export const sellerAuth = asyncErrors(async (req, res, next) => {
+  const tokenDecoded = tokenDecode(req);
+  if (!tokenDecoded) {
+    return next(new ErrorHandler("Please login to continue", 401));
+  }
+  // console.log(tokenDecoded);
 
-//   if(!seller_token){
-//       return next(new ErrorHandler("Please login to continue", 401));
-//   }
+  const seller = await Shop.findById(tokenDecoded.id);
 
-//   const decoded = jwt.verify(seller_token, process.env.JWT_SECRET);
+  if (!seller) return next(new ErrorHandler("Please login to continue", 401));
 
-//   req.seller = await Shop.findById(decoded.id);
+  req.seller = seller;
+  // console.log(user);
 
-//   next();
-// });
+  next();
+});

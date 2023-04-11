@@ -21,15 +21,19 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import store from "./redux/store.js";
 import { getUser } from "./redux/actions/user.js";
+import { getSeller } from "./redux/actions/seller.js";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 const App = () => {
-  const { user, isAuthenticated } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
+  const { seller } = useSelector((state) => state.seller);
   console.log(user);
+  console.log(seller);
 
   useEffect(() => {
     store.dispatch(getUser());
+    store.dispatch(getSeller());
   }, []);
 
   return (

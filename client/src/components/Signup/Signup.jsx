@@ -25,7 +25,10 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
+    };
 
     const newForm = new FormData();
 

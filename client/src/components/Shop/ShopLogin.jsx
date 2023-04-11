@@ -28,8 +28,8 @@ const ShopLogin = () => {
       toast.success("Login Sucecess!", {
         toastId: "success9",
       });
-      // navigate("/");
-      // window.location.reload(true);
+      navigate("/");
+      window.location.reload(true);
     }
 
     if (error) {
@@ -131,7 +131,7 @@ const ShopLogin = () => {
             <div className={`${styles.normalFlex} gap-3 w-full`}>
               <h4 className="text-secColor">Don't have an account?</h4>
               <Link
-                to="/signup"
+                to="/create-shop"
                 className="text-priColor hover:text-litePriColor"
               >
                 Sign up

@@ -8,7 +8,7 @@ import fs from "fs";
 import jwt from "jsonwebtoken";
 import sendMail from "../handlers/sendMail.js";
 import { activationCode } from "../handlers/ActivationCode.js";
-import { sendToken } from "../handlers/userToken.js";
+// import { sendToken } from "../handlers/userToken.js";
 import dotenv from "dotenv";
 
 dotenv.config();

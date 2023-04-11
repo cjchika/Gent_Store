@@ -3,16 +3,17 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  const { loading, isAuthenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const { loading, isUserAuthenticated } = useSelector((state) => state.user);
+  // const { loading, isSellerAuthenticated } = useSelector((state) => state.seller);
 
   useEffect(() => {
     if (loading === false) {
-      if (isAuthenticated === false) {
+      if (isUserAuthenticated === false) {
         return navigate("/login");
       }
     }
-  }, [isAuthenticated, loading]);
+  }, [isUserAuthenticated, loading]);
 
   return children;
 };

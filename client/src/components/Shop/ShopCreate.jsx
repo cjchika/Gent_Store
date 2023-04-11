@@ -28,7 +28,10 @@ const ShopCreate = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true,
+    };
 
     const newForm = new FormData();
 
@@ -67,7 +70,7 @@ const ShopCreate = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <Logo align="auto" />
         <h2 className="text-priColor mt-6 text-center text-xl font-semibold text-gray-900">
-          Register as a seller
+          Register as a seller.
         </h2>
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

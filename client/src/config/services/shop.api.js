@@ -4,7 +4,7 @@ import publicClient from "../client/ShopClient/public.client";
 const shopEndpoints = {
   activateShop: ({ activationCode }) => `seller/activation/${activationCode}`,
   loginShop: "seller/loginShop",
-  getShop: "seller/getShop",
+  getShop: "seller/getSeller",
 };
 
 const shopApi = {

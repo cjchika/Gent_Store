@@ -25,7 +25,7 @@ const Login = () => {
 
     if (response) {
       console.log(response);
-      toast.success("Login Sucecess!", {
+      toast.success("Login Success!", {
         toastId: "success3",
       });
       navigate("/");
