@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
 import userRoutes from "./routes/User.js";
+import shopRoutes from "./routes/Shop.Route.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/shop", shopRoutes);
 
 app.use(handleErr);
 
