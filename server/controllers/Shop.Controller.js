@@ -93,3 +93,46 @@ export const activateSeller = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+// LOGIN SELLER
+
+export const loginShop = asyncErrors(async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return next(new ErrorHandler("Please provide the all fields!", 400));
+    }
+
+    const seller = await Shop.findOne({ email }).select("+password");
+
+    if (!seller) {
+      return next(new ErrorHandler("User doesn't exist!", 400));
+    }
+
+    if (seller.status !== "Active") {
+      next(
+        new ErrorHandler(
+          "Pending account. Please verify your email address.",
+          400
+        )
+      );
+    }
+    const isValidPassword = await seller.comparePassword(password);
+    // console.log("From login conroller " + isValidPassword);
+
+    if (!isValidPassword) {
+      return next(
+        new ErrorHandler(
+          "Invalid details, please provide correct information",
+          400
+        )
+      );
+    }
+
+    const token = seller.getJwtToken();
+    res.status(201).json({ token, seller, id: seller._id });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});

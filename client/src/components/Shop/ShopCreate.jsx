@@ -256,7 +256,7 @@ const ShopCreate = () => {
             <div className={`${styles.normalFlex} gap-3 w-full`}>
               <h4 className="text-secColor">Already have a seller account?</h4>
               <Link
-                to="/shop-login"
+                to="/seller-login"
                 className="text-priColor hover:text-litePriColor"
               >
                 Sign in

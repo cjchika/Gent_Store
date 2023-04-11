@@ -15,6 +15,7 @@ import {
   ProductDetailsPage,
   ShopCreatePage,
   SellerActivationPage,
+  ShopLoginPage,
 } from "./routes/Routes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,6 +37,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/seller-login" element={<ShopLoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route
           path="/activation/:activationCode"
