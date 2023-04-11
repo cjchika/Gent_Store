@@ -33,8 +33,8 @@ import SellerProtectedRoute from "./routes/SellerProtectedRoute.jsx";
 const App = () => {
   const { user } = useSelector((state) => state.user);
   const { seller } = useSelector((state) => state.seller);
-  // console.log(user);
-  // console.log(seller);
+  console.log(user);
+  console.log(seller);
 
   useEffect(() => {
     store.dispatch(getUser());

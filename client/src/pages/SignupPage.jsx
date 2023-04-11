@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isUserAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (isAuthenticated === true) navigate("/");
-  }, [isAuthenticated]);
+    if (isUserAuthenticated === true) navigate("/");
+  }, [isUserAuthenticated]);
 
   return (
     <>

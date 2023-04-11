@@ -41,6 +41,76 @@ import { MdOutlineLocalOffer } from "react-icons/md";
 import { FiPackage, FiShoppingBag } from "react-icons/fi";
 import { BiMessageSquareDetail } from "react-icons/bi";
 
+// Dashboard Sidebar Icons
+import { AiOutlineFolderAdd } from "react-icons/ai";
+// import { FiPackage, FiShoppingBag } from "react-icons/fi";
+// import { MdOutlineLocalOffer } from "react-icons/md";
+import { BsCalendar2Event } from "react-icons/bs";
+import { RxDashboard } from "react-icons/rx";
+import { VscNewFile } from "react-icons/vsc";
+import { CiMoneyBill, CiSettings } from "react-icons/ci";
+// import { BiMessageSquareDetail } from "react-icons/bi";
+// import { HiOutlineReceiptRefund } from "react-icons/hi";
+
+export const dashboardSideBarContent = [
+  { id: 1, title: "Dashboard", icon: RxDashboard, link: "/dashboard" },
+  {
+    id: 2,
+    title: "All Orders",
+    icon: FiShoppingBag,
+    link: "/dashboard-orders",
+  },
+  {
+    id: 3,
+    title: "All Products",
+    icon: FiPackage,
+    link: "/dashboard-products",
+  },
+  {
+    id: 4,
+    title: "Create Product",
+    icon: AiOutlineFolderAdd,
+    link: "/dashboard-create-product",
+  },
+  {
+    id: 5,
+    title: "All Events",
+    icon: BsCalendar2Event,
+    link: "/dashboard-events",
+  },
+  {
+    id: 6,
+    title: "Create Event",
+    icon: VscNewFile,
+    link: "/dashboard-create-event",
+  },
+  {
+    id: 7,
+    title: "Withdraw Money",
+    icon: CiMoneyBill,
+    link: "/dashboard-withdraw-money",
+  },
+  {
+    id: 8,
+    title: "Shop Inbox",
+    icon: BiMessageSquareDetail,
+    link: "/dashboard-messages",
+  },
+  {
+    id: 9,
+    title: "Discount Codes",
+    icon: AiOutlineGift,
+    link: "/dashboard/coupons",
+  },
+  {
+    id: 10,
+    title: "Refunds",
+    icon: HiOutlineReceiptRefund,
+    link: "/dashboard-refunds",
+  },
+  { id: 11, title: "Settings", icon: CiSettings, link: "/dashboard-settings" },
+];
+
 export const dashboardHeaderContent = [
   { id: 1, title: "Gifts", icon: AiOutlineGift, link: "/dashboard/coupons" },
   {

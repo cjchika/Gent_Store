@@ -11,7 +11,7 @@ const SellerProtectedRoute = ({ children }) => {
   useEffect(() => {
     if (isLoadingSeller === false) {
       if (isSellerAuthenticated === false) {
-        return navigate("/login");
+        return navigate("/seller-login");
       }
     }
   }, [isSellerAuthenticated, isLoadingSeller]);
