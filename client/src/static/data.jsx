@@ -182,47 +182,56 @@ export const categoriesData = [
 export const categories = [
   {
     id: 1,
-    title: "Laptops",
+    title: "Computers and Laptops",
+    subTitle: "Laptops",
     img: LaptopImg,
   },
   {
     id: 2,
-    title: "Cosmetics",
+    title: "Cosmetics and Body Care",
+    subTitle: "Cosmetics",
     img: CosmeticImg,
   },
   {
     id: 3,
     title: "Accessories",
+    subTitle: "Accessories",
     img: WatchImg,
   },
   {
     id: 4,
     title: "Clothes",
+    subTitle: "Clothes",
     img: SuitImg,
   },
   {
     id: 5,
     title: "Shoes",
+    subTitle: "Shoes",
     img: ShoeImg,
   },
   {
     id: 6,
     title: "Gifts",
+    subTitle: "Gifts",
     img: GiftImg,
   },
   {
     id: 7,
     title: "Pet Care",
+    subTitle: "Pet Care",
     img: PetImg,
   },
   {
     id: 8,
-    title: "Mobile",
+    title: "Mobile and Tablets",
+    subTitle: "Mobile",
     img: iPhone,
   },
   {
     id: 9,
-    title: "Gaming",
+    title: "Music and Gaming",
+    subTitle: "Gaming",
     img: GamePadImg,
   },
 ];

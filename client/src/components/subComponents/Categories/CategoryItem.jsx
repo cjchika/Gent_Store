@@ -65,7 +65,7 @@ const CategoryItem = () => {
               />
             </div>
             <h1 className="text-center text-secColor mt-2 lg:font-semibold">
-              {item.title}
+              {item.subTitle}
             </h1>
           </SwiperSlide>
         ))}
