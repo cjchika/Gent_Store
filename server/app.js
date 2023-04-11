@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/shop", shopRoutes);
+app.use("/api/v1/seller", shopRoutes);
 
 app.use(handleErr);
 

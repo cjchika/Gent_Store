@@ -41,7 +41,7 @@ const ShopCreate = () => {
     newForm.append("address", address);
 
     await axios
-      .post(`${apiUrl}shop/createShop`, newForm, config)
+      .post(`${apiUrl}seller/createShop`, newForm, config)
       .then((res) => {
         toast.success(res.data.message, {
           toastId: "success6",
@@ -51,8 +51,8 @@ const ShopCreate = () => {
         setPassword("");
         setAvatar();
         setAddress("");
-        setZipCode();
-        setPhoneNumber();
+        setZipCode("");
+        setPhoneNumber("");
       })
       .catch((error) => {
         toast.error(error.response.data.message, {
@@ -168,7 +168,7 @@ const ShopCreate = () => {
                   type="zipcode"
                   name="zipcode"
                   required
-                  value={shopName}
+                  value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
                   className="appearance-none black w-full p-3 border border-[#d1d5db] rounded-md shadow-md placeholder-[#9ca3af] focus:outline-none focus:border-[#3b82f6] sm:text-sm"
                 />

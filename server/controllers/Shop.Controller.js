@@ -88,7 +88,7 @@ export const activateSeller = asyncErrors(async (req, res, next) => {
     const token = seller.getJwtToken();
     // console.log(token);
     res.status(201).json({ token, seller, message: "Seller verified." });
-    // console.log(user);
+    // console.log(seller);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }
