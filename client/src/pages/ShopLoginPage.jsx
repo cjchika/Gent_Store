@@ -1,14 +1,24 @@
+import { useEffect } from "react";
 import ShopLogin from "../components/Shop/ShopLogin";
 import { useSelector } from "react-redux";
-import { ShopLandingPage } from "../routes/ShopRoutes";
+import { useNavigate } from "react-router-dom";
 
 const ShopLoginPage = () => {
-  const { isLoadingSeller, isSellerAuthenticated } = useSelector(
+  const { seller, isSellerAuthenticated } = useSelector(
     (state) => state.seller
   );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSellerAuthenticated) {
+      return navigate(`/shop/${seller._id}`);
+    }
+  }, [isSellerAuthenticated]);
 
   return (
-    <div>{!isSellerAuthenticated ? <ShopLogin /> : <ShopLandingPage />}</div>
+    <div>
+      <ShopLogin />{" "}
+    </div>
   );
 };
 
