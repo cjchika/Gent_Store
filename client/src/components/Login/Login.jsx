@@ -28,7 +28,7 @@ const Login = () => {
       toast.success("Login Success!", {
         toastId: "success3",
       });
-      navigate("/");
+      navigate("/dashboard");
       window.location.reload(true);
     }
 

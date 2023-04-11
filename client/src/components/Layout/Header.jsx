@@ -22,6 +22,9 @@ import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeader }) => {
   const { isUserAuthenticated, user } = useSelector((state) => state.user);
+  const { isSellerAuthenticated, seller } = useSelector(
+    (state) => state.seller
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [dropdown, setDropDown] = useState(false);
