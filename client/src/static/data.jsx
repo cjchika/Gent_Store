@@ -35,6 +35,35 @@ import { MdOutlineTrackChanges } from "react-icons/md";
 import { TbAddressBook } from "react-icons/tb";
 import { RxPerson } from "react-icons/rx";
 
+// Dashboard Nav Icons
+import { AiOutlineGift } from "react-icons/ai";
+import { MdOutlineLocalOffer } from "react-icons/md";
+import { FiPackage, FiShoppingBag } from "react-icons/fi";
+import { BiMessageSquareDetail } from "react-icons/bi";
+
+export const dashboardHeaderContent = [
+  { id: 1, title: "Gifts", icon: AiOutlineGift, link: "/dashboard/coupons" },
+  {
+    id: 2,
+    title: "Offers",
+    icon: MdOutlineLocalOffer,
+    link: "/dashboard-events",
+  },
+  {
+    id: 3,
+    title: "Products",
+    icon: FiShoppingBag,
+    link: "/dashboard-products",
+  },
+  { id: 4, title: "Orders", icon: FiPackage, link: "/dashboard-orders" },
+  {
+    id: 5,
+    title: "Messages",
+    icon: BiMessageSquareDetail,
+    link: "/dashboard-messages",
+  },
+];
+
 export const profileSideBarContent = [
   { id: 1, title: "Profile", icon: RxPerson },
   { id: 2, title: "Orders", icon: HiOutlineShoppingBag },
