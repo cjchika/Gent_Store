@@ -63,7 +63,7 @@ const Header = ({ activeHeader }) => {
           active === true && "shadow-sm fixed top-0 left-0 z-10"
         } transition hidden 800px:flex items-center justify-between w-full bg-white h-[70px] px-10`}
       >
-        <Logo align="" />
+        <Logo align="" path={"/"} />
         <div className={`pl-10 relative ${styles.normalFlex} justify-between`}>
           {/* NAVITEMS */}
 
@@ -205,7 +205,7 @@ const Header = ({ activeHeader }) => {
             />
           </div>
           <div className="my-2">
-            <Logo align="" />
+            <Logo align="" path={"/"} />
           </div>
           <div>
             <div className="relative mr-[20px]">

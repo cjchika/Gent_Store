@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GentLogo from "../../static/images/GentsLogo.png";
 
-const Logo = ({ align }) => {
+const Logo = ({ align, path }) => {
   return (
     <div className={`w-[130px] h-auto mx-${align}`}>
-      <Link to="/">
+      <Link to={path}>
         <img className="w-full h-full" src={GentLogo} alt="Logo" />
       </Link>
     </div>

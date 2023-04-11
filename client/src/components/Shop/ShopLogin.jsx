@@ -43,7 +43,7 @@ const ShopLogin = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mx-auto sm:mx-auto sm:w-full sm:max-w-md">
-        <Logo align="auto" />
+        <Logo align="auto" path={"/"} />
         <h2 className="text-priColor mt-6 text-center text-xl font-semibold text-gray-900">
           Login to your seller account.
         </h2>
