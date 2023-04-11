@@ -1,14 +1,12 @@
 import path from "path";
-import User from "../models/User.js";
-import Product from "../models/Product.js";
+import Shop from "../models/Shop.Model.js";
 import ErrorHandler from "../handlers/ErrorHandler.js";
 import { asyncErrors } from "../middleware/catchAsyncErrors.js";
-import bcrypt from "bcrypt";
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import sendMail from "../handlers/sendMail.js";
 import { activationCode } from "../handlers/ActivationCode.js";
-import { sendToken } from "../handlers/userToken.js";
+import { sendShopToken } from "../handlers/sendShopToken.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -17,10 +15,10 @@ dotenv.config();
 
 export const createShop = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
-    const userEmail = await User.findOne({ email });
+    const { email } = req.body;
+    const sellerEmail = await Shop.findOne({ email });
 
-    if (userEmail) {
+    if (sellerEmail) {
       const filename = req.file.filename;
       const filePath = `uploads/${filename}`;
       fs.unlink(filePath, (err) => {
@@ -35,30 +33,33 @@ export const createShop = async (req, res, next) => {
     const fileName = req.file.filename;
     const fileUrl = path.join(fileName);
 
-    const user = new User({
-      name,
-      email,
-      password,
+    const seller = new Shop({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      address: req.body.address,
+      phoneNumber: req.body.phoneNumber,
+      zipCode: req.body.zipcode,
       activationCode: activationCode,
       avatar: fileUrl,
     });
 
-    const saveUser = await user.save();
+    const saveSeller = await seller.save();
 
     try {
       await sendMail({
-        email: user.email,
-        subject: "Please confirm your account",
+        email: seller.email,
+        subject: "Please confirm your seller account",
         message: `<h3>Email Confirmation</h3>
-        <h4>Hello, ${user.name}.</h4>
+        <h4>Hello, ${seller.name}.</h4>
         <p>You are almost there, please confirm your email by clicking on the following link.</p>
-        <a href=http://localhost:5173/activation/${user.activationCode}> Click here</a>
+        <a href=http://localhost:5173/seller/activation/${seller.activationCode}> Click here</a>
         </div>`,
       });
       res.status(201).json({
-        user: saveUser,
+        shop: saveSeller,
         success: true,
-        message: `Please check your email: ${user.email} to activate your account.`,
+        message: `Please check your email: ${seller.email} to activate your seller account.`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
