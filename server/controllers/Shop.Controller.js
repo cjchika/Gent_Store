@@ -64,8 +64,32 @@ export const createShop = async (req, res, next) => {
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
-    // console.log(user);
+    // console.log(seller);
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
 };
+
+// ACTIVATE SELLER
+export const activateSeller = asyncErrors(async (req, res, next) => {
+  try {
+    const { activationCode } = req.params;
+
+    const seller = await Shop.findOne({ activationCode });
+
+    if (!seller) {
+      return res.status(400).send({ message: "Invalid token." });
+    }
+
+    seller.status = "Active";
+
+    await seller.save();
+
+    const token = seller.getJwtToken();
+    // console.log(token);
+    res.status(201).json({ token, seller, message: "Seller verified." });
+    // console.log(user);
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
