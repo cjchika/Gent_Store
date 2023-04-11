@@ -197,7 +197,7 @@ const Header = ({ activeHeader }) => {
           <div>
             <BiMenuAltLeft
               size={40}
-              className="ml-4"
+              className="ml-4 text-secColor"
               onClick={() => setOpen(true)}
             />
           </div>
@@ -206,7 +206,7 @@ const Header = ({ activeHeader }) => {
           </div>
           <div>
             <div className="relative mr-[20px]">
-              <AiOutlineShoppingCart size={30} />
+              <AiOutlineShoppingCart size={30} className="text-secColor" />
               <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                 1
               </span>
@@ -223,7 +223,10 @@ const Header = ({ activeHeader }) => {
               <div className="w-full justify-between flex pr-3">
                 <div>
                   <div className="relative mr-[15px]">
-                    <AiOutlineHeart size={25} className="mt-5 ml-3" />
+                    <AiOutlineHeart
+                      size={25}
+                      className="mt-5 ml-3 text-secColor"
+                    />
                     <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                       0
                     </span>
@@ -231,7 +234,7 @@ const Header = ({ activeHeader }) => {
                 </div>
                 <RxCross1
                   size={20}
-                  className="ml-4 mt-5"
+                  className="ml-4 mt-5 text-secColor"
                   onClick={() => setOpen(false)}
                 />
               </div>

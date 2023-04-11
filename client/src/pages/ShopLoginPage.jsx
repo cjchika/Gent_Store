@@ -1,11 +1,14 @@
-import React from "react";
 import ShopLogin from "../components/Shop/ShopLogin";
+import { useSelector } from "react-redux";
+import { ShopLandingPage } from "../routes/ShopRoutes";
 
 const ShopLoginPage = () => {
+  const { isLoadingSeller, isSellerAuthenticated } = useSelector(
+    (state) => state.seller
+  );
+
   return (
-    <div>
-      <ShopLogin />
-    </div>
+    <div>{!isSellerAuthenticated ? <ShopLogin /> : <ShopLandingPage />}</div>
   );
 };
 

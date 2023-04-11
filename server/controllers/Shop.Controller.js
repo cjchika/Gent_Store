@@ -151,7 +151,7 @@ export const getSeller = asyncErrors(async (req, res, next) => {
       success: true,
       seller,
     });
-    console.log(seller);
+    // console.log(seller);
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }

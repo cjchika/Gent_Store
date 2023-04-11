@@ -51,7 +51,7 @@ export const sellerAuth = asyncErrors(async (req, res, next) => {
   if (!seller) return next(new ErrorHandler("Please login to continue", 401));
 
   req.seller = seller;
-  // console.log(sellers);
+  // console.log(seller);
 
   next();
 });
