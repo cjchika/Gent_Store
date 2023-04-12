@@ -20,6 +20,7 @@ import {
   ShopActivationPage,
   ShopLandingPage,
   ShopDashboardPage,
+  ShopCreateProduct,
 } from "./routes/ShopRoutes.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -98,7 +99,17 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
+
+        <Route
+          path="/dashboard-create-product"
+          element={
+            <SellerProtectedRoute>
+              <ShopCreateProduct />
+            </SellerProtectedRoute>
+          }
+        />
       </Routes>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

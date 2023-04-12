@@ -31,14 +31,14 @@ const ProductCard = ({ item }) => {
           </Link>
         </div>
         <div className=" bg-priColor bg-opacity-10 rounded-b-lg  px-3">
-          <Link to="/">
+          <Link to={`/product/${productName}`}>
             <h5
               className={`${styles.shop_name} text-secColor font-semibold text-xs`}
             >
               {item.shop.name}
             </h5>
           </Link>
-          <Link to="/">
+          <Link to={`/product/${productName}`}>
             <h4 className="text-sm text-deepSecColor">
               {item.name.length > 40
                 ? item.name.slice(0, 40) + "..."
