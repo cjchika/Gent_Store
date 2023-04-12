@@ -1,6 +1,8 @@
 import axios from "axios";
 import { apiUrl } from "../../config/api";
+import productApi from "../../config/services/product.api";
 
+// CREATE PRODUCT
 export const createProduct = (newForm) => async (dispatch) => {
   try {
     dispatch({
@@ -23,6 +25,22 @@ export const createProduct = (newForm) => async (dispatch) => {
     dispatch({
       type: "productCreateFail",
       payload: error.response.data.message,
+    });
+  }
+};
+
+// GET ALL SHOP PRODUCTS
+export const getAllShopProducts = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "getAllShopProductsRequest" });
+
+    const products = productApi.getShopProducts(id);
+
+    dispatch({ type: "getAllShopProductsSuccess", payload: products });
+  } catch (error) {
+    dispatch({
+      type: "getAllShopProductsFail",
+      payload: error.products.message,
     });
   }
 };

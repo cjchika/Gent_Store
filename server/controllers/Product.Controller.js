@@ -30,7 +30,7 @@ export const createProduct = asyncErrors(async (req, res, next) => {
 
 // GET ALL PRODUCTS OF A SHOP
 
-export const getAllShopProducts = async (req, res) => {
+export const getAllShopProducts = asyncErrors(async (req, res) => {
   try {
     const sellerId = req.params.shopId;
 
@@ -40,4 +40,4 @@ export const getAllShopProducts = async (req, res) => {
   } catch (error) {
     return next(new ErrorHandler(error, 404));
   }
-};
+});
