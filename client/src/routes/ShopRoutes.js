@@ -4,6 +4,7 @@ import ShopLoginPage from "../pages/ShopLoginPage";
 import ShopActivationPage from "../pages/SellerActivationPage";
 import ShopDashboardPage from "../pages/Shop/ShopDashboardPage";
 import ShopCreateProduct from "../pages/Shop/ShopCreateProduct";
+import ShopAllProducts from "../pages/Shop/ShopAllProducts";
 
 export {
   ShopCreatePage,
@@ -12,4 +13,5 @@ export {
   ShopLandingPage,
   ShopDashboardPage,
   ShopCreateProduct,
+  ShopAllProducts,
 };

@@ -33,7 +33,7 @@ const CreateProduct = () => {
       toast.success("Product created successfully!", {
         toastId: "success1A",
       });
-      navigate("/dashboard");
+      navigate("/dashboard-products");
       window.location.reload();
     }
   }, [dispatch, error, success]);

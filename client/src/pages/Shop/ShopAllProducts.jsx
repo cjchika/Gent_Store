@@ -1,21 +1,22 @@
 import React from "react";
 import DashboardHeader from "../../components/Shop/Layout/DashboardHeader";
 import DashboardSideBar from "../../components/Shop/Layout/DashboardSideBar";
+import ShopProducts from "../../components/Shop/ShopProducts";
 
-const ShopDashboardPage = () => {
+const ShopAllProducts = () => {
   return (
     <div>
       <DashboardHeader />
       <div className="flex items-center justify-between w-full ">
         <div className="w-[65px] 800px:w-[220px]">
-          <DashboardSideBar active={1} />
+          <DashboardSideBar active={3} />
         </div>
         <div className="w-full justify-center flex">
-          <h1>Dashboard</h1>
+          <ShopProducts />
         </div>
       </div>
     </div>
   );
 };
 
-export default ShopDashboardPage;
+export default ShopAllProducts;
