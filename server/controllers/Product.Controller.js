@@ -1,25 +1,30 @@
 import Product from "../models/Product.Model";
+import Shop from "../models/Shop.Model";
+import { asyncErrors } from "../middleware/catchAsyncErrors";
+import ErrorHandler from "../handlers/ErrorHandler";
 
-export const createProduct = async (req, res) => {
-  const { name, price, description, category, brand, imagePath } = req.body;
+export const createProduct = asyncErrors(async (req, res, next) => {
   try {
-    const newProduct = new Product({
-      name,
-      price,
-      description,
-      category,
-      rating: Math.random() * 5,
-      brand,
-      imagePath,
-    });
+    const sellerId = req.body.sellerId;
+    const seller = await Shop.findById(sellerId);
 
-    await newProduct.save();
-    const product = await Product.find();
-    res.status(201).json(product);
+    if (!seller) {
+      return next(new ErrorHandler("Seller not found", 400));
+    } else {
+      const files = req.files;
+      const imageUrls = files.map((file) => `${file.fileName}`);
+      const productData = req.body;
+      productData.images = imageUrls;
+      productData.shop = seller;
+
+      const product = await Product.create(productData);
+
+      res.status(201).json({ success: true, product });
+    }
   } catch (error) {
-    res.status(409).json({ message: error.message });
+    return next(new ErrorHandler(error, 400));
   }
-};
+});
 
 export const getProducts = async (req, res) => {
   try {
