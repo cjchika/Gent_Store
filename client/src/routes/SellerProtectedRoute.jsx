@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Layout/Loader";
 
 const SellerProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
@@ -8,14 +9,21 @@ const SellerProtectedRoute = ({ children }) => {
     (state) => state.seller
   );
 
-  useEffect(() => {
-    if (isLoadingSeller === false) {
-      if (isSellerAuthenticated === false) {
-        return navigate("/seller-login");
-      }
-    }
-  }, [isSellerAuthenticated, isLoadingSeller]);
+  // useEffect(() => {
+  //   if (isLoadingSeller === false) {
+  //     if (isSellerAuthenticated === false) {
+  //       return navigate("/seller-login");
+  //     }
+  //   }
+  // }, [isSellerAuthenticated, isLoadingSeller]);
 
+  if (isLoadingSeller) {
+    return <Loader />;
+  } else {
+    if (!isSellerAuthenticated) {
+      return navigate("/seller-login");
+    }
+  }
   return children;
 };
 

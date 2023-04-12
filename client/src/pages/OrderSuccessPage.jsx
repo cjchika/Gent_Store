@@ -17,7 +17,7 @@ export default OrderSuccessPage;
 
 const Success = () => {
   const defaultOptions = {
-    loop: true,
+    loop: false,
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
