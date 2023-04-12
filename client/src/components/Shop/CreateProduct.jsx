@@ -32,14 +32,14 @@ const CreateProduct = () => {
   //   }
   // }, [dispatch, error, success]);
 
-  // const handleImageChange = (e) => {
-  //   e.preventDefault();
+  const handleImageChange = (e) => {
+    e.preventDefault();
 
-  //   let files = Array.from(e.target.files);
-  //   setImages((prevImages) => [...prevImages, ...files]);
-  // };
+    let files = Array.from(e.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
+  };
 
-  // console.log(images);
+  console.log(images);
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -181,7 +181,7 @@ const CreateProduct = () => {
             id="upload"
             className="hidden"
             multiple
-            onChange={null}
+            onChange={handleImageChange}
           />
           <div className="w-full justify-center flex items-center flex-wrap ">
             <label htmlFor="upload">
@@ -196,7 +196,7 @@ const CreateProduct = () => {
                   src={URL.createObjectURL(i)}
                   key={i}
                   alt=""
-                  className="h-[120px] w-[120px] object-cover m-2"
+                  className="h-[75px] w-[75px] object-cover m-2"
                 />
               ))}
           </div>
