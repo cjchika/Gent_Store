@@ -1,14 +1,10 @@
 import path from "path";
 import User from "../models/User.js";
-import Product from "../models/Product.js";
 import ErrorHandler from "../handlers/ErrorHandler.js";
 import { asyncErrors } from "../middleware/catchAsyncErrors.js";
-import bcrypt from "bcrypt";
 import fs from "fs";
-import jwt from "jsonwebtoken";
 import sendMail from "../handlers/sendMail.js";
 import { activationCode } from "../handlers/ActivationCode.js";
-// import { sendToken } from "../handlers/userToken.js";
 import dotenv from "dotenv";
 
 dotenv.config();

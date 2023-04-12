@@ -1,4 +1,25 @@
-import Product from "../models/Product.js";
+import Product from "../models/Product.Model";
+
+export const createProduct = async (req, res) => {
+  const { name, price, description, category, brand, imagePath } = req.body;
+  try {
+    const newProduct = new Product({
+      name,
+      price,
+      description,
+      category,
+      rating: Math.random() * 5,
+      brand,
+      imagePath,
+    });
+
+    await newProduct.save();
+    const product = await Product.find();
+    res.status(201).json(product);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
 
 export const getProducts = async (req, res) => {
   try {
@@ -26,26 +47,5 @@ export const getProductByBrand = async (req, res) => {
     res.status(200).json(products);
   } catch (error) {
     res.status(400).json({ message: error.message });
-  }
-};
-
-export const postProduct = async (req, res) => {
-  const { name, price, description, category, brand, imagePath } = req.body;
-  try {
-    const newProduct = new Product({
-      name,
-      price,
-      description,
-      category,
-      rating: Math.random() * 5,
-      brand,
-      imagePath,
-    });
-
-    await newProduct.save();
-    const product = await Product.find();
-    res.status(201).json(product);
-  } catch (error) {
-    res.status(409).json({ message: error.message });
   }
 };

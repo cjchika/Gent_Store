@@ -13,7 +13,6 @@ const router = express.Router();
 router.post("/createShop", upload.single("avatar"), createShop);
 router.post("/loginShop", loginShop);
 router.get("/getSeller", sellerAuth, getSeller);
-// router.get("/logoutUser", logoutUser);
 router.get("/activation/:activationCode", activateSeller);
 
 export default router;
