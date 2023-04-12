@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { createProduct } from "../../redux/actions/product";
+import { createProduct } from "../../redux/actions/product";
 import { categoriesData } from "../../static/data";
 import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const { seller } = useSelector((state) => state.seller);
-  // const { success, error } = useSelector((state) => state.products);
+  const { success, error } = useSelector((state) => state.products);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,16 +21,20 @@ const CreateProduct = () => {
   const [discountPrice, setDiscountPrice] = useState();
   const [stock, setStock] = useState();
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //   }
-  //   if (success) {
-  //     toast.success("Product created successfully!");
-  //     navigate("/dashboard");
-  //     window.location.reload();
-  //   }
-  // }, [dispatch, error, success]);
+  useEffect(() => {
+    if (error) {
+      toast.error(error, {
+        toastId: "error1A",
+      });
+    }
+    if (success) {
+      toast.success("Product created successfully!", {
+        toastId: "success1A",
+      });
+      navigate("/dashboard");
+      window.location.reload();
+    }
+  }, [dispatch, error, success]);
 
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -39,26 +43,24 @@ const CreateProduct = () => {
     setImages((prevImages) => [...prevImages, ...files]);
   };
 
-  console.log(images);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
+    const newForm = new FormData();
 
-  //   const newForm = new FormData();
-
-  //   images.forEach((image) => {
-  //     newForm.append("images", image);
-  //   });
-  //   newForm.append("name", name);
-  //   newForm.append("description", description);
-  //   newForm.append("category", category);
-  //   newForm.append("tags", tags);
-  //   newForm.append("originalPrice", originalPrice);
-  //   newForm.append("discountPrice", discountPrice);
-  //   newForm.append("stock", stock);
-  //   newForm.append("shopId", seller._id);
-  //   dispatch(createProduct(newForm));
-  // };
+    images.forEach((image) => {
+      newForm.append("images", image);
+    });
+    newForm.append("name", name);
+    newForm.append("description", description);
+    newForm.append("category", category);
+    newForm.append("tags", tags);
+    newForm.append("originalPrice", originalPrice);
+    newForm.append("discountPrice", discountPrice);
+    newForm.append("stock", stock);
+    newForm.append("shopId", seller._id);
+    dispatch(createProduct(newForm));
+  };
 
   return (
     <div className="w-[90%] xl:w-[70%] bg-white  shadow h-[80vh] rounded-[4px] p-6 overflow-y-scroll">
@@ -66,7 +68,7 @@ const CreateProduct = () => {
         Create Product
       </h5>
       {/* create product form */}
-      <form onSubmit={null}>
+      <form onSubmit={handleSubmit}>
         <br />
         <div>
           <label className="pb-2 text-secColor font-medium">

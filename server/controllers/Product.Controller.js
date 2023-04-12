@@ -1,7 +1,7 @@
-import Product from "../models/Product.Model";
-import Shop from "../models/Shop.Model";
-import { asyncErrors } from "../middleware/catchAsyncErrors";
-import ErrorHandler from "../handlers/ErrorHandler";
+import Product from "../models/Product.Model.js";
+import Shop from "../models/Shop.Model.js";
+import { asyncErrors } from "../middleware/catchAsyncErrors.js";
+import ErrorHandler from "../handlers/ErrorHandler.js";
 
 export const createProduct = asyncErrors(async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ export const createProduct = asyncErrors(async (req, res, next) => {
       return next(new ErrorHandler("Seller not found", 400));
     } else {
       const files = req.files;
-      const imageUrls = files.map((file) => `${file.fileName}`);
+      const imageUrls = files.map((file) => `${file.filename}`);
       const productData = req.body;
       productData.images = imageUrls;
       productData.shop = seller;

@@ -3,10 +3,8 @@ import Shop from "../models/Shop.Model.js";
 import ErrorHandler from "../handlers/ErrorHandler.js";
 import { asyncErrors } from "../middleware/catchAsyncErrors.js";
 import fs from "fs";
-import jwt from "jsonwebtoken";
 import sendMail from "../handlers/sendMail.js";
 import { activationCode } from "../handlers/ActivationCode.js";
-import { sendShopToken } from "../handlers/shopToken.js";
 import dotenv from "dotenv";
 
 dotenv.config();
