@@ -104,17 +104,16 @@ const CreateProduct = () => {
             Category <span className="text-secColor">*</span>
           </label>
           <select
-            className="w-full mt-2 border h-[35px] rounded-[5px]"
+            className="w-full mt-2 border p-3 bg-secColor bg-opacity-10 rounded-md"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="Choose a category">Choose a category</option>
-            {categoriesData &&
-              categoriesData.map((i) => (
-                <option value={i.title} key={i.title}>
-                  {i.title}
-                </option>
-              ))}
+            <option value="Choose a category">Choose Category</option>
+            {categoriesData.map((i) => (
+              <option value={i.title} key={i.title}>
+                {i.title}
+              </option>
+            ))}
           </select>
         </div>
         <br />
@@ -124,9 +123,9 @@ const CreateProduct = () => {
             type="text"
             name="tags"
             value={tags}
-            className="mt-2 appearance-none block w-full px-3 h-[35px] border border-secColor rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="mt-2 appearance-none block w-full p-3 border border-secColor rounded-md focus:outline-none focus:border-priColor sm:text-sm"
             onChange={(e) => setTags(e.target.value)}
-            placeholder="Enter your product tags..."
+            placeholder="Enter product tags"
           />
         </div>
         <br />
@@ -138,23 +137,23 @@ const CreateProduct = () => {
             type="number"
             name="price"
             value={originalPrice}
-            className="mt-2 appearance-none block w-full px-3 h-[35px] border border-secColor rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="mt-2 appearance-none block w-full p-3 border border-secColor rounded-md focus:outline-none focus:border-priColor sm:text-sm"
             onChange={(e) => setOriginalPrice(e.target.value)}
-            placeholder="Enter your product price..."
+            placeholder="Enter product price"
           />
         </div>
         <br />
         <div>
           <label className="pb-2 text-secColor font-medium">
-            Price (With Discount) <span className="text-secColor">*</span>
+            Discount Price <span className="text-secColor">*</span>
           </label>
           <input
             type="number"
             name="price"
             value={discountPrice}
-            className="mt-2 appearance-none block w-full px-3 h-[35px] border border-secColor rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="mt-2 appearance-none block w-full p-3 border border-secColor rounded-md focus:outline-none focus:border-priColor sm:text-sm"
             onChange={(e) => setDiscountPrice(e.target.value)}
-            placeholder="Enter your product price with discount..."
+            placeholder="Enter product discount price"
           />
         </div>
         <br />
@@ -166,9 +165,9 @@ const CreateProduct = () => {
             type="number"
             name="price"
             value={stock}
-            className="mt-2 appearance-none block w-full px-3 h-[35px] border border-secColor rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            className="mt-2 appearance-none block w-full p-3 border border-secColor rounded-md focus:outline-none focus:border-priColor sm:text-sm"
             onChange={(e) => setStock(e.target.value)}
-            placeholder="Enter your product stock..."
+            placeholder="Enter your product stock"
           />
         </div>
         <br />
@@ -184,9 +183,12 @@ const CreateProduct = () => {
             multiple
             onChange={null}
           />
-          <div className="w-full flex items-center flex-wrap">
+          <div className="w-full justify-center flex items-center flex-wrap ">
             <label htmlFor="upload">
-              <AiOutlinePlusCircle size={30} className="mt-3" color="#555" />
+              <AiOutlinePlusCircle
+                size={30}
+                className="mt-3 text-deepSecColor cursor-pointer"
+              />
             </label>
             {images &&
               images.map((i) => (
@@ -199,13 +201,12 @@ const CreateProduct = () => {
               ))}
           </div>
           <br />
-          <div>
-            <input
-              type="submit"
-              value="Create"
-              className="mt-2 cursor-pointer appearance-none text-center block w-full px-3 h-[35px] border border-secColor rounded-[3px] placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-            />
-          </div>
+          <button
+            type="submit"
+            className="mt-2 block w-full p-2 border bg-secColor hover:bg-deepSecColor rounded-md text-lg text-white"
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>
