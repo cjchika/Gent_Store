@@ -5,7 +5,7 @@ import ErrorHandler from "../handlers/ErrorHandler.js";
 
 export const createProduct = asyncErrors(async (req, res, next) => {
   try {
-    const sellerId = req.body.sellerId;
+    const sellerId = req.body.shopId;
     const seller = await Shop.findById(sellerId);
 
     if (!seller) {

@@ -25,13 +25,12 @@ const ProductSchema = new mongoose.Schema(
     },
     tags: {
       type: String,
-      required: true,
     },
     stock: {
       type: Number,
       required: true,
     },
-    images: [{ type: String }],
+    images: [{ type: String, required: true }],
     shopId: {
       type: String,
       required: true,

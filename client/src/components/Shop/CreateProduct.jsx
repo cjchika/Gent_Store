@@ -8,7 +8,9 @@ import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const { seller } = useSelector((state) => state.seller);
-  const { success, error } = useSelector((state) => state.products);
+  const { success, error, isLoadingProduct } = useSelector(
+    (state) => state.products
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -204,10 +206,11 @@ const CreateProduct = () => {
           </div>
           <br />
           <button
+            disabled={isLoadingProduct}
             type="submit"
             className="mt-2 block w-full p-2 border bg-secColor hover:bg-deepSecColor rounded-md text-lg text-white"
           >
-            Submit
+            {isLoadingProduct ? "Creating..." : "Create Product"}
           </button>
         </div>
       </form>

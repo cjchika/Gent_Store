@@ -10,7 +10,7 @@ export const createProduct = (newForm) => async (dispatch) => {
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
     const { data } = await axios.post(
-      `${apiUrl}/product/createProduct`,
+      `${apiUrl}product/createProduct`,
       newForm,
       config
     );
