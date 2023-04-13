@@ -45,7 +45,7 @@ export const getAllShopProducts = asyncErrors(async (req, res) => {
 
 // DELETE SHOP PRODUCT
 
-export const deleteShopProduct = asyncErrors(async (req, res) => {
+export const deleteShopProduct = asyncErrors(async (req, res, next) => {
   try {
     const productId = req.params.id;
 

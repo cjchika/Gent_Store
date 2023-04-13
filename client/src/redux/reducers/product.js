@@ -39,4 +39,19 @@ export const productReducer = createReducer(initialState, {
     state.isLoadingProduct = false;
     state.error = action.payload;
   },
+
+  // DELETE SHOP PRODUCT
+  deleteProductRequest: (state) => {
+    state.isLoadingProduct = true;
+  },
+
+  deleteProductSuccess: (state, action) => {
+    state.isLoadingProduct = false;
+    state.message = action.payload;
+  },
+
+  deleteProductFail: (state, action) => {
+    state.isLoadingProduct = false;
+    state.error = action.payload;
+  },
 });

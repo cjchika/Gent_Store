@@ -47,3 +47,17 @@ export const getAllShopProducts = (id) => async (dispatch) => {
     });
   }
 };
+
+// DELETE SHOP PRODUCT
+
+export const deleteShopProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "deleteProductRequest" });
+
+    const { response, error } = await productApi.deleteShopProduct(id);
+
+    dispatch({ type: "deleteProductSuccess", payload: response.message });
+  } catch (error) {
+    dispatch({ type: "deleteProductFail", payload: error.message });
+  }
+};
