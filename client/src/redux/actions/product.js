@@ -34,13 +34,16 @@ export const getAllShopProducts = (id) => async (dispatch) => {
   try {
     dispatch({ type: "getAllShopProductsRequest" });
 
-    const products = productApi.getShopProducts(id);
+    const { response, error } = await productApi.getShopProducts(id);
 
-    dispatch({ type: "getAllShopProductsSuccess", payload: products });
+    dispatch({
+      type: "getAllShopProductsSuccess",
+      payload: response.products,
+    });
   } catch (error) {
     dispatch({
       type: "getAllShopProductsFail",
-      payload: error.products.message,
+      payload: error.message,
     });
   }
 };
