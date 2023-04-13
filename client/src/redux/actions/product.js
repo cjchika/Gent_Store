@@ -35,6 +35,7 @@ export const getAllShopProducts = (id) => async (dispatch) => {
     dispatch({ type: "getAllShopProductsRequest" });
 
     const { response, error } = await productApi.getShopProducts(id);
+    console.log(response);
 
     dispatch({
       type: "getAllShopProductsSuccess",

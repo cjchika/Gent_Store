@@ -12,7 +12,7 @@ const ShopCreate = () => {
   const [shopName, setShopName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [zipCode, setZipCode] = useState();
+  const [zipCode, setZipCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
@@ -47,7 +47,7 @@ const ShopCreate = () => {
       .post(`${apiUrl}seller/createShop`, newForm, config)
       .then((res) => {
         toast.success(res.data.message, {
-          toastId: "success6",
+          toastId: "success6a",
         });
         setShopName("");
         setEmail("");
@@ -59,7 +59,7 @@ const ShopCreate = () => {
       })
       .catch((error) => {
         toast.error(error.response.data.message, {
-          toastId: "error6",
+          toastId: "error6a",
         });
       });
     setIsLoading(false);
@@ -169,8 +169,7 @@ const ShopCreate = () => {
               <div className="mt-1">
                 <input
                   type="zipcode"
-                  name="zipcode"
-                  required
+                  name="zipCode"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
                   className="appearance-none black w-full p-3 border border-[#d1d5db] rounded-md shadow-md placeholder-[#9ca3af] focus:outline-none focus:border-[#3b82f6] sm:text-sm"

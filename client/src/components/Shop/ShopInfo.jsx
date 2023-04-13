@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { baseUrl } from "../../config/api";
 import styles from "../../styles/styles";
 import Loader from "../Layout/Loader";
+import { toast } from "react-toastify";
 
 const ShopInfo = ({ isOwner }) => {
   const [data, setData] = useState({});
@@ -25,7 +26,7 @@ const ShopInfo = ({ isOwner }) => {
   // }, [])
 
   const handleLogout = () => {
-    localStorage.setItem("shoptok", null);
+    localStorage.removeItem("shoptok");
     navigate("/");
     toast.success("Logout Success.");
     window.location.reload(true);

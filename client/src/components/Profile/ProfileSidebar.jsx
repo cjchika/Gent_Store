@@ -17,7 +17,7 @@ const ProfileSidebar = ({ active, setActive }) => {
   console.log(active);
 
   const handleLogout = () => {
-    localStorage.setItem("tok", null);
+    localStorage.removeItem("tok");
     navigate("/");
     toast.success("Logout Success.");
     window.location.reload(true);

@@ -37,7 +37,7 @@ export const createShop = async (req, res, next) => {
       password: req.body.password,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
-      zipCode: req.body.zipcode,
+      zipCode: req.body.zipCode,
       activationCode: activationCode,
       avatar: fileUrl,
     });

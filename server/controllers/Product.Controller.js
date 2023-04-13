@@ -31,9 +31,9 @@ export const createProduct = asyncErrors(async (req, res, next) => {
 
 // GET ALL PRODUCTS OF A SHOP
 
-export const getAllShopProducts = asyncErrors(async (req, res) => {
+export const getAllShopProducts = asyncErrors(async (req, res, next) => {
   try {
-    const sellerId = req.params.shopId;
+    const { sellerId } = req.params.id;
 
     const products = await Product.find(sellerId);
 
