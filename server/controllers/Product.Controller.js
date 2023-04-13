@@ -2,6 +2,7 @@ import Product from "../models/Product.Model.js";
 import Shop from "../models/Shop.Model.js";
 import { asyncErrors } from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../handlers/ErrorHandler.js";
+import fs from "fs";
 
 // CREATE PRODUCT
 
@@ -39,5 +40,37 @@ export const getAllShopProducts = asyncErrors(async (req, res) => {
     res.status(200).json({ success: true, products });
   } catch (error) {
     return next(new ErrorHandler(error, 404));
+  }
+});
+
+// DELETE SHOP PRODUCT
+
+export const deleteShopProduct = asyncErrors(async (req, res) => {
+  try {
+    const productId = req.params.id;
+
+    const productData = await Product.findById(productId);
+
+    productData.images.forEach((imageUrl) => {
+      const filename = imageUrl;
+      const filePath = `uploads/${filename}`;
+
+      fs.unlink(filePath, (err) => {
+        if (err) console.log(err);
+      });
+    });
+
+    const product = await Product.findByIdAndDelete(productId);
+
+    if (!product) {
+      return next(new ErrorHandler("No product match this Id", 500));
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Product deleted successfully.",
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error, 400));
   }
 });
