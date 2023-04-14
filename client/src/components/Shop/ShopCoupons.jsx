@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../../styles/styles";
+import couponApi from "../../config/services/coupon";
 import Loader from "../Layout/Loader";
 import { toast } from "react-toastify";
 
@@ -12,11 +12,12 @@ const ShopCoupons = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [_isLoading, _setIsLoading] = useState(false);
   const [coupons, setCoupons] = useState([]);
-  const [minAmount, setMinAmout] = useState(null);
-  const [maxAmount, setMaxAmount] = useState(null);
-  const [selectedProducts, setSelectedProducts] = useState(null);
-  const [value, setValue] = useState(null);
+  const [minAmount, setMinAmout] = useState("");
+  const [maxAmount, setMaxAmount] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [value, setValue] = useState("");
   const { seller } = useSelector((state) => state.seller);
   const { products } = useSelector((state) => state.products);
 
@@ -30,7 +31,7 @@ const ShopCoupons = () => {
   //     })
   //     .then((res) => {
   //       setIsLoading(false);
-  //       setCoupouns(res.data.couponCodes);
+  //       setCoupons(res.data.couponCodes)
   //     })
   //     .catch((error) => {
   //       setIsLoading(false);
@@ -48,28 +49,26 @@ const ShopCoupons = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    _setIsLoading(true);
 
-    await axios
-      .post(
-        `${server}/coupon/create-coupon-code`,
-        {
-          name,
-          minAmount,
-          maxAmount,
-          selectedProducts,
-          value,
-          shopId: seller._id,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        toast.success("Coupon code created successfully!");
-        setOpen(false);
-        window.location.reload();
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      });
+    const { response, error } = await couponApi.createCoupon({
+      name,
+      minAmount,
+      maxAmount,
+      selectedProduct,
+      value,
+      shopId: seller._id,
+    });
+
+    if (response) {
+      toast.success("Coupon code created successfully!");
+      setOpen(false);
+      window.location.reload();
+    }
+    if (error) {
+      toast.error(error.message);
+    }
+    _setIsLoading(false);
   };
 
   const columns = [
@@ -219,12 +218,10 @@ const ShopCoupons = () => {
                     </label>
                     <select
                       className="text-secColor w-full mt-2 border p-3 bg-secColor bg-opacity-10 rounded-md"
-                      value={selectedProducts}
-                      onChange={(e) => setSelectedProducts(e.target.value)}
+                      value={selectedProduct}
+                      onChange={(e) => setSelectedProduct(e.target.value)}
                     >
-                      <option value="Choose selected products">
-                        Select Product
-                      </option>
+                      <option value="Select product">Select Product</option>
                       {products &&
                         products.map((i) => (
                           <option value={i.name} key={i.name}>
@@ -235,10 +232,12 @@ const ShopCoupons = () => {
                   </div>
                   <br />
                   <button
+                    disabled={isLoading}
+                    onClick={handleSubmit}
                     type="submit"
-                    className="w-full text-white mt-2 border p-3 bg-secColor hover:bg-deepSecColor rounded-md"
+                    className="w-full text-white mt-2 p-3 bg-secColor hover:bg-deepSecColor rounded-md"
                   >
-                    Create Coupon
+                    {_isLoading ? "Creating coupon..." : "Create Coupon"}
                   </button>
                 </form>
               </div>

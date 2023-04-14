@@ -8,12 +8,20 @@ const couponEndpoints = {
 };
 
 const couponApi = {
-  createCoupon: async ({ name, minAmount, maxAmount, value, shopId }) => {
+  createCoupon: async ({
+    name,
+    minAmount,
+    maxAmount,
+    selectedProduct,
+    value,
+    shopId,
+  }) => {
     try {
       const response = await privateClient.post(couponEndpoints.createCoupon, {
         name,
         minAmount,
         maxAmount,
+        selectedProduct,
         value,
         shopId,
       });
