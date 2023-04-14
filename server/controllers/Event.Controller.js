@@ -29,3 +29,49 @@ export const createEvent = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error, 400));
   }
 });
+
+// GET ALL EVENTS OF A SHOP
+
+export const getAllShopEvents = asyncErrors(async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const events = await Event.find({ shopId: id });
+
+    res.status(200).json({ success: true, events });
+  } catch (error) {
+    return next(new ErrorHandler(error, 404));
+  }
+});
+
+// DELETE SHOP EVENT
+
+export const deleteShopEvent = asyncErrors(async (req, res, next) => {
+  try {
+    const eventId = req.params.id;
+
+    const eventData = await Event.findById(eventId);
+
+    eventData.images.forEach((imageUrl) => {
+      const filename = imageUrl;
+      const filePath = `uploads/${filename}`;
+
+      fs.unlink(filePath, (err) => {
+        if (err) console.log(err);
+      });
+    });
+
+    const event = await Event.findByIdAndDelete(eventId);
+
+    if (!event) {
+      return next(new ErrorHandler("No event match this Id", 500));
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Event deleted successfully.",
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error, 400));
+  }
+});
