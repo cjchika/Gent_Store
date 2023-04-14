@@ -29,25 +29,22 @@ const ShopCoupons = () => {
 
       const { response, error } = await couponApi.getShopCoupons(seller._id);
 
-      if (response) {
-        console.log(response.coupons);
-        setCoupons(response.coupons);
-      }
-
+      if (response) setCoupons(response.coupons);
       if (error) toast.error(error.message);
+
       setIsLoading(false);
     }
     getCoupons();
   }, [dispatch]);
 
-  // const handleDelete = async (id) => {
-  //   axios
-  //     .delete(`${server}/coupon/delete-coupon/${id}`, { withCredentials: true })
-  //     .then((res) => {
-  //       toast.success("Coupon code deleted succesfully!");
-  //     });
-  //   window.location.reload();
-  // };
+  const handleDelete = async (id) => {
+    const { response, error } = await couponApi.deleteShopCoupon(id);
+
+    if (response) toast.success("Coupon code deleted succesfully!");
+    if (error) toast.error(error.message);
+
+    window.location.reload();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,7 +95,7 @@ const ShopCoupons = () => {
         return (
           <>
             <Button onClick={() => handleDelete(params.id)}>
-              <AiOutlineDelete size={20} />
+              <AiOutlineDelete className="text-secColor" size={20} />
             </Button>
           </>
         );
