@@ -2,8 +2,8 @@ import privateClient from "../client/ShopClient/private.client";
 // import publicClient from "../client/ShopClient/public.client";
 
 const eventEndpoints = {
-  getShopEvents: (id) => `product/getAllShopEvents/${id}`,
-  deleteShopEvent: (id) => `product/deleteShopEvent/${id}`,
+  getShopEvents: (id) => `event/getAllShopEvents/${id}`,
+  deleteShopEvent: (id) => `event/deleteShopEvent/${id}`,
 };
 
 const eventApi = {

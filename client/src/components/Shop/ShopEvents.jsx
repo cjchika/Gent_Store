@@ -14,18 +14,18 @@ const ShopEvents = () => {
   const { events, isLoadingEvent } = useSelector((state) => state.events);
   const { seller } = useSelector((state) => state.seller);
 
-  // useEffect(() => {
-  //   dispatch(getAllShopEvents(seller._id));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllShopEvents(seller._id));
+  }, [dispatch]);
 
-  // const handleDelete = (id) => {
-  //   // console.log(id);
-  //   dispatch(deleteShopEvent(id));
-  //   window.location.reload();
-  //   toast.success("Event successfully deleted.", {
-  //     toastId: "successA2",
-  //   });
-  // };
+  const handleDelete = (id) => {
+    // console.log(id);
+    dispatch(deleteShopEvent(id));
+    window.location.reload();
+    toast.success("Event successfully deleted.", {
+      toastId: "successA2",
+    });
+  };
 
   const columns = [
     { field: "id", headerName: "Event Id", minWidth: 200, flex: 0.7 },
