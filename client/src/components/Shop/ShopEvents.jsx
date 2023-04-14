@@ -38,6 +38,7 @@ const ShopEvents = () => {
     {
       field: "price",
       headerName: "Price",
+      type: "number",
       minWidth: 120,
       flex: 0.6,
     },
