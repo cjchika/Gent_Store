@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 const initialState = {
   product: null,
   products: null,
+  allProducts: null,
   isLoadingProduct: false,
 };
 
@@ -51,6 +52,21 @@ export const productReducer = createReducer(initialState, {
   },
 
   deleteProductFail: (state, action) => {
+    state.isLoadingProduct = false;
+    state.error = action.payload;
+  },
+
+  // GET ALL PRODUCTS
+  getAllProductsRequest: (state) => {
+    state.isLoadingProduct = true;
+  },
+
+  getAllProductsSuccess: (state, action) => {
+    state.isLoadingProduct = false;
+    state.allProducts = action.payload;
+  },
+
+  getAllProductsFail: (state, action) => {
     state.isLoadingProduct = false;
     state.error = action.payload;
   },

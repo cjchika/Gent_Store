@@ -31,6 +31,7 @@ import "react-toastify/dist/ReactToastify.css";
 import store from "./redux/store.js";
 import { getUser } from "./redux/actions/user.js";
 import { getSeller } from "./redux/actions/seller.js";
+import { getAllProducts } from "./redux/actions/product.js";
 import { useSelector } from "react-redux";
 import UserProtectedRoute from "./routes/UserProtectedRoute.jsx";
 import SellerProtectedRoute from "./routes/SellerProtectedRoute.jsx";
@@ -38,12 +39,15 @@ import SellerProtectedRoute from "./routes/SellerProtectedRoute.jsx";
 const App = () => {
   const { user } = useSelector((state) => state.user);
   const { seller } = useSelector((state) => state.seller);
+  const { allProducts } = useSelector((state) => state.products);
   console.log(user);
   console.log(seller);
+  console.log(allProducts);
 
   useEffect(() => {
     store.dispatch(getUser());
     store.dispatch(getSeller());
+    store.dispatch(getAllProducts());
   }, []);
 
   return (

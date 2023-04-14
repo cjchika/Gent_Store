@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
+import { baseUrl } from "../../../config/api";
 
 const ProductCard = ({ item }) => {
   const [click, setClick] = useState(false);
@@ -25,7 +26,7 @@ const ProductCard = ({ item }) => {
           <Link to={`/product/${productName}`}>
             <img
               className="w-full h-[150px] object-contain"
-              src={item.image_Url[0].url}
+              src={`${baseUrl}${item.images && item.images[0]}`}
               alt="product image"
             />
           </Link>

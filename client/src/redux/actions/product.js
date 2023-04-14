@@ -35,7 +35,6 @@ export const getAllShopProducts = (id) => async (dispatch) => {
     dispatch({ type: "getAllShopProductsRequest" });
 
     const { response, error } = await productApi.getShopProducts(id);
-    console.log(response);
 
     dispatch({
       type: "getAllShopProductsSuccess",
@@ -60,5 +59,24 @@ export const deleteShopProduct = (id) => async (dispatch) => {
     dispatch({ type: "deleteProductSuccess", payload: response.message });
   } catch (error) {
     dispatch({ type: "deleteProductFail", payload: error.message });
+  }
+};
+
+// GET ALL PRODUCTS
+export const getAllProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: "getAllProductsRequest" });
+
+    const { response, error } = await productApi.getAllProducts();
+
+    dispatch({
+      type: "getAllProductsSuccess",
+      payload: response.allProducts,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getAllProductsFail",
+      payload: error.message,
+    });
   }
 };

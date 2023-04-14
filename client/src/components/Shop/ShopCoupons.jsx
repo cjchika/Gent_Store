@@ -236,7 +236,7 @@ const ShopCoupons = () => {
                     type="submit"
                     className="w-full text-white mt-2 p-3 bg-secColor hover:bg-deepSecColor rounded-md"
                   >
-                    {_isLoading ? "Creating coupon..." : "Create Coupon"}
+                    {_isLoading ? "Creating Coupon..." : "Create Coupon"}
                   </button>
                 </form>
               </div>

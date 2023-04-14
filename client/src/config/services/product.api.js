@@ -4,6 +4,7 @@ import publicClient from "../client/ShopClient/public.client";
 const productEndpoints = {
   getShopProducts: (id) => `product/getAllShopProducts/${id}`,
   deleteShopProduct: (id) => `product/deleteShopProduct/${id}`,
+  getAllProducts: "product/getAllProducts",
 };
 
 const productApi = {
@@ -23,6 +24,15 @@ const productApi = {
       const response = await privateClient.delete(
         productEndpoints.deleteShopProduct(id)
       );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  getAllProducts: async () => {
+    try {
+      const response = await privateClient.get(productEndpoints.getAllProducts);
       return { response };
     } catch (error) {
       return { error };
