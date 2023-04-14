@@ -100,7 +100,7 @@ export const dashboardSideBarContent = [
     id: 9,
     title: "Discount Codes",
     icon: AiOutlineGift,
-    link: "/dashboard/coupons",
+    link: "/dashboard-coupons",
   },
   {
     id: 10,

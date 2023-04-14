@@ -108,7 +108,7 @@ const CreateProduct = () => {
             Category <span className="text-secColor">*</span>
           </label>
           <select
-            className="w-full mt-2 border p-3 bg-secColor bg-opacity-10 rounded-md"
+            className="text-secColor w-full mt-2 border p-3 bg-secColor bg-opacity-10 rounded-md"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
