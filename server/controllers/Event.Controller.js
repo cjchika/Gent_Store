@@ -1,5 +1,6 @@
 import Product from "../models/Product.Model.js";
 import Event from "../models/Event.model.js";
+import Shop from "../models/Shop.Model.js";
 import { asyncErrors } from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../handlers/ErrorHandler.js";
 import fs from "fs";
@@ -16,13 +17,13 @@ export const createEvent = asyncErrors(async (req, res, next) => {
     } else {
       const files = req.files;
       const imageUrls = files.map((file) => `${file.filename}`);
-      const productData = req.body;
-      productData.images = imageUrls;
-      productData.shop = seller;
+      const eventData = req.body;
+      eventData.images = imageUrls;
+      eventData.shop = seller;
 
-      const product = await Product.create(productData);
+      const event = await Event.create(productData);
 
-      res.status(201).json({ success: true, product });
+      res.status(201).json({ success: true, event });
     }
   } catch (error) {
     return next(new ErrorHandler(error, 400));
