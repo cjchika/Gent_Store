@@ -6,7 +6,7 @@ const initialState = {
   isLoadingEvent: false,
 };
 
-export const productReducer = createReducer(initialState, {
+export const eventReducer = createReducer(initialState, {
   // CREATE EVENT
   eventCreateRequest: (state) => {
     state.isLoadingEvent = true;
