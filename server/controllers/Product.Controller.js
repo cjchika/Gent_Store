@@ -33,9 +33,9 @@ export const createProduct = asyncErrors(async (req, res, next) => {
 
 export const getAllShopProducts = asyncErrors(async (req, res, next) => {
   try {
-    const { sellerId } = req.params.id;
+    const { id } = req.params;
 
-    const products = await Product.find(sellerId);
+    const products = await Product.find({ shopId: id });
 
     res.status(200).json({ success: true, products });
   } catch (error) {
