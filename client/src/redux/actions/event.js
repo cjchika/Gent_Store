@@ -1,5 +1,6 @@
 import axios from "axios";
 import { apiUrl } from "../../config/api";
+import eventApi from "../../config/services/event.api";
 
 // CREATE EVENT
 export const createEvent = (newForm) => async (dispatch) => {
@@ -33,7 +34,7 @@ export const getAllShopEvents = (id) => async (dispatch) => {
   try {
     dispatch({ type: "getAllShopEventsRequest" });
 
-    const { response, error } = await productApi.getShopProducts(id);
+    const { response, error } = await eventApi.getShopEvents(id);
     console.log(response);
 
     dispatch({
@@ -54,7 +55,7 @@ export const deleteShopEvent = (id) => async (dispatch) => {
   try {
     dispatch({ type: "deleteEventRequest" });
 
-    const { response, error } = await productApi.deleteShopProduct(id);
+    const { response, error } = await eventApi.deleteShopEvent(id);
 
     dispatch({ type: "deleteEventSuccess", payload: response.message });
   } catch (error) {

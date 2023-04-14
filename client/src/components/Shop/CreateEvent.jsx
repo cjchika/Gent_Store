@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createProduct } from "../../redux/actions/product";
+import { createEvent } from "../../redux/actions/event";
 import { categoriesData } from "../../static/data";
 import { toast } from "react-toastify";
 
 const CreateEvent = () => {
   const { seller } = useSelector((state) => state.seller);
-  const { success, error, isLoadingProduct } = useSelector(
-    (state) => state.products
+  const { success, error, isLoadingEvent } = useSelector(
+    (state) => state.events
   );
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,10 +30,9 @@ const CreateEvent = () => {
     const minEndDate = new Date(startDate.getTime() + 3 * 24 * 60 * 60 * 1000);
     setStartDate(startDate);
     setEndDate(null);
-    document.getElementById("end-date").min = minEndDate.toISOString.slice(
-      0,
-      10
-    );
+    document.getElementById("end-date").min = minEndDate
+      .toISOString()
+      .slice(0, 10);
   };
 
   const handleEndDateChange = (e) => {
@@ -89,7 +88,7 @@ const CreateEvent = () => {
     newForm.append("shopId", seller._id);
     newForm.append("startDate", startDate.toISOString());
     newForm.append("finishDate", endDate.toISOString());
-    dispatch(createProduct(newForm));
+    dispatch(createEvent(newForm));
   };
 
   return (
@@ -266,11 +265,11 @@ const CreateEvent = () => {
           </div>
           <br />
           <button
-            disabled={isLoadingProduct}
+            disabled={isLoadingEvent}
             type="submit"
             className="mt-2 block w-full p-2 border bg-secColor hover:bg-deepSecColor rounded-md text-lg text-white"
           >
-            {isLoadingProduct ? "Creating..." : "Create Event"}
+            {isLoadingEvent ? "Creating..." : "Create Event"}
           </button>
         </div>
       </form>

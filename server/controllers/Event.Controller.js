@@ -21,7 +21,7 @@ export const createEvent = asyncErrors(async (req, res, next) => {
       eventData.images = imageUrls;
       eventData.shop = seller;
 
-      const event = await Event.create(productData);
+      const event = await Event.create(eventData);
 
       res.status(201).json({ success: true, event });
     }

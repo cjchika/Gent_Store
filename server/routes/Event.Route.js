@@ -5,8 +5,8 @@ import { sellerAuth } from "../middleware/Auth.js";
 
 const router = express.Router();
 
-router.post("/createProduct", upload.array("images"), createEvent);
-// router.get("/getAllShopProducts/:id", getAllShopProducts);
-// router.delete("/deleteShopProduct/:id", sellerAuth, deleteShopProduct);
+router.post("/createEvent", upload.array("images"), createEvent);
+// router.get("/getAllShopEvents/:id", getAllShopEvents);
+// router.delete("/deleteShopEvent/:id", sellerAuth, deleteShopEvent);
 
 export default router;
