@@ -23,29 +23,31 @@ const ShopCoupons = () => {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   axios
-  //     .get(`${server}/coupon/get-coupon/${seller._id}`, {
-  //       withCredentials: true,
-  //     })
-  //     .then((res) => {
-  //       setIsLoading(false);
-  //       setCoupons(res.data.couponCodes)
-  //     })
-  //     .catch((error) => {
-  //       setIsLoading(false);
-  //     });
-  // }, [dispatch]);
+  useEffect(() => {
+    async function getCoupons() {
+      setIsLoading(true);
 
-  const handleDelete = async (id) => {
-    axios
-      .delete(`${server}/coupon/delete-coupon/${id}`, { withCredentials: true })
-      .then((res) => {
-        toast.success("Coupon code deleted succesfully!");
-      });
-    window.location.reload();
-  };
+      const { response, error } = await couponApi.getShopCoupons(seller._id);
+
+      if (response) {
+        console.log(response.coupons);
+        setCoupons(response.coupons);
+      }
+
+      if (error) toast.error(error.message);
+      setIsLoading(false);
+    }
+    getCoupons();
+  }, [dispatch]);
+
+  // const handleDelete = async (id) => {
+  //   axios
+  //     .delete(`${server}/coupon/delete-coupon/${id}`, { withCredentials: true })
+  //     .then((res) => {
+  //       toast.success("Coupon code deleted succesfully!");
+  //     });
+  //   window.location.reload();
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,22 +74,22 @@ const ShopCoupons = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "Id", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "Coupon Id", minWidth: 180, flex: 0.7 },
     {
       field: "name",
       headerName: "Coupon Code",
-      minWidth: 180,
-      flex: 1.4,
+      minWidth: 120,
+      flex: 0.6,
     },
     {
       field: "price",
       headerName: "Value",
       minWidth: 100,
-      flex: 0.6,
+      flex: 0.3,
     },
     {
       field: "Delete",
-      flex: 0.8,
+      flex: 0.2,
       minWidth: 120,
       headerName: "",
       type: "number",
@@ -111,7 +113,7 @@ const ShopCoupons = () => {
       row.push({
         id: item._id,
         name: item.name,
-        price: item.value + " %",
+        price: "% " + item.value,
         sold: 10,
       });
     });

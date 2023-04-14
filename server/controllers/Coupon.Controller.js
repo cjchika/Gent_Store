@@ -21,3 +21,41 @@ export const createCouponCode = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error, 400));
   }
 });
+
+// GET ALL COUPONS OF A SHOP
+
+export const getAllShopCoupons = asyncErrors(async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const coupons = await Coupon.find({ shopId: id });
+
+    res.status(201).json({
+      success: true,
+      coupons,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error, 400));
+  }
+});
+
+// DELETE SHOP COUPON
+
+export const deleteShopCoupon = asyncErrors(async (req, res, next) => {
+  try {
+    const couponId = req.params.id;
+
+    const event = await Coupon.findByIdAndDelete(couponId);
+
+    if (!event) {
+      return next(new ErrorHandler("Coupon not found", 500));
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Coupon deleted successfully.",
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error, 400));
+  }
+});
