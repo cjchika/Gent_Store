@@ -4,5 +4,5 @@ export const currencyFormatter = (amount) => {
     currency: "USD",
   });
 
-  return currency.format(amount).slice(0, -3);
+  return currency.format(amount);
 };

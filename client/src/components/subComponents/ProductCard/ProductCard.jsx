@@ -23,10 +23,10 @@ const ProductCard = ({ item }) => {
   return (
     <>
       <div className="w-full h-auto bg-white border border-opacity-10 hover:border-opacity-40 hover:border-priColor border-secColor rounded-lg shadow-sm  relative cursor-pointer">
-        <div className="p-3">
+        <div className="p-2">
           <Link to={`/product/${item._id}`}>
             <img
-              className="w-full h-[150px] object-contain"
+              className="w-full h-[150px] object-cover rounded-lg"
               src={`${baseUrl}${item.images && item.images[0]}`}
               alt="product image"
             />
@@ -98,31 +98,31 @@ const ProductCard = ({ item }) => {
         <div>
           {click ? (
             <AiFillHeart
-              size={20}
-              className="cursor-pointer absolute right-2 top-5"
+              size={30}
+              className="cursor-pointer absolute right-2 top-5 bg-white rounded-l p-1"
               onClick={() => setClick(!click)}
               color={click ? "red" : "#0b2a3f"}
               title="Remove from wishlist"
             />
           ) : (
             <AiOutlineHeart
-              size={20}
-              className="cursor-pointer absolute right-2 top-5"
+              size={30}
+              className="cursor-pointer absolute right-2 top-5 bg-white rounded-l p-1"
               onClick={() => setClick(!click)}
-              color={click ? "red" : "#0b2a3f"}
+              color={click ? "red" : "#0b2a3f "}
               title="Add to wishlist"
             />
           )}
           <AiOutlineEye
-            size={20}
-            className="cursor-pointer absolute right-2 top-14"
+            size={30}
+            className="cursor-pointer absolute right-2 top-14 bg-white rounded-l p-1"
             onClick={() => setOpen(!open)}
             color="#0b2a3f"
             title="Quick view"
           />
           <AiOutlineShoppingCart
-            size={20}
-            className="cursor-pointer absolute right-2 top-24"
+            size={30}
+            className="cursor-pointer absolute right-2 top-24 bg-white rounded-l p-1"
             onClick={() => setOpen(!open)}
             color="#0b2a3f"
             title="Add to cart"

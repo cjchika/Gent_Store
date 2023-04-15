@@ -27,31 +27,33 @@ const ProductdetailsCard = ({ setOpen, item }) => {
             />
 
             <div className="block w-full 800px:flex">
-              <div className="w-full 800px:w-[50%]">
+              <div className="w-full 800px:w-[50%] 800px:p-6">
                 <img
                   className="mx-auto"
                   src={`${baseUrl}${item?.images[0]}`}
                   alt=""
                 />
-                <div className="flex">
-                  <Link to={`/shop/preview/${item.shop._id}`} className="flex">
-                    <img
-                      src={`${baseUrl}${item?.shop.avatar}`}
-                      alt=""
-                      className="w-[50px] h-[50px] rounded-full mr-2 object-cover"
-                    />
-                    <div>
-                      <h3
-                        className={`${styles.shop_name} text-deepSecColor font-semibold`}
-                      >
-                        {item.shop.name}
-                      </h3>
-                      <h5 className="pb-3 text-[15px] text-deepSecColor">
-                        (4.5) Ratings
-                      </h5>
-                    </div>
-                  </Link>
-                </div>
+
+                <Link
+                  to={`/shop/preview/${item.shop._id}`}
+                  className="flex items-center mt-4"
+                >
+                  <img
+                    src={`${baseUrl}${item?.shop.avatar}`}
+                    alt=""
+                    className="w-[50px] h-[50px] rounded-full mr-2 object-cover"
+                  />
+                  <div>
+                    <h3
+                      className={`${styles.shop_name} text-deepSecColor font-semibold`}
+                    >
+                      {item.shop.name}
+                    </h3>
+                    <h5 className="pb-3 text-sm text-deepSecColor">
+                      (4.5) Ratings
+                    </h5>
+                  </div>
+                </Link>
               </div>
 
               <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">

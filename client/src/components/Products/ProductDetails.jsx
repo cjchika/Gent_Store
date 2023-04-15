@@ -42,13 +42,13 @@ const ProductDetails = ({ item }) => {
         <div className={`${styles.section} w-[90%] 800px:w-[80%]`}>
           <div className="w-full py-5">
             <div className="block w-full 800px:flex">
-              <div className="w-full 800px:w-[50%]">
+              <div className="w-full 800px:w-[50%] 800px:p-5 800px:pr-10">
                 <img
                   src={`${baseUrl}${item?.images[select]}`}
                   alt=""
                   className="w-[100%]"
                 />
-                <div className="w-full flex mt-8">
+                <div className="w-full flex gap-3 mt-8">
                   <div
                     className={`${
                       select === 0 ? "border border-secColor " : "null"
