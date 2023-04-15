@@ -35,10 +35,12 @@ const Header = ({ activeHeader }) => {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openSearchBox, setOpenSearchBox] = useState(false);
 
   const { id } = useParams();
 
   const handleSearchChange = (e) => {
+    setOpenSearchBox(true);
     const term = e.target.value;
     setSearchTerm(term);
 
@@ -102,12 +104,12 @@ const Header = ({ activeHeader }) => {
               size={20}
               className="text-secColor absolute right-3 top-2 cursor-pointer"
             />
-            {searchData && searchData.length !== 0 && (
+            {searchData?.length !== 0 && openSearchBox && (
               <div className="absolute min-h-[30vh] bg-[#fff] shadow-sm z-[9] p-4 mt-1">
                 {searchData?.map((prod, index) => {
                   return (
                     <Link
-                      onClick={() => setOpen(false)}
+                      onClick={() => setOpenSearchBox(false)}
                       to={`/product/${prod._id}`}
                     >
                       <div className="text-sm text-secColor  w-full flex items-start py-3 hover:text-priColor">
