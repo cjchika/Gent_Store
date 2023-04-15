@@ -19,9 +19,11 @@ import { useSelector } from "react-redux";
 import Cart from "../Cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
+import { baseUrl } from "../../config/api";
 
 const Header = ({ activeHeader }) => {
   const { isUserAuthenticated, user } = useSelector((state) => state.user);
+  const { allProducts } = useSelector((state) => state.products);
   const { isSellerAuthenticated, seller } = useSelector(
     (state) => state.seller
   );
@@ -37,11 +39,9 @@ const Header = ({ activeHeader }) => {
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filteredProducts =
-      productData &&
-      productData.filter((product) =>
-        product.name.toLowerCase().includes(term.toLowerCase())
-      );
+    const filteredProducts = allProducts.filter((product) =>
+      product.name.toLowerCase().includes(term.toLowerCase())
+    );
 
     console.log(filteredProducts);
     setSearchData(filteredProducts);
@@ -111,7 +111,7 @@ const Header = ({ activeHeader }) => {
                       <Link to={`/product/${product_name}`}>
                         <div className="text-sm text-secColor  w-full flex items-start py-3 hover:text-priColor">
                           <img
-                            src={i.image_Url[0].url}
+                            src={`${baseUrl}${i.images[0]}`}
                             alt=""
                             className="w-[40px] h-[40px] mr-[10px]"
                           />
@@ -260,12 +260,13 @@ const Header = ({ activeHeader }) => {
                         <Link to={`/product/${Product_name}`}>
                           <div className="flex items-center">
                             <img
-                              src={i.image_Url[0].url}
+                              src={`${baseUrl}${i.images[0]}`}
                               alt=""
                               className="w-[50px] mr-2"
                             />
-                            <h5>{i.name}</h5>
+                            <h5 className="text-secColor text-xs">{i.name}</h5>
                           </div>
+                          <hr className="text-[#bdbaba] text-opacity-90 my-3 " />
                         </Link>
                       );
                     })}
