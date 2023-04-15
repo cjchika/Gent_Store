@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import GentLogo from "../../static/images/GentsLogo.png";
+import GentLogo from "../../static/images/GentsLogoNew.png";
 
 const Logo = ({ align, path }) => {
   return (

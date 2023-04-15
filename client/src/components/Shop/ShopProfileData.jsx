@@ -68,8 +68,8 @@ const ShopProfileData = ({ isOwner }) => {
         ))}
       </div>
       {products?.length === 0 && (
-        <h5 className="w-full text-center py-5 text-[18px]">
-          No Products have for this shop!
+        <h5 className="w-full text-center py-5 text-lg text-secColor">
+          No available Products for this shop!
         </h5>
       )}
     </div>

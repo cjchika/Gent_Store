@@ -77,7 +77,9 @@ const ShopInfo = ({ isOwner }) => {
             <h4 className="text-secColor text-sm">4/5</h4>
           </div>
           <div className="p-3 flex flex-col 800px:flex-row justify-between">
-            <h5 className="font-semibold text-secColor text-sm">Joined On</h5>
+            <h5 className="font-semibold text-secColor text-sm">
+              Shop Created
+            </h5>
             <h4 className="text-secColor text-sm">
               {shop?.createdAt?.slice(0, 10)}
             </h4>

@@ -14,7 +14,6 @@ const ShopSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, "Please enter your email address."],
-      unique: true,
     },
     password: {
       type: String,
@@ -29,7 +28,6 @@ const ShopSchema = new mongoose.Schema(
     },
     activationCode: {
       type: String,
-      unique: true,
     },
     description: { type: String },
     address: {
@@ -37,16 +35,14 @@ const ShopSchema = new mongoose.Schema(
       required: true,
     },
     phoneNumber: {
-      type: Number,
-      unique: true,
+      type: String,
     },
     role: {
       type: String,
       default: "seller",
     },
     zipCode: {
-      type: Number,
-      required: true,
+      type: String,
     },
     avatar: {
       type: String,

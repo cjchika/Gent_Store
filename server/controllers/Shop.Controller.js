@@ -25,7 +25,7 @@ export const createShop = async (req, res, next) => {
           res.status(500).json({ message: "Error deleting file" });
         }
       });
-      return next(new ErrorHandler("User already exists", 400));
+      return next(new ErrorHandler("Seller already exists", 400));
     }
 
     const fileName = req.file.filename;
