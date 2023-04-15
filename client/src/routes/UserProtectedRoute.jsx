@@ -9,13 +9,11 @@ const UserProtectedRoute = ({ children }) => {
     (state) => state.user
   );
 
-  // useEffect(() => {
-  //   if (isLoadingUser === false) {
-  //     if (isUserAuthenticated === false) {
-  //       return navigate("/login");
-  //     }
-  //   }
-  // }, [isUserAuthenticated, isLoadingUser]);
+  useEffect(() => {
+    if (isUserAuthenticated === false) {
+      return navigate("/login");
+    }
+  }, [isUserAuthenticated]);
 
   if (isLoadingUser) {
     return <Loader />;

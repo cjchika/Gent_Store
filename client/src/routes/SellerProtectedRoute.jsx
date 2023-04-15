@@ -9,13 +9,11 @@ const SellerProtectedRoute = ({ children }) => {
     (state) => state.seller
   );
 
-  // useEffect(() => {
-  //   if (isLoadingSeller === false) {
-  //     if (isSellerAuthenticated === false) {
-  //       return navigate("/seller-login");
-  //     }
-  //   }
-  // }, [isSellerAuthenticated, isLoadingSeller]);
+  useEffect(() => {
+    if (isSellerAuthenticated === false) {
+      return navigate("/seller-login");
+    }
+  }, [isSellerAuthenticated]);
 
   if (isLoadingSeller) {
     return <Loader />;
