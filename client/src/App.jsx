@@ -20,6 +20,7 @@ import {
   ShopActivationPage,
   ShopLandingPage,
   ShopDashboardPage,
+  ShopPreviewPage,
   ShopCreateProduct,
   ShopAllProducts,
   ShopCreateEvent,
@@ -85,6 +86,7 @@ const App = () => {
         />
 
         {/* SHOP ROUTES */}
+        <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
         <Route path="/seller-login" element={<ShopLoginPage />} />
         <Route path="/create-shop" element={<ShopCreatePage />} />
         <Route
