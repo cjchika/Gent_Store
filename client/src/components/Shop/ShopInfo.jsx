@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 
 const ShopInfo = ({ isOwner }) => {
   const [shop, setShop] = useState({});
+  const { products } = useSelector((state) => state.products);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -67,7 +68,7 @@ const ShopInfo = ({ isOwner }) => {
             <h5 className="font-semibold text-secColor text-sm">
               Total Products
             </h5>
-            <h4 className="text-secColor text-sm">10</h4>
+            <h4 className="text-secColor text-sm">{products?.length}</h4>
           </div>
           <div className="p-3 flex flex-col 800px:flex-row justify-between">
             <h5 className="font-semibold text-secColor text-sm">
