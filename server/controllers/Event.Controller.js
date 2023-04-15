@@ -32,6 +32,17 @@ export const createEvent = asyncErrors(async (req, res, next) => {
 
 // GET ALL EVENTS OF A SHOP
 
+export const getAllEvents = asyncErrors(async (req, res, next) => {
+  try {
+    const events = await Event.find();
+    res.status(200).json({ success: true, events });
+  } catch (error) {
+    return next(new ErrorHandler(error, 404));
+  }
+});
+
+// GET ALL EVENTS OF A SHOP
+
 export const getAllShopEvents = asyncErrors(async (req, res, next) => {
   try {
     const { id } = req.params;
