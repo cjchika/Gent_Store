@@ -3,27 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 // import { getAllProductsShop } from "../../redux/actions/product";
 import { baseUrl } from "../../config/api";
+import shopApi from "../../config/services/shop.api";
 import styles from "../../styles/styles";
 import Loader from "../Layout/Loader";
 import { toast } from "react-toastify";
 
 const ShopInfo = ({ isOwner }) => {
-  const [data, setData] = useState({});
-  const { seller } = useSelector((state) => state.seller);
+  const [shop, setShop] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   axios.get(`${server}/shop/get-shop-info/${id}`).then((res) => {
-  //    setData(res.data.shop);
-  //    setIsLoading(false);
-  //   }).catch((error) => {
-  //     console.log(error);
-  //     setIsLoading(false);
-  //   })
-  // }, [])
+  useEffect(() => {
+    const fetchShopInfo = async () => {
+      setIsLoading(true);
+      const { response, error } = await shopApi.getShopInfo(id);
+      if (response) setShop(response.shop);
+      if (error) console.log(error.message);
+      setIsLoading(false);
+    };
+    fetchShopInfo();
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("shoptok");
@@ -41,27 +41,27 @@ const ShopInfo = ({ isOwner }) => {
           <div className="w-full py-5">
             <div className="w-full flex item-center justify-center">
               <img
-                src={`${baseUrl}${seller.avatar}`}
+                src={`${baseUrl}${shop?.avatar}`}
                 alt="shop-logo"
                 className="w-[100px] h-[100px] object-cover rounded-full"
               />
             </div>
             <h3 className="text-center font-semibold text-secColor py-2 text-base">
-              {seller.name}
+              {shop?.name}
             </h3>
             <p className="text-[16px] text-secColor p-[10px] flex items-center">
-              {seller.description}
+              {shop?.description}
             </p>
           </div>
           <div className="p-3 flex flex-col 800px:flex-row justify-between">
             <h5 className="font-semibold text-secColor text-sm">Address</h5>
-            <h4 className="text-secColor text-sm">{seller.address}</h4>
+            <h4 className="text-secColor text-sm">{shop?.address}</h4>
           </div>
           <div className="p-3 flex flex-col 800px:flex-row justify-between">
             <h5 className="font-semibold text-secColor text-sm">
               Phone Number
             </h5>
-            <h4 className="text-secColor text-sm">{seller.phoneNumber}</h4>
+            <h4 className="text-secColor text-sm">{shop?.phoneNumber}</h4>
           </div>
           <div className="p-3 flex flex-col 800px:flex-row justify-between">
             <h5 className="font-semibold text-secColor text-sm">
@@ -78,7 +78,7 @@ const ShopInfo = ({ isOwner }) => {
           <div className="p-3 flex flex-col 800px:flex-row justify-between">
             <h5 className="font-semibold text-secColor text-sm">Joined On</h5>
             <h4 className="text-secColor text-sm">
-              {seller?.createdAt?.slice(0, 10)}
+              {shop?.createdAt?.slice(0, 10)}
             </h4>
           </div>
           {isOwner && (

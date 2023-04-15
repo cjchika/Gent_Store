@@ -3,6 +3,7 @@ import publicClient from "../client/ShopClient/public.client";
 
 const shopEndpoints = {
   activateShop: ({ activationCode }) => `seller/activation/${activationCode}`,
+  getShopInfo: (id) => `seller/getShopInfo/${id}`,
   loginShop: "seller/loginShop",
   getShop: "seller/getSeller",
 };
@@ -36,6 +37,15 @@ const shopApi = {
   getShop: async () => {
     try {
       const response = await privateClient.get(shopEndpoints.getShop);
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  getShopInfo: async (id) => {
+    try {
+      const response = await privateClient.get(shopEndpoints.getShopInfo(id));
       return { response };
     } catch (error) {
       return { error };
