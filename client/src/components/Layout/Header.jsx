@@ -42,12 +42,11 @@ const Header = ({ activeHeader }) => {
     const term = e.target.value;
     setSearchTerm(term);
 
-    const filteredProducts = allProducts.filter((product) =>
-      product.name.toLowerCase().includes(term.toLowerCase())
+    setSearchData(
+      allProducts?.filter((product) =>
+        product.name.toLowerCase().includes(term.toLowerCase())
+      )
     );
-
-    // console.log(filteredProducts);
-    setSearchData(filteredProducts);
     console.log(searchData);
   };
 
@@ -106,10 +105,11 @@ const Header = ({ activeHeader }) => {
             {searchData && searchData.length !== 0 && (
               <div className="absolute min-h-[30vh] bg-[#fff] shadow-sm z-[9] p-4 mt-1">
                 {searchData?.map((prod, index) => {
-                  // const m = i.name;
-                  // const product_name = m.replace(/\s+/g, "-");
                   return (
-                    <Link to={`/product/${prod._id}`}>
+                    <Link
+                      onClick={() => setOpen(false)}
+                      to={`/product/${prod._id}`}
+                    >
                       <div className="text-sm text-secColor  w-full flex items-start py-3 hover:text-priColor">
                         <img
                           src={`${baseUrl}${prod.images[0]}`}
