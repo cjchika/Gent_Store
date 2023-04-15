@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import { categoriesData, productData } from "../../static/data";
+import { useParams } from "react-router-dom";
 import Logo from "./Logo";
 import { FiSearch } from "react-icons/fi";
 import {
@@ -35,6 +36,8 @@ const Header = ({ activeHeader }) => {
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const { id } = useParams();
+
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -43,7 +46,7 @@ const Header = ({ activeHeader }) => {
       product.name.toLowerCase().includes(term.toLowerCase())
     );
 
-    console.log(filteredProducts);
+    // console.log(filteredProducts);
     setSearchData(filteredProducts);
     console.log(searchData);
   };
@@ -102,24 +105,22 @@ const Header = ({ activeHeader }) => {
             />
             {searchData && searchData.length !== 0 && (
               <div className="absolute min-h-[30vh] bg-[#fff] shadow-sm z-[9] p-4 mt-1">
-                {searchData &&
-                  searchData.map((i, index) => {
-                    const m = i.name;
-
-                    const product_name = m.replace(/\s+/g, "-");
-                    return (
-                      <Link to={`/product/${product_name}`}>
-                        <div className="text-sm text-secColor  w-full flex items-start py-3 hover:text-priColor">
-                          <img
-                            src={`${baseUrl}${i.images[0]}`}
-                            alt=""
-                            className="w-[40px] h-[40px] mr-[10px]"
-                          />
-                          <h1>{i.name}</h1>
-                        </div>
-                      </Link>
-                    );
-                  })}
+                {searchData?.map((prod, index) => {
+                  // const m = i.name;
+                  // const product_name = m.replace(/\s+/g, "-");
+                  return (
+                    <Link to={`/product/${prod._id}`}>
+                      <div className="text-sm text-secColor  w-full flex items-start py-3 hover:text-priColor">
+                        <img
+                          src={`${baseUrl}${prod.images[0]}`}
+                          alt=""
+                          className="w-[40px] h-[40px] mr-[10px]"
+                        />
+                        <h1>{prod.name}</h1>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -252,19 +253,21 @@ const Header = ({ activeHeader }) => {
                 />
                 {searchData && (
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
-                    {searchData.map((i) => {
-                      const d = i.name;
-
-                      const Product_name = d.replace(/\s+/g, "-");
+                    {searchData?.map((prod) => {
                       return (
-                        <Link to={`/product/${Product_name}`}>
+                        <Link
+                          onClick={() => setOpen(false)}
+                          to={`/product/${prod._id}`}
+                        >
                           <div className="flex items-center">
                             <img
-                              src={`${baseUrl}${i.images[0]}`}
+                              src={`${baseUrl}${prod.images[0]}`}
                               alt=""
                               className="w-[50px] mr-2"
                             />
-                            <h5 className="text-secColor text-xs">{i.name}</h5>
+                            <h5 className="text-secColor text-xs">
+                              {prod.name}
+                            </h5>
                           </div>
                           <hr className="text-[#bdbaba] text-opacity-90 my-3 " />
                         </Link>

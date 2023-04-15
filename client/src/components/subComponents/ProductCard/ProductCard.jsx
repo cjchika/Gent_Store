@@ -24,7 +24,7 @@ const ProductCard = ({ item }) => {
     <>
       <div className="w-full h-auto bg-white border border-opacity-10 hover:border-opacity-40 hover:border-priColor border-secColor rounded-lg shadow-sm  relative cursor-pointer">
         <div className="p-3">
-          <Link to={`/product/${productName}`}>
+          <Link to={`/product/${item._id}`}>
             <img
               className="w-full h-[150px] object-contain"
               src={`${baseUrl}${item.images && item.images[0]}`}
@@ -33,14 +33,14 @@ const ProductCard = ({ item }) => {
           </Link>
         </div>
         <div className=" bg-priColor bg-opacity-10 rounded-b-lg  px-3">
-          <Link to={`/product/${productName}`}>
+          <Link to={`/product/${item._id}`}>
             <h5
               className={`${styles.shop_name} text-secColor font-semibold text-xs`}
             >
               {item.shop.name}
             </h5>
           </Link>
-          <Link to={`/product/${productName}`}>
+          <Link to={`/product/${item._id}`}>
             <h4 className="text-sm text-deepSecColor">
               {item.name.length > 40
                 ? item.name.slice(0, 40) + "..."

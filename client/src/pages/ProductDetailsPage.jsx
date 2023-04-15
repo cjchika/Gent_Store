@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import ProductDetails from "../components/Products/ProductDetails";
 import SuggestedProducts from "../components/Products/SuggestedProducts";
-import { productData } from "../static/data";
+import productApi from "../config/services/product.api";
+import Loader from "../components/Layout/Loader";
 
 const ProductDetailsPage = () => {
-  const { allProducts } = useSelector((state) => state.products);
-  const { name } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const { id } = useParams();
   const [data, setData] = useState(null);
-  const productName = name.replace(/-/g, " ");
 
   useEffect(() => {
-    setData(allProducts?.find((prod) => prod.name === productName));
-  }, []);
+    async function findProd() {
+      setIsLoading(true);
+      try {
+        const { response, error } = await productApi.getProduct(id);
+        if (response) setData(response.product);
+      } catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
+    }
+    findProd();
+  }, [id]);
 
   return (
     <>
       <Header />
-      <ProductDetails item={data} />
+      {isLoading ? <Loader /> : <ProductDetails item={data} />}
       {data && <SuggestedProducts item={data} />}
       <Footer />
     </>

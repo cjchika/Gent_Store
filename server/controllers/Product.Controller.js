@@ -75,6 +75,19 @@ export const deleteShopProduct = asyncErrors(async (req, res, next) => {
   }
 });
 
+// GET PRODUCT
+export const getProduct = asyncErrors(async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const product = await Product.findById(id);
+
+    res.status(200).json({ success: true, product });
+  } catch (error) {
+    return next(new ErrorHandler(error, 404));
+  }
+});
+
 // GET ALL PRODUCTS
 export const getAllProducts = asyncErrors(async (req, res, next) => {
   try {
