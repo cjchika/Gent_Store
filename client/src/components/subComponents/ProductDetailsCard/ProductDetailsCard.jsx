@@ -29,13 +29,13 @@ const ProductdetailsCard = ({ setOpen, item }) => {
               <div className="w-full 800px:w-[50%]">
                 <img
                   className="mx-auto"
-                  src={`${item.image_Url[0].url}`}
+                  src={`${baseUrl}${item?.images[0]}`}
                   alt=""
                 />
                 <div className="flex">
                   <Link to={`/shop/preview/${item.shop._id}`} className="flex">
                     <img
-                      src={`${item.shop.shop_avatar.url}`}
+                      src={`${baseUrl}${item?.shop.avatar}`}
                       alt=""
                       className="w-[50px] h-[50px] rounded-full mr-2 object-cover"
                     />
@@ -59,8 +59,10 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                 >
                   {item.name}
                 </h1>
-                <p className="text-secColor text-justify text-xs text-opacity-90 pt-4">
-                  {item.description}
+                <p className="text-secColor text-justify text-xs text-opacity-90 pt-4 whitespace-pre-wrap">
+                  {item.description.length > 200
+                    ? item.description.slice(0, 900) + "..."
+                    : item.description}
                 </p>
 
                 <div className="flex pt-3">

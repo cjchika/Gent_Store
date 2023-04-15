@@ -6,31 +6,30 @@ import Header from "../components/Layout/Header";
 import ProductCard from "../components/subComponents/ProductCard/ProductCard";
 import styles from "../styles/styles";
 import { productData } from "../static/data";
+import Loader from "../components/Layout/Loader";
 
 const ProductsPage = () => {
   const [searchParams] = useSearchParams();
   const categoryData = searchParams.get("category");
-  // const {allProducts,isLoading} = useSelector((state) => state.products);
-  const [isLoading, setIsLoading] = useState(false);
+  const { allProducts, isLoadingProduct } = useSelector(
+    (state) => state.products
+  );
+  // const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     if (categoryData === null) {
-      setData(
-        productData && productData.sort((a, b) => a.total_sell - b.total_sell)
-      );
+      setData(allProducts);
     } else {
-      setData(
-        productData && productData.filter((i) => i.category === categoryData)
-      );
+      setData(allProducts?.filter((i) => i.category === categoryData));
     }
-    //    window.scrollTo(0,0);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [allProducts]);
 
   return (
     <>
-      {isLoading ? (
-        <p>Loading...</p>
+      {isLoadingProduct ? (
+        <Loader />
       ) : (
         <div>
           <Header activeHeader={2} />

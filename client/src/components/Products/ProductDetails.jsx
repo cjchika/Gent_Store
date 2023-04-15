@@ -8,6 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
+import { baseUrl } from "../../config/api";
 
 const ProductDetails = ({ item }) => {
   const [count, setCount] = useState(1);
@@ -41,33 +42,18 @@ const ProductDetails = ({ item }) => {
             <div className="block w-full 800px:flex">
               <div className="w-full 800px:w-[50%]">
                 <img
-                  src={`${item?.image_Url[select].url}`}
+                  src={`${baseUrl}${item?.images[select]}`}
                   alt=""
                   className="w-[100%]"
                 />
-                <div className="w-full flex">
-                  {/* {item &&
-                    item?.images.map((i, index) => (
-                      <div
-                        className={`${
-                          select === 0 ? "border" : "null"
-                        } cursor-pointer`}
-                      >
-                        <img
-                          src={item?.image_Url[0].url}
-                          alt=""
-                          className="h-[200px] overflow-hidden mr-3 mt-3"
-                          onClick={() => setSelect(0)}
-                        />
-                      </div>
-                    ))} */}
+                <div className="w-full flex mt-8">
                   <div
                     className={`${
                       select === 0 ? "border border-secColor " : "null"
                     } cursor-pointer`}
                   >
                     <img
-                      src={item?.image_Url[0].url}
+                      src={`${baseUrl}${item?.images[0]}`}
                       alt=""
                       className="h-[100px] overflow-hidden object-cover"
                       onClick={() => setSelect(0)}
@@ -79,7 +65,7 @@ const ProductDetails = ({ item }) => {
                     } cursor-pointer`}
                   >
                     <img
-                      src={item?.image_Url[1].url}
+                      src={`${baseUrl}${item?.images[1]}`}
                       alt=""
                       className="h-[100px] overflow-hidden object-cover"
                       onClick={() => setSelect(1)}
@@ -150,27 +136,29 @@ const ProductDetails = ({ item }) => {
                     Add to cart <AiOutlineShoppingCart className="ml-1" />
                   </span>
                 </button>
-                {/* <div className="flex items-center pt-8">
+                <div className="flex items-center pt-8">
                   <img
-                    src={`${backend_url}${item?.shop?.avatar}`}
+                    src={`${baseUrl}${item?.shop?.avatar}`}
                     alt=""
-                    className="w-[50px] h-[50px] rounded-full mr-2"
+                    className="w-[80px] h-[80px] rounded-full mr-2"
                   />
                   <div className="pr-8">
-                    <h3 className={`${styles.shop_name} pb-1 pt-1`}>
+                    <h3 className={`font-semibold text-deepSecColor pb-1 pt-1`}>
                       {item.shop.name}
                     </h3>
-                    <h5 className="pb-3 text-[15px]">(4/5) Ratings</h5>
+                    <h5 className="py-1 text-base text-deepSecColor">
+                      (4/5) Ratings
+                    </h5>
                   </div>
-                  <div
-                    className={`${styles.button} bg-[#6443d1] mt-4 !rounded !h-11`}
+                  <button
+                    className={`bg-secColor hover:bg-deepSecColor p-2 px-3 rounded-md text-white`}
                     onClick={console.log("Clicked")}
                   >
-                    <span className="text-white flex items-center">
+                    <span className="flex items-center">
                       Send Message <AiOutlineMessage className="ml-1" />
                     </span>
-                  </div>
-                </div> */}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -243,28 +231,28 @@ const ProductDetailsInfo = ({ item, products }) => {
             <Link to={`/shop/preview/${item.shop._id}`}>
               <div className="flex items-center">
                 <img
-                  src={`${item?.shop?.avatar}` || null}
-                  className="w-[50px] h-[50px] rounded-full"
+                  src={`${baseUrl}${item?.shop?.avatar}`}
+                  className="w-[100px] h-[100px] rounded-full"
                   alt=""
                 />
                 <div className="pl-3">
-                  <h3 className={`${styles.shop_name}`}>
-                    {item?.shop.name || "Gent Store"}
+                  <h3 className={`font-semibold text-deepSecColor`}>
+                    {item?.shop.name}
                   </h3>
-                  <h5 className="pb-2 text-[15px]">(4/5) Ratings</h5>
+                  <h5 className="py-2 text-base text-deepSecColor">
+                    (4/5) Ratings
+                  </h5>
                 </div>
               </div>
             </Link>
-            <p className="pt-2 text-secColor">
-              {item.shop.description || "The Description"}
-            </p>
+            <p className="pt-2 text-secColor">{item?.shop.description}</p>
           </div>
           <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
             <div className="text-left">
               <h5 className="font-semibold text-secColor">
                 Joined on:{" "}
                 <span className="font-medium text-secColor">
-                  {item.shop?.createdAt?.slice(0, 10) || null}
+                  {item.shop?.createdAt?.slice(0, 10)}
                 </span>
               </h5>
               <h5 className="font-semibold text-secColor pt-3">

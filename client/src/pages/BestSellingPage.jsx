@@ -6,23 +6,22 @@ import ProductCard from "../components/subComponents/ProductCard/ProductCard";
 import styles from "../styles/styles";
 import { productData } from "../static/data";
 import Footer from "../components/Layout/Footer";
+import Loader from "../components/Layout/Loader";
 
 const BestSellingPage = () => {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  //   const {allProducts,isLoading} = useSelector((state) => state.products);
+  // const [isLoading, setIsLoading] = useState(false);
+  const { allProducts, isLoadingProduct } = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
-    //    const prods = allProducts && allProducts.sort((a,b) => b.sold_out - a.sold_out); we will add it after complete order route
-    //   const prods = allProducts;
-    setData(
-      productData && productData.sort((a, b) => a.total_sell - b.total_sell)
-    );
-  }, []);
+    setData(allProducts);
+  }, [allProducts]);
 
   return (
     <>
-      {isLoading ? (
+      {isLoadingProduct ? (
         <Loader />
       ) : (
         <div>
