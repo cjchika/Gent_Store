@@ -5,10 +5,12 @@ import ProductCard from "../subComponents/ProductCard/ProductCard";
 
 const SuggestedProduct = ({ item }) => {
   const { allProducts } = useSelector((state) => state.products);
-  const [products, setProducts] = useState();
+  const [filteredProducts, setFilteredProducts] = useState();
 
   useEffect(() => {
-    setProducts(allProducts?.filter((prod) => prod.category === item.category));
+    setFilteredProducts(
+      allProducts?.filter((prod) => prod.category === item.category)
+    );
   }, [allProducts]);
 
   return (
@@ -21,7 +23,7 @@ const SuggestedProduct = ({ item }) => {
             Related Products
           </h2>
           <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-4 lg:gap-[25px] xl:grid-cols-5 xl:gap-[30px] mb-12">
-            {products?.slice(0, 5).map((i, index) => (
+            {filteredProducts?.slice(0, 5).map((i, index) => (
               <ProductCard item={i} key={index} />
             ))}
           </div>

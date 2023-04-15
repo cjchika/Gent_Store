@@ -9,6 +9,7 @@ import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../../config/api";
 import styles from "../../../styles/styles";
+import { currencyFormatter } from "../../utils/currencyFormatter";
 
 const ProductdetailsCard = ({ setOpen, item }) => {
   const [count, setCount] = useState(1);
@@ -69,10 +70,10 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                   <h4
                     className={`${styles.productDiscountPrice} text-priColor text-xl font-bold`}
                   >
-                    ${item.discountPrice}
+                    {currencyFormatter(item?.discountPrice)}
                   </h4>
                   <h3 className={`${styles.price} text-sm`}>
-                    {item.originalPrice && "$" + item.originalPrice}
+                    {currencyFormatter(item.originalPrice)}
                   </h3>
                 </div>
                 <div className="flex items-center mt-7 justify-between pr-3">

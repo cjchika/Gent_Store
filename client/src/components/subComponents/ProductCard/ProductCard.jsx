@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 import { baseUrl } from "../../../config/api";
+import { currencyFormatter } from "../../utils/currencyFormatter";
 
 const ProductCard = ({ item }) => {
   const [click, setClick] = useState(false);
@@ -78,13 +79,14 @@ const ProductCard = ({ item }) => {
                 <h5
                   className={`${styles.productDiscountPrice} text-deepSecColor text-base`}
                 >
-                  $
                   {item.originalPrice === 0
-                    ? item.originalPrice
-                    : item.discountPrice}
+                    ? currencyFormatter(item.originalPrice)
+                    : currencyFormatter(item.discountPrice)}
                 </h5>
                 <h4 className={`${styles.price} text-xs`}>
-                  {item.originalPrice ? "$" + item.originalPrice : null}
+                  {item.originalPrice
+                    ? currencyFormatter(item.originalPrice)
+                    : null}
                 </h4>
               </div>
               <span className="font-[400] text-sm text-priColor">50 sold</span>

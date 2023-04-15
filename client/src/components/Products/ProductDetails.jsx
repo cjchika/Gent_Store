@@ -8,7 +8,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
+import { getAllShopProducts } from "../../redux/actions/product";
 import { baseUrl } from "../../config/api";
+import { currencyFormatter } from "../utils/currencyFormatter";
 
 const ProductDetails = ({ item }) => {
   const [count, setCount] = useState(1);
@@ -17,10 +19,10 @@ const ProductDetails = ({ item }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const {products} = useSelector((state) => state.products)
-  // useEffect(() => {
-  //   dispatch(getAllProductsShop(item && item.shop._id))
-  // }, [])
+  const { products } = useSelector((state) => state.products);
+  useEffect(() => {
+    dispatch(getAllShopProducts(item && item.shop._id));
+  }, [dispatch, item]);
 
   console.log(item);
 
@@ -86,10 +88,12 @@ const ProductDetails = ({ item }) => {
                   <h4
                     className={`${styles.productDiscountPrice} text-priColor text-xl`}
                   >
-                    ${item.discountPrice}
+                    {currencyFormatter(item.discountPrice)}
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {item.originalPrice ? "$" + item.originalPrice : null}
+                    {currencyFormatter(item.originalPrice)
+                      ? currencyFormatter(item.originalPrice)
+                      : null}
                   </h3>
                 </div>
 
@@ -162,7 +166,7 @@ const ProductDetails = ({ item }) => {
               </div>
             </div>
           </div>
-          <ProductDetailsInfo item={item} />
+          <ProductDetailsInfo item={item} products={products} />
           <br />
           <br />
         </div>
@@ -258,7 +262,7 @@ const ProductDetailsInfo = ({ item, products }) => {
               <h5 className="font-semibold text-secColor pt-3">
                 Total Products:{" "}
                 <span className="font-medium text-secColor">
-                  {products && products.length}
+                  {products?.length}
                 </span>
               </h5>
               <h5 className="font-semibold text-secColor pt-3">
