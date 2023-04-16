@@ -6,7 +6,6 @@ import Loader from "../Layout/Loader";
 
 const Events = () => {
   const [allEvents, setAllEvents] = useState();
-  // const { allEvents } = useSelector((state) => state.events);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
