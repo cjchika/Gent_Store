@@ -7,18 +7,18 @@ const EventCard = ({ active, item }) => {
   return (
     <div
       className={`w-full block bg-white rounded-lg ${
-        active ? "unset" : "mb-12"
+        active ? "unset" : "mb-10"
       } lg:flex p-2`}
     >
       <CountDown item={item} />
-      <div className="w-full lg:-w[50%] m-auto mb-7 md:mb-0 mt-8">
-        <img className="mx-auto" src={`${item.image_Url[0].url}`} alt="" />
+      <div className="w-full lg:-w[50%] m-auto mb-7 md:mb-0 ">
+        <img className="mx-auto" src={`${baseUrl}${item?.images[0]}`} alt="" />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center lg:pr-3">
         <h2
           className={`${styles.productTitle} capitalize mb-3 text-deepSecColor`}
         >
-          {item.name}
+          {item?.name}
         </h2>
         <p className="text-justify mb-5 text-secColor text-opacity-80">
           {item.description}
@@ -32,8 +32,8 @@ const EventCard = ({ active, item }) => {
               ${item.discountPrice}
             </h5>
           </div>
-          <span className="pr-3 font-[400] text-[17px] text-priColor">
-            120 sold
+          <span className="pr-3 font-semibold text-lg text-priColor">
+            3 sold
           </span>
         </div>
       </div>

@@ -11,7 +11,7 @@ const CountDown = ({ item }) => {
   });
 
   function calculateTimeLeft() {
-    const difference = +new Date("2023-4-31") - +new Date(); //item.Finish_Date
+    const difference = +new Date(item?.finishDate) - +new Date(); //item.Finish_Date
     let timeLeft = {};
 
     if (difference > 0) {

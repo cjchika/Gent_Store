@@ -1,24 +1,37 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import styles from "../../styles/styles";
 import EventCard from "./EventCard";
-import { productData } from "../../static/data";
+import eventApi from "../../config/services/event.api";
+import Loader from "../Layout/Loader";
 
 const Events = () => {
-  const [allEvents, setAllEvents] = useState(productData[0]);
+  const [allEvents, setAllEvents] = useState();
   // const { allEvents } = useSelector((state) => state.events);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setIsLoading(true);
+      const { response, error } = await eventApi.getAllEvents();
+      if (response) setAllEvents(response.events);
+      if (error) console.log(error.message);
+      setIsLoading(false);
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <div>
-      {!isLoading && (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <div className={`${styles.section}`}>
           <div className={`${styles.heading}`}>
             <h1 className="text-secColor">Featured Product</h1>
           </div>
 
           <div className="w-full grid">
-            <EventCard item={allEvents} />
+            <EventCard item={allEvents?.[0]} />
           </div>
         </div>
       )}
