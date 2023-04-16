@@ -2,6 +2,7 @@ import React from "react";
 import { baseUrl } from "../../config/api";
 import styles from "../../styles/styles";
 import CountDown from "./CountDown";
+import { currencyFormatter } from "../utils/currencyFormatter";
 
 const EventCard = ({ active, item }) => {
   return (
@@ -21,15 +22,15 @@ const EventCard = ({ active, item }) => {
           {item?.name}
         </h2>
         <p className="text-justify mb-5 text-secColor text-opacity-80">
-          {item.description}
+          {item?.description}
         </p>
         <div className="flex py-2 justify-between">
           <div className="flex">
             <h5 className="font-[500] text-[18px] text-[#d55b45] pr-3 line-through">
-              ${item.originalPrice}
+              {currencyFormatter(item?.originalPrice)}
             </h5>
             <h5 className="font-bold text-[20px] text-priColor text-2xl font-Roboto">
-              ${item.discountPrice}
+              {currencyFormatter(item?.discountPrice)}
             </h5>
           </div>
           <span className="pr-3 font-semibold text-lg text-priColor">
