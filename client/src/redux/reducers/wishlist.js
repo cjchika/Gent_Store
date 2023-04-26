@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  cart: localStorage.getItem("wishlistItems")
+  wishlist: localStorage.getItem("wishlistItems")
     ? JSON.parse(localStorage.getItem("wishlistItems"))
     : [],
 };

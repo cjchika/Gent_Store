@@ -29,6 +29,7 @@ const Header = ({ activeHeader }) => {
     (state) => state.seller
   );
   const { cart } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [dropdown, setDropDown] = useState(false);
@@ -154,7 +155,7 @@ const Header = ({ activeHeader }) => {
             >
               <MdFavoriteBorder size={25} className="text-secColor" />
               <span className="absolute right-0 top-0 rounded-full bg-priColor w-3 top right p-0 m-0 text-white text-xs leading-tight text-center">
-                0
+                {wishlist?.length}
               </span>
             </div>
           </div>
@@ -235,7 +236,7 @@ const Header = ({ activeHeader }) => {
                       className="mt-5 ml-3 text-secColor"
                     />
                     <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
-                      0
+                      {wishlist?.length}
                     </span>
                   </div>
                 </div>

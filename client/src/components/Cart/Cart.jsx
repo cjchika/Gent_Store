@@ -55,6 +55,14 @@ const Cart = ({ setOpenCart }) => {
                   removeCartItemHandler={removeCartItemHandler}
                 />
               ))}
+            {cart?.length === 0 && (
+              <div className="p-5 text-center text-secColor">
+                <h1 className="text-lg font-medium">
+                  Cart is empty! <br />{" "}
+                  <span className="text-sm">Start adding to cart.</span>
+                </h1>
+              </div>
+            )}
           </div>
         </div>
 
