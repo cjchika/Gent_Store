@@ -16,6 +16,7 @@ import {
   removeFromWishlist,
   addToWishlist,
 } from "../../redux/actions/wishlist";
+import { toast } from "react-toastify";
 
 const ProductDetails = ({ item }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
@@ -31,10 +32,10 @@ const ProductDetails = ({ item }) => {
     dispatch(getAllShopProducts(item && item.shop._id));
   }, [dispatch, item]);
 
-  useEffect(() => {
-    if (wishlist?.find((wItem) => wItem._id === item._id)) setClick(true);
-    else setClick(false);
-  }, [wishlist]);
+  // useEffect(() => {
+  //   if (wishlist?.find((wItem) => wItem._id === item._id)) setClick(true);
+  //   else setClick(false);
+  // }, []);
 
   const removeWishListHandler = (item) => {
     setClick(!click);
@@ -51,10 +52,10 @@ const ProductDetails = ({ item }) => {
     if (isItemExist) {
       toast.error("Item already in cart!");
     } else {
-      if (item.stock < 1) {
+      if (item.stock < count) {
         toast.error("Product out of stock!");
       } else {
-        const cartData = { ...item, qty: 1 };
+        const cartData = { ...item, qty: count };
         dispatch(addToCart(cartData));
         toast.success("Item added to cart successfully!");
       }
@@ -167,15 +168,22 @@ const ProductDetails = ({ item }) => {
                   </span>
                 </button>
                 <div className="flex items-center pt-8">
-                  <img
-                    src={`${baseUrl}${item?.shop?.avatar}`}
-                    alt=""
-                    className="w-[80px] h-[80px] rounded-full mr-2"
-                  />
+                  <Link to={`/shop/preview/${item?.shop._id}`}>
+                    <img
+                      src={`${baseUrl}${item?.shop?.avatar}`}
+                      alt=""
+                      className="w-[80px] h-[80px] rounded-full mr-2"
+                    />
+                  </Link>
+
                   <div className="pr-8">
-                    <h3 className={`font-semibold text-deepSecColor pb-1 pt-1`}>
-                      {item.shop.name}
-                    </h3>
+                    <Link to={`/shop/preview/${item?.shop._id}`}>
+                      <h3
+                        className={`font-semibold text-deepSecColor pb-1 pt-1`}
+                      >
+                        {item.shop.name}
+                      </h3>
+                    </Link>
                     <h5 className="py-1 text-base text-deepSecColor">
                       (4/5) Ratings
                     </h5>

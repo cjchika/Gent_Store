@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AiFillHeart,
   AiOutlineHeart,
@@ -13,13 +13,33 @@ import styles from "../../../styles/styles";
 import { currencyFormatter } from "../../utils/currencyFormatter";
 import { toast } from "react-toastify";
 import { addToCart } from "../../../redux/actions/cart";
+import {
+  removeFromWishlist,
+  addToWishlist,
+} from "../../../redux/actions/wishlist";
 
 const ProductdetailsCard = ({ setOpen, item }) => {
   const { cart } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (wishlist?.find((wItem) => wItem._id === item._id)) setClick(true);
+    else setClick(false);
+  }, [wishlist]);
+
+  const removeWishListHandler = (item) => {
+    setClick(!click);
+    dispatch(removeFromWishlist(item));
+  };
+
+  const addWishListHandler = (item) => {
+    setClick(!click);
+    dispatch(addToWishlist(item));
+  };
 
   const addToCartHandler = (id) => {
     const isItemExist = cart && cart.find((cartItem) => cartItem._id === id);
@@ -105,7 +125,7 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                       <AiFillHeart
                         size={30}
                         className="cursor-pointer"
-                        onClick={() => setClick(!click)}
+                        onClick={() => removeWishListHandler(item)}
                         color={click ? "red" : "#0b2a3f"}
                         title="Remove from wishlist"
                       />
@@ -113,7 +133,7 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                       <AiOutlineHeart
                         size={30}
                         className="cursor-pointer"
-                        onClick={() => setClick(!click)}
+                        onClick={() => addWishListHandler(item)}
                         color={click ? "red" : "#0b2a3f"}
                         title="Add to wishlist"
                       />

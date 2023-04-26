@@ -1,17 +1,22 @@
 import { useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { RxCross1 } from "react-icons/rx";
+import { baseUrl } from "../../config/api";
 
-const WishlistSingle = ({ item }) => {
+const WishlistSingle = ({ item, removeWishlistHandler, addToCartHandler }) => {
   const [value, setValue] = useState(1);
-  const totalPrice = item.price * value;
+  const totalPrice = item.discountPrice * value;
 
   return (
     <div className="border-b p-4 border-secColor border-opacity-30">
       <div className="w-full flex items-center">
-        <RxCross1 size={20} className="cursor-pointer" />
+        <RxCross1
+          onClick={() => removeWishlistHandler(item)}
+          size={20}
+          className="cursor-pointer"
+        />
         <img
-          src="https://bonik-react.vercel.app/assets/images/products/Fashion/Clothes/1.SilverHighNeckSweater.png"
+          src={`${baseUrl}${item?.images[0]}`}
           alt=""
           className="w-[80px] h-[80px] ml-1"
         />
@@ -24,6 +29,7 @@ const WishlistSingle = ({ item }) => {
         </div>
         <div>
           <BsCartPlus
+            onClick={() => addToCartHandler(item)}
             size={20}
             className="cursor-pointer text-secColor"
             tile="Add to cart"
