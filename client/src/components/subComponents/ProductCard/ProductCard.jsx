@@ -7,6 +7,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineStar,
 } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "../../../styles/styles";
 import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
@@ -14,6 +15,7 @@ import { baseUrl } from "../../../config/api";
 import { currencyFormatter } from "../../utils/currencyFormatter";
 
 const ProductCard = ({ item }) => {
+  const { cart } = useSelector((state) => state.cart);
   const [click, setClick] = useState(false);
   const [open, setOpen] = useState(false);
 

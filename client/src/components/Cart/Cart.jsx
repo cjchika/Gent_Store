@@ -2,28 +2,28 @@ import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineMinus, HiPlus } from "react-icons/hi";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import CartSingleItem from "./CartSingleItem";
+import { removeFromCart, addToCart } from "../../redux/actions/cart.js";
 
 const Cart = ({ setOpenCart }) => {
-  const cartData = [
-    {
-      name: "Iphone 14 pro max 256 gb ssd and 8gb ram sliver colour",
-      description: "test",
-      price: 999,
-    },
-    {
-      name: "Iphone 14 pro max 256 gb ssd and 8gb ram sliver colour",
-      description: "test",
-      price: 245,
-    },
-    {
-      name: "Iphone 14 pro max 256 gb ssd and 8gb ram sliver colour",
-      description: "test",
-      price: 645,
-    },
-  ];
+  const { cart } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const removeCartItemHandler = (item) => {
+    dispatch(removeFromCart(item));
+  };
+
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.qty * item.discountPrice,
+    0
+  );
+
+  const quantityChangeHandler = (item) => {
+    dispatch(addToCart(item));
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full bg-[#0000004b] h-screen z-10">
@@ -39,14 +39,21 @@ const Cart = ({ setOpenCart }) => {
           {/* Items */}
           <div className={`${styles.normalFlex} p-2 px-4 text-secColor`}>
             <IoBagHandleOutline size={25} />
-            <h5 className="pl-5 text-base font-semibold">3 Items</h5>
+            <h5 className="pl-5 text-base font-semibold">
+              {cart?.length} Items
+            </h5>
           </div>
           {/* Single Item */}
           <br />
           <div className="w-full border-t border-secColor border-opacity-30">
-            {cartData &&
-              cartData.map((item, index) => (
-                <CartSingleItem key={index} item={item} />
+            {cart &&
+              cart.map((item, index) => (
+                <CartSingleItem
+                  key={index}
+                  item={item}
+                  quantityChangeHandler={quantityChangeHandler}
+                  removeCartItemHandler={removeCartItemHandler}
+                />
               ))}
           </div>
         </div>
@@ -54,9 +61,10 @@ const Cart = ({ setOpenCart }) => {
         <div className="px-5 mb-3">
           <Link to="/checkout">
             <button
+              disabled={totalPrice === 0}
               className={`text-sm py-3 text-white flex items-center justify-center w-[100%] hover:bg-deepSecColor bg-secColor rounded-xl`}
             >
-              Checkout (USD $2000){" "}
+              Checkout (USD ${totalPrice})
             </button>
           </Link>
         </div>

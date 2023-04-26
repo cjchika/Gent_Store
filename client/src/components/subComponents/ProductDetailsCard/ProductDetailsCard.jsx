@@ -5,15 +5,36 @@ import {
   AiOutlineMessage,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../../../config/api";
 import styles from "../../../styles/styles";
 import { currencyFormatter } from "../../utils/currencyFormatter";
+import { toast } from "react-toastify";
+import { addToCart } from "../../../redux/actions/cart";
 
 const ProductdetailsCard = ({ setOpen, item }) => {
+  const { cart } = useSelector((state) => state.cart);
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (id) => {
+    const isItemExist = cart && cart.find((cartItem) => cartItem._id === id);
+    if (isItemExist) {
+      toast.error("Item already in cart!");
+    } else {
+      if (item.stock < count) {
+        toast.error("Product stock limited!");
+      } else {
+        const cartData = { ...item, qty: count };
+        dispatch(addToCart(cartData));
+        toast.success("Item added to cart successfully!");
+      }
+    }
+  };
 
   return (
     <div className="bg-[#fff]">
@@ -63,8 +84,8 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                   {item.name}
                 </h1>
                 <p className="text-secColor text-justify text-xs text-opacity-90 pt-4 whitespace-pre-wrap">
-                  {item.description.length > 200
-                    ? item.description.slice(0, 900) + "..."
+                  {item.description.length > 500
+                    ? item.description.slice(0, 500) + "..."
                     : item.description}
                 </p>
 
@@ -101,7 +122,7 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                   <div>
                     <button
                       className="bg-secColor  text-white font-bold rounded-l p-1 px-3 shadow-lg hover:bg-deepSecColor transition duration-300 ease-in-out"
-                      onClick={() => setCount(count - 1)}
+                      onClick={count > 1 && (() => setCount(count - 1))}
                     >
                       -
                     </button>
@@ -117,6 +138,7 @@ const ProductdetailsCard = ({ setOpen, item }) => {
                   </div>
                 </div>
                 <button
+                  onClick={() => addToCartHandler(item._id)}
                   className={`w-full justify-center flex ml-auto items-center p-2 px-3 bg-secColor hover:bg-deepSecColor mt-6 rounded-md  text-white`}
                 >
                   <span className="uppercase">Add To Cart</span>{" "}
