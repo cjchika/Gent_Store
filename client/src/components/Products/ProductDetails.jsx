@@ -11,8 +11,15 @@ import styles from "../../styles/styles";
 import { getAllShopProducts } from "../../redux/actions/product";
 import { baseUrl } from "../../config/api";
 import { currencyFormatter } from "../utils/currencyFormatter";
+import { addToCart } from "../../redux/actions/cart";
+import {
+  removeFromWishlist,
+  addToWishlist,
+} from "../../redux/actions/wishlist";
 
 const ProductDetails = ({ item }) => {
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
   const [count, setCount] = useState(1);
   const [click, setClick] = useState(false);
   const [select, setSelect] = useState(0);
@@ -24,15 +31,33 @@ const ProductDetails = ({ item }) => {
     dispatch(getAllShopProducts(item && item.shop._id));
   }, [dispatch, item]);
 
-  console.log(item);
+  useEffect(() => {
+    if (wishlist?.find((wItem) => wItem._id === item._id)) setClick(true);
+    else setClick(false);
+  }, [wishlist]);
 
-  const incrementCount = () => {
-    setCount(count + 1);
+  const removeWishListHandler = (item) => {
+    setClick(!click);
+    dispatch(removeFromWishlist(item));
   };
 
-  const decrementCount = () => {
-    if (count > 1) {
-      setCount(count - 1);
+  const addWishListHandler = (item) => {
+    setClick(!click);
+    dispatch(addToWishlist(item));
+  };
+
+  const addToCartHandler = (id) => {
+    const isItemExist = cart && cart.find((cartItem) => cartItem._id === id);
+    if (isItemExist) {
+      toast.error("Item already in cart!");
+    } else {
+      if (item.stock < 1) {
+        toast.error("Product out of stock!");
+      } else {
+        const cartData = { ...item, qty: 1 };
+        dispatch(addToCart(cartData));
+        toast.success("Item added to cart successfully!");
+      }
     }
   };
 
@@ -101,14 +126,14 @@ const ProductDetails = ({ item }) => {
                   <div>
                     <button
                       className="bg-deepSecColor text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
-                      onClick={decrementCount}
+                      onClick={count > 1 && (() => setCount(count - 1))}
                     >
                       -
                     </button>
                     <span className=" font-medium px-4 py-[11px]">{count}</span>
                     <button
                       className="bg-deepSecColor text-white font-bold rounded-r px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
-                      onClick={incrementCount}
+                      onClick={() => setCount(count + 1)}
                     >
                       +
                     </button>
@@ -118,7 +143,7 @@ const ProductDetails = ({ item }) => {
                       <AiFillHeart
                         size={30}
                         className="cursor-pointer"
-                        onClick={() => setClick(!click)}
+                        onClick={() => removeWishListHandler(item)}
                         color={click ? "red" : "#333"}
                         title="Remove from wishlist"
                       />
@@ -126,7 +151,7 @@ const ProductDetails = ({ item }) => {
                       <AiOutlineHeart
                         size={30}
                         className="cursor-pointer"
-                        onClick={() => setClick(!click)}
+                        onClick={() => addWishListHandler(item)}
                         color={click ? "red" : "#333"}
                         title="Add to wishlist"
                       />
@@ -134,6 +159,7 @@ const ProductDetails = ({ item }) => {
                   </div>
                 </div>
                 <button
+                  onClick={() => addToCartHandler(item._id)}
                   className={`${styles.button} bg-secColor hover:bg-deepSecColor !mt-6 !rounded !h-11 flex items-center`}
                 >
                   <span className="text-white flex items-center">

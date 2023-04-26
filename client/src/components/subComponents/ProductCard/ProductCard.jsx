@@ -32,8 +32,6 @@ const ProductCard = ({ item }) => {
     else setClick(false);
   }, [wishlist]);
 
-  console.log(wishlist);
-
   const removeWishListHandler = (item) => {
     setClick(!click);
     dispatch(removeFromWishlist(item));
