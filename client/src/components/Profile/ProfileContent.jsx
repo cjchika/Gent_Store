@@ -17,9 +17,7 @@ const ProfileContent = ({ active }) => {
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState();
-  const [zipCode, setZipCode] = useState();
-  const [address1, setAddress1] = useState("");
-  const [address2, setAddress2] = useState("");
+  const [password, setPassword] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,39 +79,17 @@ const ProfileContent = ({ active }) => {
                   />
                 </div>
                 <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Zip Code</label>
+                  <label className="block pb-2">Password</label>
                   <input
-                    type="number"
+                    type="password"
                     className={`${styles.input} !w-[95%] py-3 border-secColor mb-4 800px:mb-0`}
                     required
-                    value={zipCode}
-                    onChange={(e) => setZipCode(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div className="w-full 800px:flex block pb-3">
-                <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Address 1</label>
-                  <input
-                    type="address"
-                    className={`${styles.input} !w-[95%] py-3 border-secColor`}
-                    required
-                    value={address1}
-                    onChange={(e) => setAddress1(e.target.value)}
-                  />
-                </div>
-                <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Address 2</label>
-                  <input
-                    type="address"
-                    className={`${styles.input} !w-[95%] py-3 border-secColor`}
-                    required
-                    value={address2}
-                    onChange={(e) => setAddress2(e.target.value)}
-                  />
-                </div>
-              </div>
               <button
                 type="submit"
                 className={`p-3 px-20 w-[95%] 800px:w-auto border border-secColor text-center text-secColor hover:bg-secColor hover:bg-opacity-5 rounded-lg mt-8`}
