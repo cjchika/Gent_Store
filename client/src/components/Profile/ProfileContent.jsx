@@ -485,6 +485,28 @@ const PaymentMethod = () => {
 };
 
 const Address = () => {
+  const [open, setOpen] = useState(false);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState();
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [addressType, setAddressType] = useState("");
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const addressTypeData = [
+    {
+      name: "Default",
+    },
+    {
+      name: "Home",
+    },
+    {
+      name: "Office",
+    },
+  ];
+
   return (
     <div className="w-full px-5">
       <div className="flex w-full flex-col  sm:flex-row items-start sm:items-center justify-between">
