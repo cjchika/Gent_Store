@@ -17,3 +17,19 @@ export const getUser = () => async (dispatch) => {
     });
   }
 };
+
+// UPDATE USER INFO
+export const updateUserInfo =
+  (name, email, phoneNumber, password) => async (dispatch) => {
+    try {
+      dispatch({ type: "updateUserInfoRequest" });
+
+      // call api
+      dispatch({ type: "updateUserInfoSuccess", payload: data.user });
+    } catch (error) {
+      dispatch({
+        type: "updateUserInfoFail",
+        payload: error.response.data.message,
+      });
+    }
+  };

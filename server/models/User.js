@@ -29,7 +29,28 @@ const UserSchema = new mongoose.Schema(
     activationCode: {
       type: String,
     },
-    address: String,
+    addresses: [
+      {
+        country: {
+          type: String,
+        },
+        city: {
+          type: String,
+        },
+        address1: {
+          type: String,
+        },
+        address2: {
+          type: String,
+        },
+        zipCode: {
+          type: Number,
+        },
+        addressType: {
+          type: String,
+        },
+      },
+    ],
     phoneNumber: Number,
     role: {
       type: String,

@@ -167,3 +167,8 @@ export const logoutUser = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+// UPDATE USER INFO
+export const updateUserInfo = asyncErrors(async (req, res, ext) => {
+  //
+});
