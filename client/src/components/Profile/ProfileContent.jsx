@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   AiOutlineArrowRight,
   AiOutlineCamera,
@@ -11,7 +12,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { baseUrl, apiUrl } from "../../config/api";
-import { updateUserInfo } from "../../redux/actions/user";
+import { updateUserInfo, getUser } from "../../redux/actions/user";
 import { toast } from "react-toastify";
 
 const ProfileContent = ({ active }) => {
@@ -20,12 +21,41 @@ const ProfileContent = ({ active }) => {
   const [email, setEmail] = useState(user && user.email);
   const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber);
   const [password, setPassword] = useState();
+  const [avatar, setAvatar] = useState(null);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateUserInfo(name, email, phoneNumber, password));
     toast.success("Profile updated successfully!");
+  };
+
+  const handleImageUpdate = async (e) => {
+    const file = e.target.files[0];
+    setAvatar(file);
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("tok")}`,
+      },
+      withCredentials: true,
+    };
+
+    const formData = new FormData();
+
+    formData.append("image", e.target.files[0]);
+
+    await axios
+      .put(`${apiUrl}user/updateUserAvatar`, formData, config)
+      .then((res) => {
+        console.log(res);
+        dispatch(getUser());
+        toast.success("Avatar updated successfully!");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (
@@ -41,7 +71,15 @@ const ProfileContent = ({ active }) => {
                 className="w-[100px] h-[100px] rounded-full object-cover border-2 border-priColor"
               />
               <div className="text-secColor w-[30px] h-[30px] bg-[#E3E9EE] rounded-full flex items-center justify-center cursor-pointer absolute bottom-[5px] right-[5px]">
-                <AiOutlineCamera />
+                <input
+                  type="file"
+                  id="image"
+                  className="hidden"
+                  onChange={handleImageUpdate}
+                />
+                <label htmlFor="image">
+                  <AiOutlineCamera />
+                </label>
               </div>
             </div>
           </div>

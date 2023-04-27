@@ -201,3 +201,25 @@ export const updateUserInfo = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+// UPDATE USER AVATAR
+export const updateUserAvatar = asyncErrors(async (req, res, next) => {
+  try {
+    const existingUser = await User.findById(req.user.id);
+
+    const existingAvatarPath = `uploads/${existingUser.avatar}`;
+
+    fs.unlinkSync(existingAvatarPath);
+
+    const fileUrl = path.join(req.file.filename);
+
+    const user = await User.findByIdAndUpdate(req.user.id, { avatar: fileUrl });
+
+    res.status(201).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});

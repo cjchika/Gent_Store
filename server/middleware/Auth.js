@@ -24,6 +24,7 @@ export const tokenDecode = (req) => {
 };
 
 export const userAuth = async (req, res, next) => {
+  // console.log(req);
   const tokenDecoded = tokenDecode(req);
   if (!tokenDecoded) {
     return next(new ErrorHandler("Please login to continue", 401));
