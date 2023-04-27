@@ -16,7 +16,7 @@ router.post("/createUser", upload.single("avatar"), createUser);
 router.post("/loginUser", loginUser);
 router.get("/getUser", userAuth, getUser);
 router.get("/logoutUser", logoutUser);
-router.get("/activation/:activationCode", activateUser);
 router.put("/updateUserInfo", userAuth, updateUserInfo);
+router.get("/activation/:activationCode", activateUser);
 
 export default router;

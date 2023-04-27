@@ -5,6 +5,7 @@ const userEndpoints = {
   activateUser: ({ activationCode }) => `user/activation/${activationCode}`,
   loginUser: "user/loginUser",
   getUser: "user/getUser",
+  updateUserInfo: "user/updateUserInfo",
 };
 
 const userApi = {
@@ -36,6 +37,20 @@ const userApi = {
   getUser: async () => {
     try {
       const response = await privateClient.get(userEndpoints.getUser);
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  updateUserInfo: async ({ name, email, phoneNumber, password }) => {
+    try {
+      const response = await privateClient.put(userEndpoints.updateUserInfo, {
+        name,
+        email,
+        phoneNumber,
+        password,
+      });
       return { response };
     } catch (error) {
       return { error };

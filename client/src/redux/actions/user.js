@@ -24,12 +24,18 @@ export const updateUserInfo =
     try {
       dispatch({ type: "updateUserInfoRequest" });
 
-      // call api
-      dispatch({ type: "updateUserInfoSuccess", payload: data.user });
+      const { response, error } = await userApi.updateUserInfo({
+        name,
+        email,
+        phoneNumber,
+        password,
+      });
+
+      dispatch({ type: "updateUserInfoSuccess", payload: response.user });
     } catch (error) {
       dispatch({
         type: "updateUserInfoFail",
-        payload: error.response.data.message,
+        payload: error.response.message,
       });
     }
   };

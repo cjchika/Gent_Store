@@ -1,26 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AiOutlineArrowRight,
   AiOutlineCamera,
   AiOutlineDelete,
 } from "react-icons/ai";
 import { MdOutlineTrackChanges } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/styles";
 import { DataGrid } from "@material-ui/data-grid";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { baseUrl, apiUrl } from "../../config/api";
+import { updateUserInfo } from "../../redux/actions/user";
+import { toast } from "react-toastify";
 
 const ProfileContent = ({ active }) => {
   const { user } = useSelector((state) => state.user);
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber);
   const [password, setPassword] = useState();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateUserInfo(name, email, phoneNumber, password));
+    toast.success("Profile updated successfully!");
   };
 
   return (
@@ -83,7 +88,6 @@ const ProfileContent = ({ active }) => {
                   <input
                     type="password"
                     className={`${styles.input} !w-[95%] py-3 border-secColor mb-4 800px:mb-0`}
-                    required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
