@@ -17,6 +17,6 @@ router.post("/loginUser", loginUser);
 router.get("/getUser", userAuth, getUser);
 router.get("/logoutUser", logoutUser);
 router.get("/activation/:activationCode", activateUser);
-router.put("/updateUserInfo", updateUserInfo);
+router.put("/updateUserInfo", userAuth, updateUserInfo);
 
 export default router;
