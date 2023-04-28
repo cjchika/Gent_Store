@@ -297,7 +297,7 @@ export const updateUserPassword = asyncErrors(async (req, res, next) => {
 
     res
       .status(200)
-      .json({ success: true, message: "Password updaed successfully" });
+      .json({ success: true, message: "Password updated successfully" });
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
   }

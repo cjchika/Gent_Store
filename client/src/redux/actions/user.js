@@ -80,3 +80,27 @@ export const deleteUserAddress = (id) => async (dispatch) => {
     });
   }
 };
+
+// UPDATE USER PASSWORD
+export const updateUserPassword =
+  (oldPassword, newPassword, confirmPassword) => async (dispatch) => {
+    try {
+      dispatch({ type: "updateUserPasswordRequest" });
+
+      const { response, error } = await userApi.updateUserPassword({
+        oldPassword,
+        newPassword,
+        confirmPassword,
+      });
+
+      dispatch({
+        type: "updateUserPasswordSuccess",
+        payload: response.message,
+      });
+    } catch (error) {
+      dispatch({
+        type: "updateUserPasswordFail",
+        payload: error.response.message,
+      });
+    }
+  };

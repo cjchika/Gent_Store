@@ -17,6 +17,7 @@ import {
   updateUserInfo,
   updateUserAddress,
   deleteUserAddress,
+  updateUserPassword,
   getUser,
 } from "../../redux/actions/user";
 import { Country, State } from "country-state-city";
@@ -460,24 +461,16 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const passwordChangeHandler = async (e) => {
     e.preventDefault();
 
-    await axios
-      .put(
-        `${server}/user/update-user-password`,
-        { oldPassword, newPassword, confirmPassword },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        toast.success(res.data.success);
-        setOldPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      });
+    dispatch(updateUserPassword(oldPassword, newPassword, confirmPassword));
+    dispatch(getUser());
+    setOldPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
   };
   return (
     <div className="w-full px-5">
@@ -490,7 +483,7 @@ const ChangePassword = () => {
           onSubmit={passwordChangeHandler}
           className="flex flex-col items-center"
         >
-          <div className=" w-[100%] 800px:w-[50%] my-5">
+          <div className=" w-[100%] 800px:w-[50%] my-2">
             <label className="block pb-2 text-secColor">
               Enter your old password
             </label>
@@ -503,7 +496,7 @@ const ChangePassword = () => {
               onChange={(e) => setOldPassword(e.target.value)}
             />
           </div>
-          <div className=" w-[100%] 800px:w-[50%] my-3">
+          <div className=" w-[100%] 800px:w-[50%] my-1">
             <label className="block pb-2 text-secColor">
               Enter your new password
             </label>
@@ -516,7 +509,7 @@ const ChangePassword = () => {
               onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
-          <div className=" w-[100%] 800px:w-[50%] my-4">
+          <div className=" w-[100%] 800px:w-[50%] my-2">
             <label className="block pb-2 text-secColor">
               Enter your confirm password
             </label>
