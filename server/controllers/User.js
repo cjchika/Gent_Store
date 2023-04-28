@@ -223,3 +223,8 @@ export const updateUserAvatar = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+// UPDATE USER ADDRESSES
+export const updateUserAddresses = asyncErrors(async (req, res, next) => {
+  //
+});
