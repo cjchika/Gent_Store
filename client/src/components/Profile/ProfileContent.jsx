@@ -490,41 +490,50 @@ const ChangePassword = () => {
           onSubmit={passwordChangeHandler}
           className="flex flex-col items-center"
         >
-          <div className=" w-[100%] 800px:w-[50%] mt-5">
-            <label className="block pb-2">Enter your old password</label>
+          <div className=" w-[100%] 800px:w-[50%] my-5">
+            <label className="block pb-2 text-secColor">
+              Enter your old password
+            </label>
             <input
               type="password"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={`${styles.input} p-3 rounded-full !w-[95%] mb-4 800px:mb-0`}
+              placeholder="Old Password"
               required
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
             />
           </div>
-          <div className=" w-[100%] 800px:w-[50%] mt-2">
-            <label className="block pb-2">Enter your new password</label>
+          <div className=" w-[100%] 800px:w-[50%] my-3">
+            <label className="block pb-2 text-secColor">
+              Enter your new password
+            </label>
             <input
               type="password"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={`${styles.input} p-3 rounded-full !w-[95%] mb-4 800px:mb-0`}
+              placeholder="New Password"
               required
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
-          <div className=" w-[100%] 800px:w-[50%] mt-2">
-            <label className="block pb-2">Enter your confirm password</label>
+          <div className=" w-[100%] 800px:w-[50%] my-4">
+            <label className="block pb-2 text-secColor">
+              Enter your confirm password
+            </label>
             <input
               type="password"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={`${styles.input} p-3 rounded-full !w-[95%] mb-4 800px:mb-0`}
               required
+              placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <input
-              className={`w-[95%] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-[3px] mt-8 cursor-pointer`}
-              required
-              value="Update"
+            <button
               type="submit"
-            />
+              className="bg-priColor hover:bg-litePriColor p-3 w-[95%] rounded-full mt-8 text-white"
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

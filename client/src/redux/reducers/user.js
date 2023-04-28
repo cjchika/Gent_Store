@@ -54,7 +54,6 @@ export const userReducer = createReducer(initialState, {
   },
 
   // DELETE USER ADDRESS
-
   deleteUserAddressRequest: (state) => {
     state.loadingAddress = true;
   },
@@ -65,6 +64,20 @@ export const userReducer = createReducer(initialState, {
   },
   deleteUserAddressFail: (state, action) => {
     state.loadingAddress = false;
+    state.user = action.payload;
+  },
+
+  // UPDATE USER PASSWORD
+  updateUserPasswordRequest: (state) => {
+    state.loadingAddress = true;
+  },
+  updateUserPasswordSuccess: (state, action) => {
+    state.isLoadingUser = false;
+    state.successMessage = action.payload.successMessage;
+    state.user = action.payload.user;
+  },
+  updateUserPasswordFail: (state, action) => {
+    state.isLoadingUser = false;
     state.user = action.payload;
   },
 });

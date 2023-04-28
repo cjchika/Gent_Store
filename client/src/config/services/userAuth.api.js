@@ -8,6 +8,7 @@ const userEndpoints = {
   updateUserInfo: "user/updateUserInfo",
   updateUserAddress: "user/updateUserAddress",
   deleteUserAddress: ({ id }) => `user/deleteUserAddress/${id}`,
+  updateUserPassword: "user/updateUserPassword",
 };
 
 const userApi = {
@@ -89,6 +90,22 @@ const userApi = {
     try {
       const response = await privateClient.delete(
         userEndpoints.deleteUserAddress({ id })
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  updateUserPassword: async ({ oldPassword, newPassword, confirmPassword }) => {
+    try {
+      const response = await privateClient.put(
+        userEndpoints.updateUserPassword,
+        {
+          oldPassword,
+          newPassword,
+          confirmPassword,
+        }
       );
       return { response };
     } catch (error) {
