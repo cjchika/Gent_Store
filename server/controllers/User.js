@@ -259,3 +259,23 @@ export const updateUserAddress = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error.message, 500));
   }
 });
+
+// DELETE USER ADDRESS
+export const deleteUserAddress = asyncErrors(async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const addressId = req.params.id;
+    console.log(addressId);
+
+    await User.updateOne(
+      { _id: userId },
+      { $pull: { addresses: { _id: addressId } } }
+    );
+
+    const user = await User.findById(userId);
+
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});

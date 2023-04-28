@@ -688,7 +688,7 @@ const Address = () => {
           </div>
         </div>
       )}
-      <div className="flex w-full items-center justify-between">
+      <div className="flex flex-col md:flex-row w-full items-center justify-between">
         <h1 className="text-[25px] font-[600] text-secColor pb-2">
           My Addresses
         </h1>
@@ -703,26 +703,28 @@ const Address = () => {
       {user &&
         user.addresses.map((item, index) => (
           <div
-            className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10 mb-5"
+            className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex flex-col md:flex-row items-center px-3 shadow justify-between gap-3 p-3 mb-5"
             key={index}
           >
             <div className="flex items-center">
-              <h5 className="pl-5 font-[600]">{item.addressType}</h5>
+              <h5 className="md:pl-5 font-[600] text-secColor">
+                {item.addressType}
+              </h5>
             </div>
-            <div className="pl-8 flex items-center">
+            <div className="md:pl-8 flex items-center">
               <h6 className="text-[12px] 800px:text-[unset]">
                 {item.address1} {item.address2}
               </h6>
             </div>
-            <div className="pl-8 flex items-center">
+            <div className="md:pl-8 flex items-center">
               <h6 className="text-[12px] 800px:text-[unset]">
                 {user && user.phoneNumber}
               </h6>
             </div>
-            <div className="min-w-[10%] flex items-center justify-between pl-8">
+            <div className="min-w-[10%] flex items-center justify-between md:pl-8">
               <AiOutlineDelete
                 size={25}
-                className="cursor-pointer"
+                className="cursor-pointer text-secColor"
                 onClick={() => handleDelete(item)}
               />
             </div>

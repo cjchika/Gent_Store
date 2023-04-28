@@ -8,6 +8,7 @@ import {
   updateUserInfo,
   updateUserAvatar,
   updateUserAddress,
+  deleteUserAddress,
 } from "../controllers/User.js";
 import { userAuth } from "../middleware/Auth.js";
 import { upload } from "../multer.js";
@@ -20,6 +21,7 @@ router.get("/getUser", userAuth, getUser);
 router.get("/logoutUser", logoutUser);
 router.put("/updateUserInfo", userAuth, updateUserInfo);
 router.put("/updateUserAddress", userAuth, updateUserAddress);
+router.delete("/deleteUserAddress/:id", userAuth, deleteUserAddress);
 router.put(
   "/updateUserAvatar",
   userAuth,
