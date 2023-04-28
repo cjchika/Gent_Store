@@ -5,6 +5,7 @@ import {
   AiOutlineCamera,
   AiOutlineDelete,
 } from "react-icons/ai";
+import { RxCross1 } from "react-icons/rx";
 import { MdOutlineTrackChanges } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/styles";
@@ -13,6 +14,7 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { baseUrl, apiUrl } from "../../config/api";
 import { updateUserInfo, getUser } from "../../redux/actions/user";
+import { Country, State } from "country-state-city";
 import { toast } from "react-toastify";
 
 const ProfileContent = ({ active }) => {
@@ -506,34 +508,228 @@ const Address = () => {
       name: "Office",
     },
   ];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (addressType === "" || country === "" || city === "") {
+      toast.error("Please fill all the fields!");
+    } else {
+      dispatch(
+        updatUserAddress(
+          country,
+          city,
+          address1,
+          address2,
+          zipCode,
+          addressType
+        )
+      );
+      setOpen(false);
+      setCountry("");
+      setCity("");
+      setAddress1("");
+      setAddress2("");
+      setZipCode(null);
+      setAddressType("");
+    }
+  };
+
+  const handleDelete = (item) => {
+    const id = item._id;
+    dispatch(deleteUserAddress(id));
+  };
 
   return (
     <div className="w-full px-5">
-      <div className="flex w-full flex-col  sm:flex-row items-start sm:items-center justify-between">
-        <h1 className="text-xl font-[600] text-secColor pb-2">My Addresses</h1>
-        <button
-          className={`bg-secColor hover:bg-deepSecColor p-3 px-8 rounded-lg text-white`}
+      {open && (
+        <div className="fixed z-50 w-full h-screen bg-[#0000004b] top-0 left-0 flex items-center justify-center ">
+          <div className="w-[90%] lg:w-[50%] h-[85vh] md:h-auto lg:h-[85vh] bg-white rounded shadow relative overflow-y-scroll">
+            <div className="w-full flex justify-end p-3">
+              <RxCross1
+                size={20}
+                className="cursor-pointer text-secColor"
+                onClick={() => setOpen(false)}
+              />
+            </div>
+            <h1 className="text-center font-Poppins text-secColor text-lg">
+              Add New Address
+            </h1>
+            <div className="w-full">
+              <form aria-required onSubmit={handleSubmit} className="w-full">
+                <div className="w-full block p-4">
+                  <div className="w-full pb-5">
+                    <label className="block pb-2 text-secColor">Country</label>
+                    <select
+                      name=""
+                      id=""
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="w-full border p-3 rounded-2xl"
+                    >
+                      <option value="" className="block border pb-2">
+                        Choose your country
+                      </option>
+                      {Country &&
+                        Country.getAllCountries().map((item) => (
+                          <option
+                            className="block pb-2"
+                            key={item.isoCode}
+                            value={item.isoCode}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+
+                  <div className="w-full pb-5">
+                    <label className="block pb-3 text-secColor">
+                      Choose your City
+                    </label>
+                    <select
+                      name=""
+                      id=""
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className="w-full border p-3 rounded-2xl"
+                    >
+                      <option value="" className="block border pb-2">
+                        Choose your city
+                      </option>
+                      {State &&
+                        State.getStatesOfCountry(country).map((item) => (
+                          <option
+                            className="block pb-2"
+                            key={item.isoCode}
+                            value={item.isoCode}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+
+                  <div className="w-full pb-5">
+                    <label className="block pb-2 text-secColor">
+                      Address 1
+                    </label>
+                    <input
+                      type="address"
+                      className={`w-full border p-3 rounded-2xl`}
+                      required
+                      value={address1}
+                      onChange={(e) => setAddress1(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-full pb-5">
+                    <label className="block pb-2 text-secColor">
+                      Address 2
+                    </label>
+                    <input
+                      type="address"
+                      className={`w-full border p-3 rounded-2xl`}
+                      required
+                      value={address2}
+                      onChange={(e) => setAddress2(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="w-full pb-5">
+                    <label className="block pb-2 text-secColor">Zip Code</label>
+                    <input
+                      type="number"
+                      className={`w-full border p-3 rounded-2xl`}
+                      required
+                      value={zipCode}
+                      onChange={(e) => setZipCode(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="w-full pb-5">
+                    <label className="block pb-2 text-secColor">
+                      Address Type
+                    </label>
+                    <select
+                      name=""
+                      id=""
+                      value={addressType}
+                      onChange={(e) => setAddressType(e.target.value)}
+                      className="w-full border p-3 rounded-2xl"
+                    >
+                      <option value="" className="block border pb-2">
+                        Choose your Address Type
+                      </option>
+                      {addressTypeData &&
+                        addressTypeData.map((item) => (
+                          <option
+                            className="block pb-2"
+                            key={item.name}
+                            value={item.name}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full text-white text-lg p-3 rounded-2xl bg-secColor hover:bg-deepSecColor"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="flex w-full items-center justify-between">
+        <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
+          My Addresses
+        </h1>
+        <div
+          className={`${styles.button} !rounded-md`}
+          onClick={() => setOpen(true)}
         >
-          Add New
-        </button>
+          <span className="text-[#fff]">Add New</span>
+        </div>
       </div>
       <br />
-      <div className="w-full gap-5 md:gap-0 p-5 bg-white h-min 800px:h-[70px] rounded-md flex flex-col md:flex-row items-start md:items-center px-3 shadow justify-between pr-10">
-        <div className="flex items-center">
-          <h5 className="md:pl-5 font-[600]">Default</h5>
-        </div>
-        <div className="md:pl-8 flex items-center">
-          <h6 className="text-xs 800px:text-[unset]">
-            494 Erdman Pasaage, FCT Abuja, Nigeria
-          </h6>
-        </div>
-        <div className="md:pl-8 flex items-center">
-          <h6 className="text-xs 800px:text-[unset]">(213) 840-9416</h6>
-        </div>
-        <div className="min-w-[10%] flex items-center justify-between md:pl-8">
-          <AiOutlineDelete size={25} className="text-secColor cursor-pointer" />
-        </div>
-      </div>
+      {user &&
+        user.addresses.map((item, index) => (
+          <div
+            className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10 mb-5"
+            key={index}
+          >
+            <div className="flex items-center">
+              <h5 className="pl-5 font-[600]">{item.addressType}</h5>
+            </div>
+            <div className="pl-8 flex items-center">
+              <h6 className="text-[12px] 800px:text-[unset]">
+                {item.address1} {item.address2}
+              </h6>
+            </div>
+            <div className="pl-8 flex items-center">
+              <h6 className="text-[12px] 800px:text-[unset]">
+                {user && user.phoneNumber}
+              </h6>
+            </div>
+            <div className="min-w-[10%] flex items-center justify-between pl-8">
+              <AiOutlineDelete
+                size={25}
+                className="cursor-pointer"
+                onClick={() => handleDelete(item)}
+              />
+            </div>
+          </div>
+        ))}
+
+      {user && user.addresses.length === 0 && (
+        <h5 className="text-center pt-8 text-[18px]">
+          You not have any saved address!
+        </h5>
+      )}
     </div>
   );
 };
