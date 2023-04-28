@@ -64,3 +64,19 @@ export const updateUserAddress =
       });
     }
   };
+
+// DELETE USER INFO
+export const deleteUserAddress = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "updateUserInfoRequest" });
+
+    const { response, error } = await userApi.updateUserAddress({ id });
+
+    dispatch({ type: "updateUserInfoSuccess", payload: response.user });
+  } catch (error) {
+    dispatch({
+      type: "updateUserInfoFail",
+      payload: error.response.message,
+    });
+  }
+};

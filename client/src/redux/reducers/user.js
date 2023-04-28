@@ -40,7 +40,6 @@ export const userReducer = createReducer(initialState, {
   },
 
   // UPDATE USER ADDRESS
-
   updateUserAddressRequest: (state) => {
     state.loadingAddress = true;
   },
@@ -50,6 +49,21 @@ export const userReducer = createReducer(initialState, {
     state.user = action.payload.user;
   },
   updateUserAddressFail: (state, action) => {
+    state.loadingAddress = false;
+    state.user = action.payload;
+  },
+
+  // DELETE USER ADDRESS
+
+  deleteUserAddressRequest: (state) => {
+    state.loadingAddress = true;
+  },
+  deleteUserAddressSuccess: (state, action) => {
+    state.loadingAddress = false;
+    state.successMessage = action.payload.successMessage;
+    state.user = action.payload.user;
+  },
+  deleteUserAddressFail: (state, action) => {
     state.loadingAddress = false;
     state.user = action.payload;
   },

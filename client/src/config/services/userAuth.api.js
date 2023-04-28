@@ -7,6 +7,7 @@ const userEndpoints = {
   getUser: "user/getUser",
   updateUserInfo: "user/updateUserInfo",
   updateUserAddress: "user/updateUserAddress",
+  deleteUserAddress: ({ id }) => `user/deleteUserAddress/${id}`,
 };
 
 const userApi = {
@@ -77,6 +78,17 @@ const userApi = {
           zipCode,
           addressType,
         }
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  deleteUserAddress: async ({ id }) => {
+    try {
+      const response = await privateClient.get(
+        userEndpoints.deleteUserAddress({ id })
       );
       return { response };
     } catch (error) {
