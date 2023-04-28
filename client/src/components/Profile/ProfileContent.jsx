@@ -685,15 +685,15 @@ const Address = () => {
         </div>
       )}
       <div className="flex w-full items-center justify-between">
-        <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
+        <h1 className="text-[25px] font-[600] text-secColor pb-2">
           My Addresses
         </h1>
-        <div
-          className={`${styles.button} !rounded-md`}
+        <button
           onClick={() => setOpen(true)}
+          className="text-white rounded-lg p-3 px-8 bg-secColor hover:bg-deepSecColor"
         >
-          <span className="text-[#fff]">Add New</span>
-        </div>
+          Add New
+        </button>
       </div>
       <br />
       {user &&
@@ -726,8 +726,8 @@ const Address = () => {
         ))}
 
       {user && user.addresses.length === 0 && (
-        <h5 className="text-center pt-8 text-[18px]">
-          You not have any saved address!
+        <h5 className="text-center pt-8 text-lg text-secColor">
+          You do not have any saved address!
         </h5>
       )}
     </div>
