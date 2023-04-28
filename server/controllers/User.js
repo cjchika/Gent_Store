@@ -225,7 +225,7 @@ export const updateUserAvatar = asyncErrors(async (req, res, next) => {
 });
 
 // UPDATE USER ADDRESSES
-export const updateUserAddresses = asyncErrors(async (req, res, next) => {
+export const updateUserAddress = asyncErrors(async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id);
 

@@ -6,6 +6,7 @@ const userEndpoints = {
   loginUser: "user/loginUser",
   getUser: "user/getUser",
   updateUserInfo: "user/updateUserInfo",
+  updateUserAddress: "user/updateUserAddress",
 };
 
 const userApi = {
@@ -51,6 +52,32 @@ const userApi = {
         phoneNumber,
         password,
       });
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  updateUserAddress: async ({
+    country,
+    city,
+    address1,
+    address2,
+    zipCode,
+    addressType,
+  }) => {
+    try {
+      const response = await privateClient.put(
+        userEndpoints.updateUserAddress,
+        {
+          country,
+          city,
+          address1,
+          address2,
+          zipCode,
+          addressType,
+        }
+      );
       return { response };
     } catch (error) {
       return { error };

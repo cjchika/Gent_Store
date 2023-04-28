@@ -39,3 +39,28 @@ export const updateUserInfo =
       });
     }
   };
+
+// UPDATE USER INFO
+export const updateUserAddress =
+  (country, city, address1, address2, zipCode, addressType) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: "updateUserInfoRequest" });
+
+      const { response, error } = await userApi.updateUserAddress({
+        country,
+        city,
+        address1,
+        address2,
+        zipCode,
+        addressType,
+      });
+
+      dispatch({ type: "updateUserInfoSuccess", payload: response.user });
+    } catch (error) {
+      dispatch({
+        type: "updateUserInfoFail",
+        payload: error.response.message,
+      });
+    }
+  };

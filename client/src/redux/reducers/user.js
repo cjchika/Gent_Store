@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 const initialState = {
   isUserAuthenticated: false,
   isLoadingUser: false,
+  loadingAddress: false,
   user: null,
 };
 
@@ -36,5 +37,20 @@ export const userReducer = createReducer(initialState, {
 
   ClearErrors: (state) => {
     state.error = null;
+  },
+
+  // UPDATE USER ADDRESS
+
+  updateUserAddressRequest: (state) => {
+    state.loadingAddress = true;
+  },
+  updateUserAddressSuccess: (state, action) => {
+    state.loadingAddress = false;
+    state.successMessage = action.payload.successMessage;
+    state.user = action.payload.user;
+  },
+  updateUserAddressFail: (state, action) => {
+    state.loadingAddress = false;
+    state.user = action.payload;
   },
 });

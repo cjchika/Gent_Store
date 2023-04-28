@@ -13,7 +13,11 @@ import { DataGrid } from "@material-ui/data-grid";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { baseUrl, apiUrl } from "../../config/api";
-import { updateUserInfo, getUser } from "../../redux/actions/user";
+import {
+  updateUserInfo,
+  updateUserAddress,
+  getUser,
+} from "../../redux/actions/user";
 import { Country, State } from "country-state-city";
 import { toast } from "react-toastify";
 
@@ -515,7 +519,7 @@ const Address = () => {
       toast.error("Please fill all the fields!");
     } else {
       dispatch(
-        updatUserAddress(
+        updateUserAddress(
           country,
           city,
           address1,
@@ -534,10 +538,10 @@ const Address = () => {
     }
   };
 
-  const handleDelete = (item) => {
-    const id = item._id;
-    dispatch(deleteUserAddress(id));
-  };
+  // const handleDelete = (item) => {
+  //   const id = item._id;
+  //   dispatch(deleteUserAddress(id));
+  // };
 
   return (
     <div className="w-full px-5">

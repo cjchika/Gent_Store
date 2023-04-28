@@ -7,7 +7,7 @@ import {
   logoutUser,
   updateUserInfo,
   updateUserAvatar,
-  updateUserAddresses,
+  updateUserAddress,
 } from "../controllers/User.js";
 import { userAuth } from "../middleware/Auth.js";
 import { upload } from "../multer.js";
@@ -19,7 +19,7 @@ router.post("/loginUser", loginUser);
 router.get("/getUser", userAuth, getUser);
 router.get("/logoutUser", logoutUser);
 router.put("/updateUserInfo", userAuth, updateUserInfo);
-router.put("/updateUserAddresses", userAuth, updateUserAddresses);
+router.put("/updateUserAddress", userAuth, updateUserAddress);
 router.put(
   "/updateUserAvatar",
   userAuth,
