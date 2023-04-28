@@ -87,7 +87,7 @@ const userApi = {
 
   deleteUserAddress: async ({ id }) => {
     try {
-      const response = await privateClient.get(
+      const response = await privateClient.delete(
         userEndpoints.deleteUserAddress({ id })
       );
       return { response };

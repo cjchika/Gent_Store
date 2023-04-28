@@ -8,6 +8,7 @@ import { HiOutlineReceiptRefund, HiOutlineShoppingBag } from "react-icons/hi";
 import { MdOutlineTrackChanges } from "react-icons/md";
 import { TbAddressBook } from "react-icons/tb";
 import { RxPerson } from "react-icons/rx";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { profileSideBarContent } from "../../static/data";
@@ -134,7 +135,7 @@ const ProfileSidebar = ({ active, setActive }) => {
         className="flex items-center cursor-pointer w-full mb-8"
         onClick={() => setActive(6)}
       >
-        <AiOutlineCreditCard
+        <RiLockPasswordLine
           size={20}
           className={active === 6 ? "text-priColor" : "text-secColor"}
         />
@@ -143,7 +144,7 @@ const ProfileSidebar = ({ active, setActive }) => {
             active === 6 ? "text-priColor" : "text-secColor"
           } 800px:block hidden`}
         >
-          Payment Methods
+          Change Password
         </span>
       </div>
 

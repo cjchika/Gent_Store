@@ -68,14 +68,14 @@ export const updateUserAddress =
 // DELETE USER INFO
 export const deleteUserAddress = (id) => async (dispatch) => {
   try {
-    dispatch({ type: "updateUserInfoRequest" });
+    dispatch({ type: "deleteUserInfoRequest" });
 
-    const { response, error } = await userApi.updateUserAddress({ id });
+    const { response, error } = await userApi.deleteUserAddress({ id });
 
-    dispatch({ type: "updateUserInfoSuccess", payload: response.user });
+    dispatch({ type: "deleteUserInfoSuccess", payload: response.user });
   } catch (error) {
     dispatch({
-      type: "updateUserInfoFail",
+      type: "deleteUserInfoFail",
       payload: error.response.message,
     });
   }
