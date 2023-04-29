@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
 import CartContent from "../Checkout/CartContent";
+import { PaystackButton } from "react-paystack";
 
 const Payment = () => {
+  const publicKey = "pk_test_13fbafc9e6edffe0b87eb781313edbb70d080efc";
   const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
@@ -56,14 +58,14 @@ const PaymentInfo = () => {
         <div className="flex w-full pb-5 border-b border-[#cecccccb] mb-3">
           <button
             onClick={() => setSelect(1)}
-            className="w-[25px] h-[25px] rounded-full bg-transparent border-2 border-[#1d1a1ab4] relative flex items-center justify-center"
+            className="w-[25px] h-[25px] rounded-full bg-transparent border-2 border-secColor relative flex items-center justify-center"
           >
             {select === 1 && (
-              <div className="w-[13px] h-[13px] bg-[#1d1a1acb] rounded-full" />
+              <div className="w-[13px] h-[13px] bg-secColor rounded-full" />
             )}
           </button>
-          <h4 className="text-lg pl-3 font-semibold text-[#000000b1]">
-            Pay with Debit/Credit Card
+          <h4 className="text-lg pl-3 font-semibold text-secColor">
+            Instant Payment
           </h4>
         </div>
 
@@ -109,79 +111,38 @@ const PaymentInfo = () => {
                 type="submit"
                 className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
               >
-                Submit
+                Pay Now
               </button>
             </form>
           </div>
         )}
       </div>
-
       <br />
-      {/* paypal payment */}
-      <div>
-        <div className="flex w-full pb-5 border-b border-[#cecccccb] mb-2">
-          <button
-            className="w-[25px] h-[25px] rounded-full bg-transparent border-[3px] border-[#1d1a1ab4] relative flex items-center justify-center"
-            onClick={() => setSelect(2)}
-          >
-            {select === 2 && (
-              <div className="w-[13px] h-[13px] bg-[#1d1a1acb] rounded-full" />
-            )}
-          </button>
-          <h4 className="text-[18px] pl-3 font-[600] text-[#000000b1]">
-            Pay with Paypal
-          </h4>
-        </div>
 
-        {/* pay with card */}
-        {select === 2 && (
-          <div className="w-full flex border-b border-[#cecccccb]">
-            <form className="w-full" onSubmit={handlePayment}>
-              <div className="w-full flex pb-3">
-                <div className="w-full">
-                  <label className="block pb-2">Paypal Email</label>
-                  <input
-                    required
-                    className={`${styles.input} focus:border-priColor`}
-                  />
-                </div>
-              </div>
-              <button
-                type="submit"
-                className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        )}
-      </div>
-
-      <br />
       {/* cash on Delivery */}
       <div>
         <div className="flex w-full pb-5 border-b border-[#cecccccb] mb-2">
           <button
-            className="w-[25px] h-[25px] rounded-full bg-transparent border-[3px] border-[#1d1a1ab4] relative flex items-center justify-center"
-            onClick={() => setSelect(3)}
+            className="w-[25px] h-[25px] rounded-full bg-transparent border-[3px] border-secColor relative flex items-center justify-center"
+            onClick={() => setSelect(2)}
           >
-            {select === 3 && (
-              <div className="w-[13px] h-[13px] bg-[#1d1a1acb] rounded-full" />
+            {select === 2 && (
+              <div className="w-[13px] h-[13px] bg-secColor rounded-full" />
             )}
           </button>
-          <h4 className="text-[18px] pl-3 font-[600] text-[#000000b1]">
+          <h4 className="text-[18px] pl-3 font-[600] text-secColor">
             Cash on Delivery
           </h4>
         </div>
 
         {/* pay with card */}
-        {select === 3 && (
+        {select === 2 && (
           <div className="w-full flex">
             <button
               onClick={handlePayment}
               className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
             >
-              Submit
+              Place Order
             </button>
           </div>
         )}
