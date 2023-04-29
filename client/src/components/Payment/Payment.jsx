@@ -5,7 +5,6 @@ import CartContent from "../Checkout/CartContent";
 import { PaystackButton } from "react-paystack";
 
 const Payment = () => {
-  const publicKey = "pk_test_13fbafc9e6edffe0b87eb781313edbb70d080efc";
   const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const Payment = () => {
     <div className="w-full flex flex-col items-center py-8">
       <div className="w-[90%] 1000px:w-[70%] block 800px:flex">
         <div className="w-full 800px:w-[65%]">
-          <PaymentInfo />
+          <PaymentInfo orderData={orderData} />
         </div>
         <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
           <CartContent
@@ -42,13 +41,27 @@ const Payment = () => {
 
 export default Payment;
 
-const PaymentInfo = () => {
+const PaymentInfo = ({ orderData }) => {
+  const publicKey = "pk_test_13fbafc9e6edffe0b87eb781313edbb70d080efc";
   const [select, setSelect] = useState(1);
   const navigate = useNavigate();
 
+  const paystackProps = {
+    email: orderData?.user?.email,
+    amount: orderData?.totalPrice * 2000,
+    metadata: {
+      name: orderData?.user?.name,
+      phone: orderData?.user?.phoneNumber,
+    },
+    publicKey,
+    text: "Pay Now",
+    onSuccess: () => navigate(`/order/success/shdgkl`),
+    onClose: () => navigate("/payment"),
+  };
+
   const handlePayment = (e) => {
     e.preventDefault();
-    navigate("/order/success/fdbxf9848");
+    navigate("/order/success/hgjhg");
   };
 
   return (
@@ -72,48 +85,12 @@ const PaymentInfo = () => {
         {/* Pay with card */}
         {select === 1 && (
           <div className="w-full flex border-b border-[#cecccccb]">
-            <form onSubmit={handlePayment}>
-              <div className="w-full flex pb-2">
-                <div className="w-[50%]">
-                  <label className="block pb-2">Card Number</label>
-                  <input
-                    required
-                    className={`${styles.input} !w-[95%] focus:border-priColor`}
-                  />
-                </div>
-                <div className="w-[50%]">
-                  <label className="block pb-2">Exp Date</label>
-                  <input
-                    type="number"
-                    required
-                    className={`${styles.input} !w-[95%] focus:border-priColor`}
-                  />
-                </div>
-              </div>
-              <div className="w-full flex pb-3">
-                <div className="w-[50%]">
-                  <label className="block pb-2">Name On Card</label>
-                  <input
-                    required
-                    className={`${styles.input} !w-[95%] focus:border-priColor`}
-                  />
-                </div>
-                <div className="w-[50%]">
-                  <label className="block pb-2">Billing Address</label>
-                  <input
-                    type="text"
-                    required
-                    className={`${styles.input} !w-[95%] focus:border-priColor`}
-                  />
-                </div>
-              </div>
-              <button
-                type="submit"
-                className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
-              >
-                Pay Now
-              </button>
-            </form>
+            <div
+              onClick={() => console.log("clicked")}
+              className=" flex p-2 mb-7 bg-priColor hover:!bg-[#05af6e] text-[#fff] rounded-lg px-10 cursor-pointer text-lg font-medium"
+            >
+              <PaystackButton {...paystackProps} />
+            </div>
           </div>
         )}
       </div>
@@ -140,7 +117,7 @@ const PaymentInfo = () => {
           <div className="w-full flex">
             <button
               onClick={handlePayment}
-              className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-[18px] font-[600]`}
+              className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-lg font-medium`}
             >
               Place Order
             </button>

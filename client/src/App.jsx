@@ -39,12 +39,12 @@ import SellerProtectedRoute from "./routes/SellerProtectedRoute.jsx";
 import { ScrollToTop } from "./components/utils/ScrollToTop.jsx";
 
 const App = () => {
-  const { user } = useSelector((state) => state.user);
-  const { seller } = useSelector((state) => state.seller);
-  const { allProducts } = useSelector((state) => state.products);
-  console.log(user);
-  console.log(seller);
-  console.log(allProducts);
+  // const { user } = useSelector((state) => state.user);
+  // const { seller } = useSelector((state) => state.seller);
+  // const { allProducts } = useSelector((state) => state.products);
+  // console.log(user);
+  // console.log(seller);
+  // console.log(allProducts);
 
   useEffect(() => {
     store.dispatch(getUser());
