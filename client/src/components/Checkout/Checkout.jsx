@@ -3,14 +3,41 @@ import styles from "../../styles/styles";
 import { useNavigate } from "react-router-dom";
 import { Country, State } from "country-state-city";
 import CartContent from "./CartContent";
+import { useSelector, useDispatch } from "react-redux";
 
 const Checkout = () => {
+  const { user } = useSelector((state) => state.user);
+  const { cart } = useSelector((state) => state.cart);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [userInfo, setUserInfo] = useState(false);
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [zipCode, setZipCode] = useState(null);
+  const [couponCode, setCouponCode] = useState("");
+  const [couponCodeData, setCouponCodeData] = useState(null);
+  const [discountPrice, setDiscountPrice] = useState(null);
   const navigate = useNavigate();
+
   return (
     <div className="w-fll flex flex-col items-center py-8">
       <div className="w-[90%] 1000px:w-[70%] block 800px:flex">
         <div className="w-full 800px:w-[65%]">
-          <ShippingInfo />
+          <ShippingInfo
+            user={user}
+            country={country}
+            setCountry={setCountry}
+            city={city}
+            setCity={setCity}
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            address1={address1}
+            setAddress1={setAddress1}
+            address2={address2}
+            setAddress2={setAddress2}
+            zipCode={zipCode}
+            setZipCode={setZipCode}
+          />
         </div>
         <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
           <CartContent />
@@ -28,8 +55,22 @@ const Checkout = () => {
 
 export default Checkout;
 
-const ShippingInfo = () => {
-  const [country, setCountry] = useState("");
+const ShippingInfo = ({
+  user,
+  country,
+  setCountry,
+  city,
+  setCity,
+  userInfo,
+  setUserInfo,
+  address1,
+  setAddress1,
+  address2,
+  setAddress2,
+  zipCode,
+  setZipCode,
+}) => {
+  // const [country, setCountry] = useState("");
 
   return (
     <div className="w-full 800px:w-[95%] bg-white rounded-md p-5 pb-8">
@@ -83,6 +124,7 @@ const ShippingInfo = () => {
             <input
               type="number"
               placeholder="Zip Code"
+              value={zipCode}
               required
               className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
             />
@@ -116,7 +158,11 @@ const ShippingInfo = () => {
             <label htmlFor="country" className="block pb-2 text-secColor">
               State
             </label>
-            <select className="w-[95%] border h-[40px] rounded-lg">
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="w-[95%] border h-[40px] rounded-lg"
+            >
               <option className="block pb-2 text-secColor" value="">
                 Select your State
               </option>
@@ -139,6 +185,7 @@ const ShippingInfo = () => {
             <input
               type="address"
               placeholder="Address 1"
+              value={address1}
               required
               className={`${styles.input} !w-[95%]`}
             />
@@ -147,6 +194,7 @@ const ShippingInfo = () => {
             <label className="block pb-2 text-secColor">Address 2</label>
             <input
               placeholder="Address 2"
+              value={address2}
               type="address"
               required
               className={`${styles.input} !w-[95%]`}
@@ -154,6 +202,35 @@ const ShippingInfo = () => {
           </div>
         </div>
       </form>
+
+      <h5
+        className="text-lg text-secColor cursor-pointer inline-block mt-3"
+        onClick={() => setUserInfo(!userInfo)}
+      >
+        Choose from saved address
+      </h5>
+      {userInfo && (
+        <div>
+          {user &&
+            user.addresses.map((item, index) => (
+              <div className="w-full flex mt-1">
+                <input
+                  type="checkbox"
+                  className="mr-3 "
+                  value={item.addressType}
+                  onClick={() =>
+                    setAddress1(item.address1) ||
+                    setAddress2(item.address2) ||
+                    setZipCode(item.zipCode) ||
+                    setCountry(item.country) ||
+                    setCity(item.city)
+                  }
+                />
+                <h2 className="text-secColor">{item.addressType}</h2>
+              </div>
+            ))}
+        </div>
+      )}
     </div>
   );
 };
