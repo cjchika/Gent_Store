@@ -22,40 +22,6 @@ const Checkout = () => {
   const [discountPrice, setDiscountPrice] = useState(null);
   const navigate = useNavigate();
 
-  const paymentSubmit = () => {
-    if (
-      address1 === "" ||
-      address2 === "" ||
-      zipCode === null ||
-      country === "" ||
-      city === ""
-    ) {
-      toast.error("Please choose your delivery address!");
-    } else {
-      const shippingAddress = {
-        address1,
-        address2,
-        zipCode,
-        country,
-        city,
-      };
-
-      const orderData = {
-        cart,
-        totalPrice,
-        subTotalPrice,
-        shipping,
-        discountPrice,
-        shippingAddress,
-        user,
-      };
-
-      // update local storage with the updated orders array
-      localStorage.setItem("latestOrder", JSON.stringify(orderData));
-      navigate("/payment");
-    }
-  };
-
   const subTotalPrice = cart.reduce(
     (acc, item) => acc + item.qty * item.discountPrice,
     0
@@ -106,6 +72,40 @@ const Checkout = () => {
 
   console.log(discountPercentage);
 
+  const paymentSubmit = () => {
+    if (
+      address1 === "" ||
+      address2 === "" ||
+      zipCode === null ||
+      country === "" ||
+      city === ""
+    ) {
+      toast.error("Please choose your delivery address!");
+    } else {
+      const shippingAddress = {
+        address1,
+        address2,
+        zipCode,
+        country,
+        city,
+      };
+
+      const orderData = {
+        cart,
+        totalPrice,
+        subTotalPrice,
+        shipping,
+        discountPrice,
+        shippingAddress,
+        user,
+      };
+
+      // update local storage with the updated orders array
+      localStorage.setItem("latestOrder", JSON.stringify(orderData));
+      navigate("/payment");
+    }
+  };
+
   return (
     <div className="w-fll flex flex-col items-center py-8">
       <div className="w-[90%] 1000px:w-[70%] block 800px:flex">
@@ -139,7 +139,7 @@ const Checkout = () => {
         </div>
       </div>
       <button
-        onClick={() => navigate("/payment")}
+        onClick={paymentSubmit}
         className="text-white bg-secColor hover:bg-deepSecColor rounded-lg p-3 px-4 mt-10"
       >
         Continue to Payment
@@ -180,6 +180,7 @@ const ShippingInfo = ({
             <input
               type="name"
               placeholder="Name"
+              value={user?.name}
               required
               className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
             />
@@ -191,6 +192,7 @@ const ShippingInfo = ({
             </label>
             <input
               type="email"
+              value={user?.email}
               placeholder="Email address"
               required
               className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
@@ -205,6 +207,7 @@ const ShippingInfo = ({
               Phone Number
             </label>
             <input
+              value={user?.phoneNumber}
               type="number"
               placeholder="Phone number"
               required

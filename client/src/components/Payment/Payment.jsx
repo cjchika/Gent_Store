@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
 import CartContent from "../Checkout/CartContent";
 
 const Payment = () => {
+  const [orderData, setOrderData] = useState([]);
+
+  useEffect(() => {
+    const orderData = JSON.parse(localStorage.getItem("latestOrder"));
+    setOrderData(orderData);
+  }, []);
+
+  const {
+    totalPrice,
+    subTotalPrice,
+    shipping,
+    discountPrice: discountPercentage,
+  } = orderData;
+
   return (
     <div className="w-full flex flex-col items-center py-8">
       <div className="w-[90%] 1000px:w-[70%] block 800px:flex">
@@ -11,7 +25,13 @@ const Payment = () => {
           <PaymentInfo />
         </div>
         <div className="w-full 800px:w-[35%] 800px:mt-0 mt-8">
-          <CartContent />
+          <CartContent
+            shipping={shipping}
+            subTotalPrice={subTotalPrice}
+            totalPrice={totalPrice}
+            discountPercentage={discountPercentage}
+            isPayment={true}
+          />
         </div>
       </div>
     </div>
