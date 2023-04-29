@@ -5,6 +5,7 @@ const couponEndpoints = {
   createCoupon: "coupon/createCouponCode",
   getShopCoupons: (id) => `coupon/getAllShopCoupons/${id}`,
   deleteShopCoupon: (id) => `coupon/deleteShopCoupon/${id}`,
+  getCouponCodeByName: (name) => `coupon/getCouponCodeByName/${name}`,
 };
 
 const couponApi = {
@@ -45,6 +46,17 @@ const couponApi = {
     try {
       const response = await privateClient.delete(
         couponEndpoints.deleteShopCoupon(id)
+      );
+      return { response };
+    } catch (error) {
+      return { error };
+    }
+  },
+
+  getCouponCodeByName: async (name) => {
+    try {
+      const response = await privateClient.get(
+        couponEndpoints.getCouponCodeByName(name)
       );
       return { response };
     } catch (error) {

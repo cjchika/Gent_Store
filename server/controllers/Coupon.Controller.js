@@ -59,3 +59,20 @@ export const deleteShopCoupon = asyncErrors(async (req, res, next) => {
     return next(new ErrorHandler(error, 400));
   }
 });
+
+// GET COUPON CODE BY NAME
+export const getCouponCodeByName = asyncErrors(async (req, res, next) => {
+  try {
+    const couponCode = await Coupon.findOne({ name: req.params.name });
+    // console.log(couponCode);
+
+    if (!couponCode) {
+      next(new ErrorHandler("No coupon found", 404));
+      return;
+    }
+
+    res.status(200).json({ success: true, couponCode });
+  } catch (error) {
+    return next(new ErrorHandler(error, 400));
+  }
+});
