@@ -1,12 +1,14 @@
 import Header from "../components/Layout/Header";
 import Footer from "../components/Layout/Footer";
 import Lottie from "react-lottie";
+import CheckoutSteps from "../components/Checkout/CheckoutSteps";
 import animationData from "../assets/animations/107043-success.json";
 
 const OrderSuccessPage = () => {
   return (
     <div>
       <Header />
+      {/* <CheckoutSteps active={4} /> */}
       <Success />
       <Footer />
     </div>
