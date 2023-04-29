@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "../../styles/styles";
 import CartContent from "../Checkout/CartContent";
 import { PaystackButton } from "react-paystack";
+import orderAPi from "../../config/services/order.api";
+import { toast } from "react-toastify";
 
 const Payment = () => {
   const [orderData, setOrderData] = useState([]);
@@ -46,6 +48,8 @@ const PaymentInfo = ({ orderData }) => {
   const [select, setSelect] = useState(1);
   const navigate = useNavigate();
 
+  console.log(orderData?.cart);
+
   const paystackProps = {
     email: orderData?.user?.email,
     amount: orderData?.totalPrice * 2000,
@@ -55,13 +59,74 @@ const PaymentInfo = ({ orderData }) => {
     },
     publicKey,
     text: "Pay Now",
-    onSuccess: () => navigate(`/order/success/shdgkl`),
+    onSuccess: () => navigate(`/order/success`),
     onClose: () => navigate("/payment"),
   };
 
-  const handlePayment = (e) => {
+  const handlePayment = async (e) => {
     e.preventDefault();
-    navigate("/order/success/hgjhg");
+    const infoId = Math.random(Math.round * 10).toString();
+
+    const paymentInfo = {
+      id: infoId,
+      status: "successful",
+      type: "PayStack",
+    };
+
+    const { response, error } = await orderAPi.createOrder({
+      cart: orderData?.cart,
+      shippingAddress: orderData?.shippingAddress,
+      user: orderData?.user,
+      totalPrice: orderData?.totalPrice,
+      paymentInfo,
+    });
+
+    console.log(response);
+
+    if (response) {
+      navigate("/order/success");
+      toast.success("Order Successful");
+      localStorage.setItem("cartItems", JSON.stringify([]));
+      localStorage.setItem("latestOrder", JSON.stringify([]));
+      window.location.reload();
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handlePayOnDelivery = async (e) => {
+    e.preventDefault();
+
+    // const infoId = Math.random(Math.round * 10).toString();
+
+    // const paymentInfo = {
+    //   id: infoId,
+    //   status: "successful",
+    //   type: "PayOnDelivery",
+    // };
+
+    const { response, error } = await orderAPi.createOrder({
+      cart: orderData?.cart,
+      shippingAddress: orderData?.shippingAddress,
+      user: orderData?.user,
+      totalPrice: orderData?.totalPrice,
+    });
+
+    console.log(response);
+
+    if (response) {
+      navigate("/order/success");
+      toast.success("Order Successful");
+      localStorage.setItem("cartItems", JSON.stringify([]));
+      localStorage.setItem("latestOrder", JSON.stringify([]));
+      window.location.reload();
+    }
+
+    if (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -86,7 +151,7 @@ const PaymentInfo = ({ orderData }) => {
         {select === 1 && (
           <div className="w-full flex border-b border-[#cecccccb]">
             <div
-              onClick={() => console.log("clicked")}
+              onClick={handlePayment}
               className=" flex p-2 mb-7 bg-priColor hover:!bg-[#05af6e] text-[#fff] rounded-lg px-10 cursor-pointer text-lg font-medium"
             >
               <PaystackButton {...paystackProps} />
@@ -116,7 +181,7 @@ const PaymentInfo = ({ orderData }) => {
         {select === 2 && (
           <div className="w-full flex">
             <button
-              onClick={handlePayment}
+              onClick={handlePayOnDelivery}
               className={`${styles.button} mb-7 !bg-priColor hover:!bg-[#05af6e] text-[#fff] h-[45px] rounded-[5px] cursor-pointer text-lg font-medium`}
             >
               Place Order

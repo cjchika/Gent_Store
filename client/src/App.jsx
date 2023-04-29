@@ -77,7 +77,7 @@ const App = () => {
             }
           />
           <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/order/success/:id" element={<OrderSuccessPage />} />
+          <Route path="/order/success" element={<OrderSuccessPage />} />
           <Route
             path="/profile"
             element={

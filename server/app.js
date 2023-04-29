@@ -9,6 +9,7 @@ import shopRoutes from "./routes/Shop.Route.js";
 import productRoutes from "./routes/Product.Route.js";
 import eventRoutes from "./routes/Event.Route.js";
 import couponRoutes from "./routes/Coupon.Route.js";
+import orderRoutes from "./routes/Order.Route.js";
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use("/api/v1/seller", shopRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/event", eventRoutes);
 app.use("/api/v1/coupon", couponRoutes);
+app.use("/api/v1/order", orderRoutes);
 
 app.use(handleErr);
 
