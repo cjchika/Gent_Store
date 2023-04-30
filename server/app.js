@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://https://gent-store.netlify.app/",
+    origin: "https://gent-store.netlify.app/",
     credentials: true,
   })
 );
