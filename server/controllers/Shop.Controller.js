@@ -51,7 +51,7 @@ export const createShop = async (req, res, next) => {
         message: `<h3>Email Confirmation</h3>
         <h4>Hello, ${seller.name}.</h4>
         <p>You are almost there, please confirm your email by clicking on the following link.</p>
-        <a href=http://localhost:5173/seller/activation/${seller.activationCode}> Click here</a>
+        <a href=https://gent-store.netlify.app/seller/activation/${seller.activationCode}> Click here</a>
         </div>`,
       });
       res.status(201).json({
