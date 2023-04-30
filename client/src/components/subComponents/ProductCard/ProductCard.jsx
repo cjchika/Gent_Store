@@ -126,7 +126,9 @@ const ProductCard = ({ item }) => {
                     : null}
                 </h4>
               </div>
-              <span className="font-[400] text-sm text-priColor">50 sold</span>
+              <span className="font-[400] text-sm text-priColor">
+                {item.sold_out} sold
+              </span>
             </div>
           </Link>
         </div>

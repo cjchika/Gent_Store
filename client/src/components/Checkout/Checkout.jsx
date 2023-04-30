@@ -182,7 +182,7 @@ const ShippingInfo = ({
               placeholder="Name"
               value={user?.name}
               required
-              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
+              className={`p-2 px-3 rounded-xl !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
 
@@ -195,7 +195,7 @@ const ShippingInfo = ({
               value={user?.email}
               placeholder="Email address"
               required
-              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
+              className={`p-2 px-3 rounded-xl !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
         </div>
@@ -211,7 +211,7 @@ const ShippingInfo = ({
               type="number"
               placeholder="Phone number"
               required
-              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
+              className={`p-2 px-3 rounded-xl !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
 
@@ -224,7 +224,7 @@ const ShippingInfo = ({
               placeholder="Zip Code"
               value={zipCode}
               required
-              className={`${styles.input} !w-[95%] border border-secColor focus:border-priColor`}
+              className={`p-2 px-3 rounded-xl !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
         </div>
@@ -236,7 +236,7 @@ const ShippingInfo = ({
               Country
             </label>
             <select
-              className="w-[95%] border h-[40px] rounded-lg"
+              className="p-2 px-3 rounded-xl w-[95%]  border border-secColor h-[40px] text-secColor"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             >
@@ -259,7 +259,7 @@ const ShippingInfo = ({
             <select
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              className="w-[95%] border h-[40px] rounded-lg"
+              className="p-2 px-3 rounded-xl w-[95%]  border border-secColor h-[40px] text-secColor"
             >
               <option className="block pb-2 text-secColor" value="">
                 Select your State
@@ -285,7 +285,7 @@ const ShippingInfo = ({
               placeholder="Address 1"
               value={address1}
               required
-              className={`${styles.input} !w-[95%]`}
+              className={`p-2 px-3 rounded-xl !w-[95%]  border border-secColor focus:border-priColor`}
             />
           </div>
           <div className="w-[50%]">
@@ -295,7 +295,7 @@ const ShippingInfo = ({
               value={address2}
               type="address"
               required
-              className={`${styles.input} !w-[95%]`}
+              className={`p-2 px-3 rounded-xl !w-[95%] border border-secColor focus:border-priColor`}
             />
           </div>
         </div>

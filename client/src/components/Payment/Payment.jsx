@@ -48,8 +48,6 @@ const PaymentInfo = ({ orderData }) => {
   const [select, setSelect] = useState(1);
   const navigate = useNavigate();
 
-  console.log(orderData?.cart);
-
   const paystackProps = {
     email: orderData?.user?.email,
     amount: orderData?.totalPrice * 2000,
@@ -59,13 +57,12 @@ const PaymentInfo = ({ orderData }) => {
     },
     publicKey,
     text: "Pay Now",
-    onSuccess: () => navigate(`/order/success`),
+    onSuccess: () => handlePayment(),
     onClose: () => navigate("/payment"),
   };
 
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    const infoId = Math.floor(Math.random() * 10).toString();
+  const handlePayment = async () => {
+    const infoId = Math.floor(Math.random() * 100).toString();
 
     const paymentInfo = {
       id: infoId,
@@ -98,23 +95,24 @@ const PaymentInfo = ({ orderData }) => {
     }
   };
 
-  const handlePayOnDelivery = async (e) => {
-    e.preventDefault();
+  const handlePayOnDelivery = async () => {
+    const infoId = Math.floor(Math.random() * 100).toString();
 
-    // const infoId = Math.random(Math.round * 10).toString();
+    const paymentInfo = {
+      id: infoId,
+      status: "Successful",
+      type: "PayOnDelivery",
+    };
 
-    // const paymentInfo = {
-    //   id: infoId,
-    //   status: "successful",
-    //   type: "PayOnDelivery",
-    // };
-
-    const { response, error } = await orderAPi.createOrder({
+    const order = {
       cart: orderData?.cart,
       shippingAddress: orderData?.shippingAddress,
       user: orderData?.user,
       totalPrice: orderData?.totalPrice,
-    });
+      paymentInfo,
+    };
+
+    const { response, error } = await orderAPi.createOrder(order);
 
     console.log(response);
 
@@ -152,11 +150,11 @@ const PaymentInfo = ({ orderData }) => {
         {/* Pay with card */}
         {select === 1 && (
           <div className="w-full flex border-b border-[#cecccccb]">
-            <div
-              onClick={handlePayment}
-              className=" flex p-2 mb-7 bg-priColor hover:!bg-[#05af6e] text-[#fff] rounded-lg px-10 cursor-pointer text-lg font-medium"
-            >
-              <PaystackButton {...paystackProps} />
+            <div className=" flex p-2 mb-7 bg-priColor hover:!bg-[#05af6e] text-[#fff] rounded-lg px-10 cursor-pointer text-lg font-medium">
+              <PaystackButton
+                {...paystackProps}
+                onSuccess={() => handlePayment()}
+              />
             </div>
           </div>
         )}

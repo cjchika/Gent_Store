@@ -34,7 +34,7 @@ const EventCard = ({ active, item }) => {
             </h5>
           </div>
           <span className="pr-3 font-semibold text-lg text-priColor">
-            3 sold
+            {item?.sold_out} sold
           </span>
         </div>
       </div>
