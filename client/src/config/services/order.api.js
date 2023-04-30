@@ -6,7 +6,13 @@ const orderEndpoints = {
 };
 
 const orderAPi = {
-  createOrder: async (cart, shippingAddress, user, totalPrice, paymentInfo) => {
+  createOrder: async ({
+    cart,
+    shippingAddress,
+    user,
+    totalPrice,
+    paymentInfo,
+  }) => {
     try {
       const response = await privateClient.post(orderEndpoints.createOrder, {
         cart,

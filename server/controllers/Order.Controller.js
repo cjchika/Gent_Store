@@ -9,6 +9,8 @@ export const createOrder = asyncErrors(async (req, res, next) => {
   try {
     const { cart, shippingAddress, user, totalPrice, paymentInfo } = req.body;
 
+    console.log(cart);
+
     // GROUP CART ITEMS BY SHOP
     const shopItemsMap = new Map();
 

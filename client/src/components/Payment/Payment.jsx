@@ -65,21 +65,23 @@ const PaymentInfo = ({ orderData }) => {
 
   const handlePayment = async (e) => {
     e.preventDefault();
-    const infoId = Math.random(Math.round * 10).toString();
+    const infoId = Math.floor(Math.random() * 10).toString();
 
     const paymentInfo = {
       id: infoId,
-      status: "successful",
+      status: "Successful",
       type: "PayStack",
     };
 
-    const { response, error } = await orderAPi.createOrder({
+    const order = {
       cart: orderData?.cart,
       shippingAddress: orderData?.shippingAddress,
       user: orderData?.user,
       totalPrice: orderData?.totalPrice,
       paymentInfo,
-    });
+    };
+
+    const { response, error } = await orderAPi.createOrder(order);
 
     console.log(response);
 
