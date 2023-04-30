@@ -302,7 +302,7 @@ const ShippingInfo = ({
       </form>
 
       <h5
-        className="text-lg text-secColor cursor-pointer inline-block mt-3"
+        className="text-lg text-white p-2 rounded-xl cursor-pointer inline-block mt-3 bg-secColor"
         onClick={() => setUserInfo(!userInfo)}
       >
         Choose from saved address

@@ -80,11 +80,11 @@ const PaymentInfo = ({ orderData }) => {
 
     const { response, error } = await orderAPi.createOrder(order);
 
-    console.log(response);
+    // console.log(response);
 
     if (response) {
-      navigate("/order/success");
       toast.success("Order Successful");
+      navigate("/order/success");
       localStorage.setItem("cartItems", JSON.stringify([]));
       localStorage.setItem("latestOrder", JSON.stringify([]));
       window.location.reload();
@@ -117,8 +117,8 @@ const PaymentInfo = ({ orderData }) => {
     console.log(response);
 
     if (response) {
-      navigate("/order/success");
       toast.success("Order Successful");
+      navigate("/order/success");
       localStorage.setItem("cartItems", JSON.stringify([]));
       localStorage.setItem("latestOrder", JSON.stringify([]));
       window.location.reload();
