@@ -55,7 +55,7 @@ const CartSingleItem = ({
           alt="product"
         />
         <div className="pl-[5px]">
-          <h1 className="text-sm">{item.name}</h1>
+          <h1 className="text-[10px] md:text-sm">{item.name}</h1>
           <h4 className="font-[400] text-[15px] text-[#00000082]">
             {item.discountPrice} x {value}{" "}
           </h4>
@@ -65,7 +65,8 @@ const CartSingleItem = ({
         </div>
         <RxCross1
           onClick={() => removeCartItemHandler(item)}
-          className="cursor-pointer"
+          size={25}
+          className="cursor-pointer text-[#e44343]"
         />
       </div>
     </div>
