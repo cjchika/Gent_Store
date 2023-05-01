@@ -214,10 +214,12 @@ const Header = ({ activeHeader }) => {
           </div>
           <div>
             <div className="relative mr-[20px]">
-              <AiOutlineShoppingCart size={30} className="text-secColor" />
-              <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
-                {cart?.length}
-              </span>
+              <Link to={"/checkout"}>
+                <AiOutlineShoppingCart size={30} className="text-secColor" />
+                <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+                  {cart?.length}
+                </span>
+              </Link>
             </div>
           </div>
         </div>
