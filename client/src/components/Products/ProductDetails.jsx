@@ -172,7 +172,7 @@ const ProductDetails = ({ item }) => {
                     <img
                       src={`${baseUrl}${item?.shop?.avatar}`}
                       alt=""
-                      className="w-[80px] h-[80px] rounded-full mr-2"
+                      className="w-[60px] h-[60px] rounded-full mr-2 object-cover"
                     />
                   </Link>
 
@@ -189,7 +189,7 @@ const ProductDetails = ({ item }) => {
                     </h5>
                   </div>
                   <button
-                    className={`bg-secColor hover:bg-deepSecColor p-2 px-3 rounded-md text-white`}
+                    className={`bg-secColor hover:bg-deepSecColor p-2 rounded-md text-white`}
                     onClick={console.log("Clicked")}
                   >
                     <span className="flex items-center">
@@ -270,7 +270,7 @@ const ProductDetailsInfo = ({ item, products }) => {
               <div className="flex items-center">
                 <img
                   src={`${baseUrl}${item?.shop?.avatar}`}
-                  className="w-[100px] h-[100px] rounded-full"
+                  className="w-[80px] h-[80px] rounded-full object-cover"
                   alt=""
                 />
                 <div className="pl-3">
